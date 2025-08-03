@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RobiForexGabyTrade</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --fundal: #1b1e23;
+      --panou: #23252c;
+      --accent: #37e673;
+      --rosu: #ea3c53;
+      --text: #e0e6ed;
+      --gri: #3a3d46;
+      --gri-deschis: #c7cad4;
+      --tab-activ: #30313b;
+      --radius: 18px;
+      --radius-mic: 9px;
+      --avatar-bg: #22272e;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--fundal);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    .layout { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 295px;
+      background: var(--panou);
+      display: flex;
+      flex-direction: column;
+      gap: 19px;
+      padding: 24px 0 0 0;
+      box-shadow: 2px 0 24px #0002;
+      min-height: 100vh;
+    }
+    .logo-titlu {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 22px;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 18px #37e67322;
+    }
+    .meniu-lateral {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .meniu-btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 19px;
+      padding: 13px 0 13px 17px;
+      border-radius: var(--radius-mic);
+      text-align: left;
+      cursor: pointer;
+      transition: background .18s, color .18s;
+      margin-bottom: 2px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .meniu-btn.activ, .meniu-btn:hover {
+      background: var(--tab-activ);
+      color: var(--accent);
+    }
+    .zone-strategii { padding: 0 24px 10px 24px; }
+    .card-strategie {
+      background: var(--gri);
+      border-radius: var(--radius-mic);
+      padding: 13px 12px 12px 12px;
+      margin-bottom: 13px;
+      box-shadow: 0 2px 10px #0002;
+      color: var(--gri-deschis);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .card-strategie .linie1 { font-weight: 700; color: var(--text); font-size: 15.5px;}
+    .card-strategie .live {color: var(--accent); font-size: 14px;}
+    .porneste-btn {
+      background: var(--accent);
+      color: #151b22;
+      border: none;
+      border-radius: 7px;
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 8px;
+      padding: 8px 0;
+      width: 100%;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+      box-shadow: 0 2px 12px #37e67333;
+    }
+    .porneste-btn.oprit {
+      background: var(--rosu);
+      color: #fff;
+      box-shadow: 0 2px 12px #ea3c5350;
+    }
+    .balanta-card {
+      margin-top: 18px;
+      background: #23252c;
+      border-radius: 12px;
+      box-shadow: 0 2px 14px #0002;
+      padding: 19px 18px 13px 18px;
+      color: #e0e6ed;
+      font-family: 'Inter',sans-serif;
+      margin-bottom: 6px;
+    }
+    .balanta-titlu {
+      color: #37e673;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .balanta-sold {
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 1px;
+      margin-bottom: 9px;
+      display: flex; align-items: flex-end; gap: 8px;
+    }
+    .usd-label {
+      font-size: 15px;
+      color: #37e673bb;
+      font-weight: 600;
+    }
+    .balanta-detalii { font-size: 15px; }
+    .balanta-detalii .lbl { color: #c7cad4; font-weight: 500; }
+    .balanta-detalii .val { font-weight: 600; color: #fff; }
+    .profit-zi {margin-bottom:3px;}
+    .profit-zi .plus { color: #37e673; font-weight: 700;}
+    .profit-zi .minus { color: #ea3c53; font-weight: 700;}
+    .proc { margin-left: 5px; font-size: 14px;}
+    .zona-centru { flex: 1; display: flex; flex-direction: column; background: var(--fundal); min-height: 100vh;}
+    .bara-sus {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 38px;
+      height: 68px;
+      background: var(--panou);
+      border-bottom: 1px solid #282b32;
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      box-shadow: 0 4px 22px #0001;
+    }
+    .zona-profil { display: flex; align-items: center; gap: 12px; cursor: pointer; user-select: none; }
+    .avatar-mic {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--avatar-bg);
+      border: 2px solid var(--accent);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .avatar-mic:hover { border-color: var(--rosu);}
+    .avatar-mic img {width:100%;height:100%;object-fit:cover;}
+    .nume-profil { color: var(--gri-deschis); font-weight: 600; cursor: pointer; font-size: 18px; transition: color .2s;}
+    .nume-profil:hover { color: var(--accent);}
+    .zona-continut { display: flex; flex: 1; min-height: 0; position: relative; }
+    .zona-main { flex: 2.2; display: flex; flex-direction: column; align-items: center; width: 100%; padding: 48px 15px 0 15px;}
+    .zona-grafic {
+      width: 100%; max-width: 1080px; height: 300px; min-height: 200px; background: var(--panou);
+      border-radius: var(--radius); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px; margin-top: 0; box-shadow: 0 3px 24px #0003; position: relative; overflow: hidden;
+    }
+    .zona-grafic img { max-height: 220px; max-width: 340px; width: auto; height: auto; user-drag: none; user-select: none;}
+    .zona-grafic-text { color: var(--accent); font-size: 34px; font-weight: 700; letter-spacing: 6px; opacity: 0.19; text-align: center; width: 100%; position: absolute; left: 0; top: 50%; transform: translateY(-50%); z-index: 2; pointer-events: none; user-select: none;}
+    .zona-grafic-bg { width: 100%; height: 100%; background: repeating-linear-gradient(120deg, #23252c 0px, #23252c 32px, #1e2127 32px, #1e2127 64px); position: absolute; left: 0; top: 0; z-index: 1;}
+    .tabel-zona {
+      background: var(--panou); border-radius: var(--radius-mic);
+      box-shadow: 0 3px 18px #0001; padding: 14px 9px 8px 9px;
+      overflow-x: auto; width: 100%; min-width: 420px; max-width: 1080px;
+      position: relative; z-index: 2; margin-bottom: 30px;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 9px; text-align: left; border-bottom: 1px solid #353945; font-size: 16px;}
+    th { color: var(--accent);}
+    td { color: var(--text);}
+    .empty-msg { text-align: center; color: #555; font-size: 16px; padding: 18px 0;}
+    .panel-parametri { flex: 1; max-width: 280px; background: var(--panou); padding: 48px 19px 0 19px; border-left: 1.5px solid #23242a; box-shadow: -3px 0 18px #0002; min-width: 220px;}
+    .parametri-titlu { font-weight: 700; margin-bottom: 20px; color: var(--accent); font-size: 19px; letter-spacing: 1px;}
+    .parametri-label { color: var(--gri-deschis); font-size: 15px; margin-bottom: 7px; font-weight: 600;}
+    .parametri-input, .parametri-select {
+      width: 100%; padding: 8px 10px; background: #21232a; border: 1.5px solid #363842;
+      border-radius: 7px; color: var(--text); font-size: 16px; margin-bottom: 17px; outline: none;
+    }
+    .overlay-profil {
+      position: fixed; z-index: 999; left: 0; top: 0; width: 100vw; height: 100vh;
+      background: #1119; display: flex; align-items: center; justify-content: center; animation: fadein .25s;
+    }
+    .panel-profil { background: var(--panou); border-radius: 16px; box-shadow: 0 6px 32px #0003; max-width: 440px; width: 100%; padding: 34px 30px 28px 30px; display: flex; flex-direction: column; align-items: center; gap: 16px; animation: fadein .3s; position: relative;}
+    @keyframes fadein { from {opacity: 0; transform: translateY(40px);} to   {opacity: 1; transform: none;} }
+    .avatar-profil-mare { width: 88px; height: 88px; border-radius: 50%; background: var(--avatar-bg); border: 3px solid var(--accent); overflow: hidden; margin-bottom: 13px; cursor: pointer; position: relative;}
+    .avatar-profil-mare img { width: 100%; height: 100%; object-fit: cover;}
+    .schimba-poza-btn { background: var(--accent); color: #141414; border: none; border-radius: 6px; font-weight: 600; font-size: 14px; margin-top: 7px; padding: 5px 17px; cursor: pointer; box-shadow: 0 2px 12px #37e67333; margin-bottom: 10px; transition: background .15s;}
+    .schimba-poza-btn:hover {background: #2fcf61;}
+    .edit-profil-form { display: flex; flex-direction: column; width: 100%; gap: 12px;}
+    .edit-profil-form input { background: #23272e; color: var(--text); border: 1.5px solid #363842; border-radius: 7px; font-size: 16px; padding: 8px 13px; margin-bottom: 2px;}
+    .edit-profil-form label { color: #c7cad4; font-weight: 600; font-size: 15px; margin-bottom: 3px;}
+    .salveaza-btn { background: var(--accent); color: #141414; border: none; border-radius: 8px; font-weight: 700; font-size: 17px; margin-top: 18px; padding: 11px 0; width: 100%; cursor: pointer; transition: background .18s; box-shadow: 0 2px 14px #37e67333;}
+    .salveaza-btn:hover {background: #2fcf61;}
+    .success-msg { color: var(--accent); font-size: 15px; text-align: center; margin-top: 7px;}
+    .inchide-profil { position: absolute; right: 15px; top: 12px; background: none; border: none; color: var(--rosu); font-size: 28px; font-weight: 700; cursor: pointer; z-index: 10; transition: color .15s;}
+    .inchide-profil:hover { color: var(--accent);}
+    .sectiune-card-robot {
+      display: none;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      width: 100%;
+      gap: 32px;
+      min-height: 380px;
+      margin-top: 44px;
+      margin-bottom: 44px;
+      z-index: 12;
+    }
+    .card-robot-personalizat {
+      background: #23252c;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px #0005;
+      width: 210px;
+      padding: 15px 16px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-height: 280px;
+    }
+    .titlu-card-robot { color: #fff; font-weight: 700; font-size: 18px; margin-bottom: 3px;}
+    .user-card-robot { color: #37e673; font-size: 15px; margin-bottom: 10px;}
+    .imagine-card-robot { width: 110px; height: 110px; background: #22272e; border-radius: 13px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px;}
+    .imagine-card-robot img { width: 72px; height: 72px; object-fit: contain; opacity: 0.85;}
+    .info-robot { color: #c7cad4; font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 5px;}
+    .start-cbot-btn { background: #37e673; color: #151b22; font-weight: 700; border: none; border-radius: 7px; padding: 11px 0; width: 100%; font-size: 17px; cursor: pointer; transition: background .18s, color .18s; margin-top: 3px; box-shadow: 0 2px 12px #37e67333;}
+    .start-cbot-btn:hover { background: #2fcf61; }
+    .chat-fab {
+      position: fixed; right: 32px; bottom: 32px; width: 54px; height: 54px;
+      background: #37e673; color: #151b22; border: none; border-radius: 50%;
+      box-shadow: 0 6px 22px #222a; z-index: 99; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 27px;
+      transition: box-shadow .2s, background .2s;
+    }
+    .chat-fab:hover { background: #2fcf61; }
+    .chat-panel {
+      position: fixed; right: 38px; bottom: 98px; width: 340px; max-width: 94vw;
+      background: #1b1e23; border-radius: 17px; box-shadow: 0 10px 34px #222b;
+      display: flex; flex-direction: column; z-index: 100; overflow: hidden; border: 1.5px solid #30313b; animation: fadein .22s;
+    }
+    .chat-tabs {
+      display: flex; border-bottom: 1.5px solid #282c38; background: #23252c;
+    }
+    .chat-tab {
+      flex: 1; font-weight: 700; font-size: 15px; letter-spacing: .5px;
+      background: none; border: none; color: #c7cad4; padding: 13px 2px 10px 2px;
+      cursor: pointer; outline: none; transition: color .14s, border .17s;
+      border-bottom: 2px solid transparent;
+    }
+    .chat-tab.active {
+      color: #37e673; border-bottom: 2px solid #37e673; background: #24272e;
+    }
+    .chat-msgs {
+      flex: 1; min-height: 158px; max-height: 248px; overflow-y: auto; display: flex; flex-direction: column; gap: 7px; padding: 15px 13px 9px 13px; background: #1c1d24;
+    }
+    .chat-bubble {
+      display: flex; flex-direction: column; max-width: 81%;
+    }
+    .chat-bubble.me { align-items: flex-end; }
+    .chat-bubble .msg {
+      display: inline-block; background: #282d2f; color: #e0e6ed; border-radius: 11px 14px 14px 3px;
+      padding: 8px 12px; font-size: 15px; margin-bottom: 1px;
+    }
+    .chat-bubble.me .msg {
+      background: #37e673; color: #151b22; border-radius: 13px 13px 4px 15px;
+    }
+    .chat-bubble .sender { font-size: 12px; color: #888; margin-bottom: 2px; margin-top: 1px; font-weight: 700;}
+    .chat-input-row { display: flex; align-items: center; gap: 7px; background: #24272e; padding: 10px 12px; }
+    .chat-invite {
+      padding: 10px 11px 4px 11px; background: #23252c; display: flex; flex-direction: column; gap: 5px;
+    }
+    .chat-invite-row { display: flex; gap: 6px; }
+    .chat-invite input {
+      flex: 1; background: #18191e; border: 1px solid #23252c; border-radius: 8px;
+      color: #fff; font-size: 14px; padding: 6px 8px; outline: none;
+    }
+    .chat-invite-btn {
+      background: #37e673; color: #151b22; border: none; border-radius: 7px; font-size: 14px; font-weight: 700; padding: 5px 13px; cursor: pointer;
+      transition: background .12s;
+    }
+    .chat-invite-btn:hover { background: #2fcf61; }
+    .chat-invited {
+      font-size: 12px; color: #e0e6ed; margin-top: 3px;
+    }
+    @media (max-width: 1100px) {
+      .sectiune-card-robot { gap: 18px;}
+      .card-robot-personalizat { width: 180px;}
+    }
+    @media (max-width: 900px) {
+      .card-robot-personalizat { width: 45vw; min-width: 160px; max-width: 220px;}
+      .sectiune-card-robot { gap: 10px;}
+    }
+    @media (max-width: 700px) {
+      .sectiune-card-robot {flex-direction: column; align-items: center;}
+      .card-robot-personalizat {width: 95vw;}
+      .chat-panel { right: 3vw; width: 97vw; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="logo-titlu">RobiForexGabyTrade</div>
+    <div class="meniu-lateral">
+      <button class="meniu-btn" onclick="schimbaSectiune('roboti')" id="btnRoboti">Roboti</button>
+      <button class="meniu-btn" onclick="schimbaSectiune('pozitii')" id="btnPozitii">Pozitii</button>
+      <button class="meniu-btn" onclick="schimbaSectiune('comanda')" id="btnComanda">Comanda</button>
+      <button class="meniu-btn" onclick="schimbaSectiune('istoric')" id="btnIstoric">Istoric</button>
+      <button class="meniu-btn" onclick="schimbaSectiune('jurnal')" id="btnJurnal">Jurnal</button>
+    </div>
+    <div class="zone-strategii" id="sectiuneRobotiSidebar" style="display:none">
+      <div class="card-strategie">
+        <div class="linie1">RobiStrategie ForexGaby</div>
+        <div class="live">Live - 2054898 - FP Markets</div>
+        <div style="font-size:13px" id="simbolStrategie">XAUUSD - m15</div>
+      </div>
+      <button class="porneste-btn" id="btnBot" onclick="toggleBot()">Porneste bot</button>
+      <div class="balanta-card" id="balantaCard">
+        <div class="balanta-titlu">Balanta cont</div>
+        <div class="balanta-sold">
+          <span class="usd-amount" id="balantaUsd">1.000,12</span>
+          <span class="usd-label">USD</span>
+        </div>
+        <div class="balanta-detalii">
+          <div class="profit-zi">
+            <span class="lbl">Profit zi:</span>
+            <span class="val plus" id="profitZiVal">+54,00 USD</span>
+            <span class="proc plus" id="profitZiProc">(+5,42%)</span>
+          </div>
+          <div class="lbl">Equity: <span class="val" id="balantaEquity">1.030,18 USD</span></div>
+          <div class="lbl">Fonduri libere: <span class="val" id="balantaLibera">900,50 USD</span></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <section class="zona-centru">
+    <div class="bara-sus">
+      <div class="zona-profil" onclick="arataProfil()">
+        <div class="avatar-mic" id="avatarMic"><img id="pozaMic" src="https://i.imgur.com/E4nHB5A.png" alt="profil"/></div>
+        <div class="nume-profil" id="numeMic">Gaby</div>
+      </div>
+    </div>
+    <div class="zona-continut">
+      <div class="zona-main" id="zonaMain">
+        <div class="sectiune-card-robot" id="sectiuneCardRobot"></div>
+        <div class="zona-grafic" id="zonaGrafic">
+          <div class="zona-grafic-bg"></div>
+          <span class="zona-grafic-text" id="zonaGraficText">GRAFIC DEMO</span>
+          <img src="./robo-strategie.png" alt="Grafic demo" id="imagineGrafic">
+        </div>
+        <div class="tabel-zona" id="sectiunePozitii">
+          <table>
+            <thead>
+              <tr>
+                <th>Simbol</th><th>Cantitate</th><th>Directie</th><th>Pret intrare</th><th>TP</th><th>SL</th><th>Creat</th><th>Net $</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="8" class="empty-msg">Nicio pozitie deschisa</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tabel-zona" id="sectiuneOrdere" style="display:none">
+          <table>
+            <thead>
+              <tr>
+                <th>Directie</th><th>Tip</th><th>Timp</th><th>Simbol</th><th>Cantitate</th><th>Pret</th><th>Distanta</th><th>TP</th><th>SL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="9" class="empty-msg">Niciun ordin in asteptare</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="tabel-zona" id="sectiuneIstoric" style="display:none">
+          <div style="display:flex;gap:15px;flex-wrap:wrap;align-items:center;justify-content:flex-end;margin-bottom:7px;">
+            <select id="filtruSimbol" class="parametri-select" style="max-width:110px;">
+              <option value="">Toate simbolurile</option>
+            </select>
+            <select id="filtruLuna" class="parametri-select" style="max-width:110px;">
+              <option value="">Toate lunile</option>
+            </select>
+            <select id="filtruAn" class="parametri-select" style="max-width:110px;">
+              <option value="">Toti anii</option>
+            </select>
+            <input type="date" id="filtruData" class="parametri-input" style="max-width:152px;">
+            <button onclick="reseteazaFiltreIstoric()" style="background:#353945;color:#eee;border:none;border-radius:7px;padding:7px 20px;cursor:pointer;font-weight:600;">Reset</button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Simbol</th><th>Directie</th><th>Timp inchidere</th><th>Pret intrare</th><th>Pret inchidere</th><th>Cantitate</th><th>Net $</th><th>Sold $</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyIstoric"></tbody>
+          </table>
+          <div id="totalIstoric" style="text-align:right;color:var(--accent);font-weight:600;margin-top:5px;"></div>
+        </div>
+        <div class="tabel-zona" id="sectiuneJurnal" style="display:none">
+          <table>
+            <thead><tr><th>Timp</th><th>Mesaj</th></tr></thead>
+            <tbody><tr><td>27/07/2025 19:30</td><td>Trader pornit</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="overlay-profil" id="overlayProfil" style="display:none;">
+        <div class="panel-profil">
+          <button class="inchide-profil" onclick="inchideProfil()" title="Inchide">&times;</button>
+          <div class="avatar-profil-mare" onclick="document.getElementById('inputPoza').click()">
+            <img id="pozaProfil" src="https://i.imgur.com/E4nHB5A.png" alt="profil mare"/>
+          </div>
+          <input type="file" id="inputPoza" accept="image/*" style="display:none" onchange="schimbaPozaProfil(event)">
+          <button class="schimba-poza-btn" onclick="document.getElementById('inputPoza').click()">Schimba poza</button>
+          <form class="edit-profil-form" id="profilForm" onsubmit="salveazaProfil(event)">
+            <label for="nume">Nume</label>
+            <input type="text" id="nume" value="Gaby" required autocomplete="off">
+            <label for="prenume">Prenume</label>
+            <input type="text" id="prenume" value="Popescu" required autocomplete="off">
+            <label for="email">Adresa Gmail</label>
+            <input type="email" id="email" value="gabytrader@gmail.com" required autocomplete="off">
+            <label for="parola">Parola noua</label>
+            <input type="password" id="parola" value="" autocomplete="off" placeholder="Lasa gol pentru a pastra parola">
+            <button class="salveaza-btn" type="submit">Salveaza</button>
+            <div class="success-msg" id="msgProfil"></div>
+          </form>
+        </div>
+      </div>
+      <div class="panel-parametri">
+        <div class="parametri-titlu">Parametri</div>
+        <label class="parametri-label" for="instrument">Instrument</label>
+        <select class="parametri-select" id="instrument" onchange="schimbaInstrument()">
+          <option>XAUUSD</option>
+          <option>BTCUSD</option>
+          <option>EURUSD</option>
+        </select>
+        <label class="parametri-label" for="volum">Volum minim</label>
+        <input class="parametri-input" type="number" id="volum" value="0.01" step="0.01" min="0.01">
+        <label class="parametri-label" for="factor">Factor boost</label>
+        <input class="parametri-input" type="number" id="factor" value="9" min="1" max="50">
+        <button class="porneste-btn" style="margin-top:10px;background:var(--accent);color:#151b22;">Aplica</button>
+      </div>
+    </div>
+  </section>
+</div>
+<button class="chat-fab" id="chatBtn" title="Deschide chat">
+  <svg width="26" height="26" viewBox="0 0 24 24"><path fill="#151b22" d="M12 2C6.48 2 2 5.58 2 10c0 1.78.73 3.43 1.98 4.82L2 22l6.63-2.54C9.76 19.82 10.87 20 12 20c5.52 0 10-3.58 10-8s-4.48-8-10-8z"></path></svg>
+</button>
+<div class="chat-panel" id="chatPanel" style="display:none">
+  <div class="chat-tabs">
+    <button class="chat-tab active" data-tab="global" onclick="chatTab('global',this)">Global</button>
+    <button class="chat-tab" data-tab="grup" onclick="chatTab('grup',this)">Grup</button>
+    <button class="chat-tab" data-tab="prieteni" onclick="chatTab('prieteni',this)">Prieteni</button>
+    <button class="chat-tab" data-tab="admin" onclick="chatTab('admin',this)">Admin</button>
+  </div>
+  <div class="chat-msgs" id="chatMsgs"></div>
+  <div class="chat-invite" id="chatInvite" style="display:none">
+    <div style="color:#37e673;font-weight:700;font-size:14px;">Invita prieten:</div>
+    <div class="chat-invite-row">
+      <input type="text" id="inviteInput" placeholder="Nume prieten">
+      <button class="chat-invite-btn" onclick="inviteFriend()">Invita</button>
+    </div>
+    <div class="chat-invited" id="invitedFriends"></div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chatInput" placeholder="Scrie mesaj..." autocomplete="off" style="flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:15px;">
+    <button class="chat-invite-btn" onclick="sendMsg()">Trimite</button>
+  </div>
+</div>
+<script>
+  var botPornit = false;
+  function toggleBot() {
+    var btn = document.getElementById('btnBot');
+    botPornit = !botPornit;
+    if(botPornit) {
+      btn.innerText = "Opreste bot";
+      btn.classList.add("oprit");
+    } else {
+      btn.innerText = "Porneste bot";
+      btn.classList.remove("oprit");
+    }
+  }
+  function alegeCBot(nr) {
+    alert("Ai ales cBot #" + nr);
+  }
+  function schimbaSectiune(nume) {
+    var butoane = document.querySelectorAll('.meniu-btn');
+    butoane.forEach(b => b.classList.remove('activ'));
+    if(nume=="roboti") butoane[0].classList.add('activ');
+    if(nume=="pozitii") butoane[1].classList.add('activ');
+    if(nume=="comanda") butoane[2].classList.add('activ');
+    if(nume=="istoric") butoane[3].classList.add('activ');
+    if(nume=="jurnal") butoane[4].classList.add('activ');
+    document.getElementById("sectiuneRobotiSidebar").style.display = (nume=="roboti") ? "block" : "none";
+    document.getElementById("sectiuneCardRobot").style.display = (nume=="roboti") ? "flex" : "none";
+    document.getElementById("zonaGrafic").style.display = (nume=="roboti") ? "none" : "flex";
+    document.getElementById("sectiunePozitii").style.display = "none";
+    document.getElementById("sectiuneOrdere").style.display = "none";
+    document.getElementById("sectiuneIstoric").style.display = "none";
+    document.getElementById("sectiuneJurnal").style.display = "none";
+    if(nume=="pozitii") document.getElementById("sectiunePozitii").style.display = "block";
+    if(nume=="comanda") document.getElementById("sectiuneOrdere").style.display = "block";
+    if(nume=="istoric") document.getElementById("sectiuneIstoric").style.display = "block";
+    if(nume=="jurnal") document.getElementById("sectiuneJurnal").style.display = "block";
+    document.getElementById("zonaGraficText").innerText = "GRAFIC DEMO";
+    document.getElementById("imagineGrafic").src = "./robo-strategie.png";
+  }
+  schimbaSectiune('pozitii');
+  function schimbaInstrument() {
+    var select = document.getElementById('instrument');
+    var simbol = select.value;
+    document.getElementById('simbolStrategie').innerText = simbol + ' - m15';
+  }
+  function arataProfil() {
+    document.getElementById('overlayProfil').style.display = "flex";
+    setTimeout(function(){
+      document.getElementById('nume').focus();
+    }, 200);
+  }
+  function inchideProfil() { document.getElementById('overlayProfil').style.display = "none"; }
+  function salveazaProfil(e) {
+    e.preventDefault();
+    var nume = document.getElementById('nume').value;
+    var prenume = document.getElementById('prenume').value;
+    var email = document.getElementById('email').value;
+    document.getElementById('numeMic').innerText = nume;
+    document.getElementById('msgProfil').innerText = "Datele au fost salvate!";
+    setTimeout(()=>{document.getElementById('msgProfil').innerText=""}, 2000);
+  }
+  function schimbaPozaProfil(event) {
+    var input = event.target;
+    if(input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('pozaProfil').src = e.target.result;
+        document.getElementById('pozaMic').src = e.target.result;
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') inchideProfil();
+  });
+  document.getElementById('overlayProfil').onclick = function(e){
+    if(e.target === this) inchideProfil();
+  }
+  const roboti = [
+    {titlu: "Robot 1", user: "tradegaby19", users: 1},
+    {titlu: "Robot 2", user: "tradegaby20", users: 2},
+    {titlu: "Robot 3", user: "tradegaby21", users: 3},
+    {titlu: "Robot 4", user: "tradegaby22", users: 4},
+    {titlu: "Robot 5", user: "tradegaby23", users: 5},
+  ];
+  function populeazaRoboti() {
+    var zona = document.getElementById('sectiuneCardRobot');
+    zona.innerHTML = '';
+    roboti.forEach((robot, idx)=>{
+      zona.innerHTML += `
+        <div class="card-robot-personalizat">
+          <div class="titlu-card-robot">${robot.titlu}</div>
+          <div class="user-card-robot">${robot.user}</div>
+          <div class="imagine-card-robot">
+            <img src="https://i.imgur.com/9M7xmCz.png" alt="robot" />
+          </div>
+          <div class="info-robot"><span>☁️</span> <span class="users-online">${robot.users}</span></div>
+          <button class="start-cbot-btn" onclick="alegeCBot(${idx+1})">Alege cBot</button>
+        </div>
+      `;
+    });
+  }
+  function updateBalanta(balanta) {
+    document.getElementById('balantaUsd').innerText = balanta.usd;
+    document.getElementById('profitZiVal').innerText = (balanta.profit >=0 ? "+" : "") + balanta.profit + " USD";
+    document.getElementById('profitZiVal').className = "val " + (balanta.profit>=0 ? "plus" : "minus");
+    document.getElementById('profitZiProc').innerText = `(${balanta.proc >= 0 ? "+" : ""}${balanta.proc}%)`;
+    document.getElementById('profitZiProc').className = "proc " + (balanta.profit>=0 ? "plus" : "minus");
+    document.getElementById('balantaEquity').innerText = balanta.equity + " USD";
+    document.getElementById('balantaLibera').innerText = balanta.libera + " USD";
+  }
+  updateBalanta({usd:"1.000,12", profit:54.00, proc:5.42, equity:"1.030,18", libera:"900,50"});
+  const istoricDate = [
+    {simbol:"XAUUSD", directie:"Cumpara", timp:"2025-07-11 06:59", intrare:3332.89, inchidere:3332.74, cant:0.03, net:-0.63, sold:241.53, realizat:38.04},
+    {simbol:"BTCUSD", directie:"Vinde", timp:"2025-07-13 16:13", intrare:65350, inchidere:65210, cant:0.012, net:1.20, sold:251.00, realizat:5.12},
+    {simbol:"EURUSD", directie:"Cumpara", timp:"2025-07-20 10:22", intrare:1.1200, inchidere:1.1230, cant:0.25, net:7.20, sold:258.20, realizat:10.07},
+  ];
+  function populeazaFiltre() {
+    let simboluri = Array.from(new Set(istoricDate.map(x=>x.simbol)));
+    let anList = Array.from(new Set(istoricDate.map(x=>x.timp.slice(0,4))));
+    let luni = ["","Ian","Feb","Mar","Apr","Mai","Iun","Iul","Aug","Sep","Oct","Noi","Dec"];
+    document.getElementById('filtruSimbol').innerHTML = `<option value="">Toate simbolurile</option>` + simboluri.map(x=>`<option>${x}</option>`).join('');
+    document.getElementById('filtruAn').innerHTML = `<option value="">Toti anii</option>` + anList.map(x=>`<option>${x}</option>`).join('');
+    document.getElementById('filtruLuna').innerHTML = `<option value="">Toate lunile</option>` + Array.from({length:12}).map((_,i)=>i?`<option value="${String(i).padStart(2,'0')}">${luni[i]}</option>`:'').join('');
+  }
+  function filtreazaIstoric() {
+    let simbol = document.getElementById('filtruSimbol').value;
+    let luna = document.getElementById('filtruLuna').value;
+    let an = document.getElementById('filtruAn').value;
+    let data = document.getElementById('filtruData').value;
+    let arr = istoricDate.filter(x=>{
+      if(simbol && x.simbol !== simbol) return false;
+      if(an && !x.timp.startsWith(an)) return false;
+      if(luna && x.timp.slice(5,7) !== luna) return false;
+      if(data && !x.timp.startsWith(data)) return false;
+      return true;
+    });
+    let tbody = document.getElementById('tbodyIstoric');
+    tbody.innerHTML = '';
+    let total = 0;
+    arr.forEach(x=>{
+      total += x.realizat || 0;
+      tbody.innerHTML += `<tr>
+        <td>${x.simbol}</td>
+        <td>${x.directie}</td>
+        <td>${x.timp.replace(' ','<br>')}</td>
+        <td>${x.intrare}</td>
+        <td>${x.inchidere}</td>
+        <td>${x.cant}</td>
+        <td>${x.net}</td>
+        <td>${x.sold}</td>
+      </tr>`;
+    });
+    if(!arr.length) tbody.innerHTML = `<tr><td colspan="8" class="empty-msg">Nicio tranzactie gasita</td></tr>`;
+    document.getElementById('totalIstoric').innerHTML = arr.length ? `Realizat: $ ${total.toFixed(2)}` : '';
+  }
+  function reseteazaFiltreIstoric() {
+    document.getElementById('filtruSimbol').value = "";
+    document.getElementById('filtruLuna').value = "";
+    document.getElementById('filtruAn').value = "";
+    document.getElementById('filtruData').value = "";
+    filtreazaIstoric();
+  }
+  window.addEventListener('DOMContentLoaded', function() {
+    populeazaRoboti();
+    populeazaFiltre();
+    filtreazaIstoric();
+    ["filtruSimbol","filtruLuna","filtruAn","filtruData"].forEach(id=>{
+      document.getElementById(id).onchange=filtreazaIstoric;
+    });
+  });
+  
+  var chatOpen = false;
+  var chatData = {
+    global: [
+      {sender: "Alice", text: "Salut tuturor!"},
+      {sender: "Gaby", text: "Salut!"},
+    ],
+    grup: [
+      {sender: "Bob", text: "Avem update la bot?"},
+      {sender: "Gaby", text: "Maine!"},
+    ],
+    admin: [
+      {sender: "Admin", text: "Respectati regulile!"},
+    ],
+    prieteni: [
+      {sender: "Gaby", text: "Ai testat robotul?"},
+      {sender: "Cristi", text: "Merge!"},
+    ]
+  };
+  var chatTabCurent = "global";
+  var invited = [];
+  document.getElementById('chatBtn').onclick = function() {
+    chatOpen = !chatOpen;
+    document.getElementById('chatPanel').style.display = chatOpen ? "flex" : "none";
+    if(chatOpen) { showMsgs(); }
+  };
+  function chatTab(tab,btn) {
+    chatTabCurent = tab;
+    document.querySelectorAll('.chat-tab').forEach(t=>t.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('chatInvite').style.display = (tab=="prieteni") ? "flex" : "none";
+    showMsgs();
+  }
+  function showMsgs() {
+    var msgs = chatData[chatTabCurent]||[];
+    var cont = document.getElementById('chatMsgs');
+    cont.innerHTML = "";
+    msgs.forEach(function(m){
+      cont.innerHTML += `<div class="chat-bubble${m.sender=="Tu"?" me":""}">
+        <span class="sender">${m.sender}</span>
+        <span class="msg">${m.text}</span>
+      </div>`;
+    });
+    cont.scrollTop = cont.scrollHeight;
+    if(chatTabCurent=="prieteni"){
+      document.getElementById('invitedFriends').innerText = invited.length ? "Invitati: " + invited.join(", ") : "";
+    }
+  }
+  function sendMsg() {
+    var val = document.getElementById('chatInput').value.trim();
+    if(!val) return;
+    if(!chatData[chatTabCurent]) chatData[chatTabCurent]=[];
+    chatData[chatTabCurent].push({sender:"Tu",text:val});
+    document.getElementById('chatInput').value = "";
+    showMsgs();
+  }
+  document.getElementById('chatInput').addEventListener('keydown',function(e){
+    if(e.key=="Enter"){sendMsg();}
+  });
+  function inviteFriend() {
+    var val = document.getElementById('inviteInput').value.trim();
+    if(!val) return;
+    invited.push(val);
+    document.getElementById('inviteInput').value = "";
+    showMsgs();
+  }
+</script>
+</body>
+</html>
