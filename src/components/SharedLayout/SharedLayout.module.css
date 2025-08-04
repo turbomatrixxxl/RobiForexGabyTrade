@@ -1,0 +1,36 @@
+.cont {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100vh;
+  overflow-y: auto;
+  width: -webkit-fill-available;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: transparent;
+}
+
+.mainLight {
+  background: #f6f6f7;
+}
+
+.mainViolet {
+  background: #ecedfd;
+}
+
+.mainDark {
+  background: #1f1f1f;
+}
+
+/* @media screen and (width >=768px) {
+} */
+
+@media screen and (width >=1024px) {
+  .cont {
+    width: auto;
+  }
+}

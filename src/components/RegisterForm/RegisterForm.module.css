@@ -1,0 +1,126 @@
+.cont {
+  background: #151515;
+  border-radius: 8px;
+  flex-shrink: 0;
+  gap: 40px;
+  height: fit-content;
+  padding: 24px;
+  width: 335px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.linkContainer {
+  background: transparent;
+  display: flex;
+  gap: 14px;
+  margin-right: auto;
+}
+
+.navLinkTitle {
+  color: rgba(255, 255, 255, 0.3);
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+}
+
+.navLinkTitle:hover,
+.navLinkTitle:focus {
+  color: #fff;
+}
+
+.login {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+}
+
+.form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 14px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  justify-content: center;
+  /* width: 100%; */
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputError {
+  margin: 2px 0 0 0;
+  color: red;
+  font-size: 12px;
+}
+
+.eyeIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 24px;
+  z-index: 1000;
+}
+
+.input:focus {
+  border-bottom: 2px solid #fff;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 5px;
+  font-size: 14px;
+}
+
+.buttonsContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.passwordStrengthBar {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 4px;
+  border: none;
+  margin-top: 5px;
+}
+
+.passwordStrengthIndicator {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+}
+
+@media screen and (width >=768px) {
+  .cont {
+    height: fit-content;
+    padding: 40px;
+    width: fit-content;
+  }
+}

@@ -1,0 +1,124 @@
+.form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 14px;
+  justify-content: space-between;
+  width: 100%;
+}
+.cont {
+  align-items: center;
+  width: 335px;
+  height: fit-content;
+  flex-shrink: 0;
+  gap: 40px;
+  border-radius: 8px;
+  background: #151515;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.linkContainer {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-right: auto;
+}
+
+.navLinkTitle {
+  color: rgba(255, 255, 255, 0.3);
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+}
+
+.navLinkTitle:hover,
+.navLinkTitle:focus {
+  color: #fff;
+}
+
+.login {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  letter-spacing: -0.36px;
+}
+
+.inputsCont {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputError {
+  margin: 2px 0 0 0;
+  color: red;
+}
+
+.eyeIcon {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 24px;
+  z-index: 1000;
+}
+
+.errorCont {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0 5px;
+  width: 287px;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.button:hover,
+.button:focus,
+.navLink:hover,
+.navLink:focus {
+  color: white;
+}
+
+@media screen and (width >=768px) {
+  .cont {
+    width: fit-content;
+    height: fit-content;
+    padding: 40px;
+  }
+
+  .error {
+    width: 344px;
+  }
+}
