@@ -11,24 +11,29 @@ import {
   AuthWrapper,
   AuthButton,
   AuthButtonLogin,
+  WrapperBackground,
 } from './Welcome.styled';
 import Footer from '../Footer/Footer';
+// import backgroundImage from '../../images/register-background.png';
 
 function Welcome() {
   return (
     <Container>
+      <WrapperBackground />
       <Wrapper>
         <Logo />
         <LogoWrapper>
           <Icon>
             <use href={`${icons}#logo`} />
           </Icon>
-          <Title>Task Pro</Title>
+          <Title>GabyTrade C-Bots Platform</Title>
         </LogoWrapper>
         <Text>
-          Supercharge your productivity and take control of your tasks with Task
-          Pro - Don't wait, start achieving your goals now!
+          Automate your forex strategies with powerful C-Bots powered by Gaby.<br />
+          <br />
+          Trade smarter, not harder. Automate your strategies with Gaby's trading robots.
         </Text>
+
         <AuthWrapper>
           <AuthButton to="/auth/register" className="register">
             Registration

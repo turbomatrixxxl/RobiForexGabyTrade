@@ -1,17 +1,35 @@
 import { NavLink } from 'react-router-dom';
 import styled from '@emotion/styled';
-import logoMob from '../../images/user2.png';
-import logoDesk from '../../images/user.png';
+// import logoMob from '../../images/user2.png';
+// import logoDesk from '../../images/user.png';
+import robyImage from '../../images/Roby.jpg';
+import backgroundImage from '../../images/register-background.png';
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   height: 100vh;
   width: 100%;
-  background: var(--welcome-bg-gradient);
+  background: var(--gradient-background);;
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
+  position: relative;
+`;
+
+export const WrapperBackground = styled.div`
+        background : transparent url(${backgroundImage}) no-repeat center center;
+        background-position: 50%;
+        background-size: cover;
+        display: inherit
+;
+        height: 100%;
+        left: 0;
+        opacity: .5;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1;
 `;
 
 export const Wrapper = styled.div`
@@ -21,24 +39,24 @@ export const Wrapper = styled.div`
   flex-direction: column;
   flex-grow: 1;
   text-align: center;
+  position: relative;
+  z-index: 3;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled.img`
+  content: url(${robyImage});
+  border-radius: 10px;
   width: 124px;
   height: 124px;
   margin-bottom: 14px;
-  background-image: url(${logoMob});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
 
   @media screen and (min-width: 768px) {
     width: 162px;
     height: 162px;
     margin-bottom: 24px;
-    background-image: url(${logoDesk});
   }
 `;
+
 
 export const LogoWrapper = styled.div`
   display: flex;
@@ -59,11 +77,16 @@ export const Icon = styled.svg`
 `;
 
 export const Title = styled.p`
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 1.5;
   letter-spacing: -1.12px;
-  color: var(--title-welcome-color);
+  color: var(--white-60, #fff9);
+  flex-shrink: 1;
+
+  @media screen and (min-width: 380px) {
+    font-size: 28px;
+  }
 
   @media screen and (min-width: 768px) {
     font-size: 40px;
@@ -72,15 +95,23 @@ export const Title = styled.p`
 `;
 
 export const Text = styled.p`
-  width: 335px;
+  width: 315px;
   margin-top: 25px;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1.28;
   letter-spacing: -0.28px;
-  color: var(--text-primary-color);
+  color: var(--white-60, #fff9);;
+  text-align: center;
+  text-wrap: wrap;
+  flex-shrink: 1;
+
+  @media screen and (min-width: 380px) {
+    font-size: 14px;
+  }
 
   @media screen and (min-width: 768px) {
+    font-size: 16px;
     width: 473px;
   }
 `;
@@ -113,12 +144,17 @@ export const AuthButton = styled(NavLink)`
   border-radius: 8px;
   cursor: pointer;
   text-transform: none;
+  transition: all 250ms ease-in-out;
 
   &:hover {
     transform: scale(1.05);
   }
   &:active {
     transform: scale(0.95);
+  }
+
+  @media screen and (max-width: 345px) {
+    width: 300px;
   }
 
   @media screen and (min-width: 768px) {
@@ -134,12 +170,13 @@ export const AuthButtonLogin = styled(NavLink)`
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: -0.28px;
-  color: var(--title-welcome-color);
+  color: var(--white-60, #fff9);;
   text-align: center;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   text-transform: none;
+  transition: all 250ms ease-in-out;
 
   &:hover {
     background: var(--bg-welcome-color);
@@ -148,6 +185,10 @@ export const AuthButtonLogin = styled(NavLink)`
 
   &:active {
     transform: scale(0.95);
+  }
+
+  @media screen and (max-width: 345px) {
+    width: 300px;
   }
 
   @media screen and (min-width: 768px) {

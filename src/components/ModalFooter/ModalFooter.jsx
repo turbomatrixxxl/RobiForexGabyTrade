@@ -1,15 +1,14 @@
 import React, { useEffect, useRef } from "react";
 import styles from "./ModalFooter.module.css";
-import { useMediaQuery } from "react-responsive";
+// import { useMediaQuery } from "react-responsive";
 import ModalLogo from "../commonComponents/FooterLogo/FooterLogo";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
 import FormButton from "../commonComponents/FormButton/FormButton";
 import "animate.css";
 
 // Corectarea importului imaginii
 import Radu from "../../images/teamMembersPhoto/Radu.webp";
 import Adrian from "../../images/teamMembersPhoto/Adrian.jpg";
-import Sara from "../../images/teamMembersPhoto/Sara.png";
 
 const ModalFooter = ({ closeModal }) => {
   const modalRef = useRef();
@@ -34,7 +33,7 @@ const ModalFooter = ({ closeModal }) => {
     }
   };
 
-  const screenCondition = useMediaQuery({ query: "(min-width: 768px)" });
+  // const screenCondition = useMediaQuery({ query: "(min-width: 768px)" });
 
   const animation = "animate__animated animate__fadeInDown animate__slow";
 
@@ -45,18 +44,62 @@ const ModalFooter = ({ closeModal }) => {
       ref={modalRef}>
       <div className={styles.modalBg}>
         <div className={styles.modalContent}>
-          {screenCondition && <ModalLogo variant={"formLogo"} />}
-          <h2>Ultimate Team:</h2>
+          {/* {screenCondition && <ModalLogo variant={"formLogo"} />} */}
+          <ModalLogo variant={"formLogo"} />
+          <h2>RobiTrader Team:</h2>
 
           <div className={styles.footerCards}>
+            {/* Card pentru Roby */}
+            <div
+              className={`${styles.footerTeamCard} ${animation} ${styles.Adrian}`}>
+              <img
+                src={Adrian} // Folosește variabila corectă pentru imagine
+                alt="Anton Robert"
+                className={styles.teamMemberImage}
+              />
+              <span className={styles.footerTeamName}>Anton Robert</span>
+              <em className={styles.footerTeamFunction}>Project Manager</em>
+              <div className={styles.socialLinks}>
+                <a
+                  href="https://github.com/SecaraAdrian"
+                  className={styles.footerGithubIcon}
+                  aria-label="GitHub profile"
+                  target="_blank"
+                  rel="noreferrer noopener">
+                  <FaGithub />
+                </a>
+                <a
+                  href="http://linkedin.com/in/adrian-secara-254ba3312"
+                  className={styles.footerLinkedinIcon}
+                  aria-label="LinkedIn profile"
+                  target="_blank"
+                  rel="noreferrer noopener">
+                  <FaLinkedin />
+                </a>
+                <a
+                  href="tel:+40759337248"
+                  className={styles.footerPhoneIcon}
+                  aria-label="Phone">
+                  <FaPhoneAlt />
+                </a>
+              </div>
+            </div>
+
             {/* Card pentru Radu */}
             <div
               className={`${styles.footerTeamCard} ${animation} ${styles.Radu}`}>
-              <img
-                src={Radu} // Folosește variabila corectă pentru imagine
-                alt="Radu"
-                className={styles.teamMemberImage}
-              />
+              <a
+                href="https://radubogdannaramzoiu.link"
+                aria-label="My e visit-card"
+                target="_blank"
+                rel="noreferrer noopener">
+                <img
+                  src={Radu} // Folosește variabila corectă pentru imagine
+                  alt="Radu"
+                  className={styles.teamMemberImage}
+                />
+              </a>
+
               <span className={styles.footerTeamName}>
                 Naramzoiu Radu Bogdan
               </span>
@@ -78,65 +121,11 @@ const ModalFooter = ({ closeModal }) => {
                   rel="noreferrer noopener">
                   <FaLinkedin />
                 </a>
-              </div>
-            </div>
-
-            {/* Card pentru Adrian */}
-            <div
-              className={`${styles.footerTeamCard} ${animation} ${styles.Adrian}`}>
-              <img
-                src={Adrian} // Folosește variabila corectă pentru imagine
-                alt="Secara Adrian"
-                className={styles.teamMemberImage}
-              />
-              <span className={styles.footerTeamName}>Secara Adrian</span>
-              <em className={styles.footerTeamFunction}>Scrum Master</em>
-              <div className={styles.socialLinks}>
                 <a
-                  href="https://github.com/SecaraAdrian"
-                  className={styles.footerGithubIcon}
-                  aria-label="GitHub profile"
-                  target="_blank"
-                  rel="noreferrer noopener">
-                  <FaGithub />
-                </a>
-                <a
-                  href="http://linkedin.com/in/adrian-secara-254ba3312"
-                  className={styles.footerLinkedinIcon}
-                  aria-label="LinkedIn profile"
-                  target="_blank"
-                  rel="noreferrer noopener">
-                  <FaLinkedin />
-                </a>
-              </div>
-            </div>
-
-            {/* Card pentru Sara */}
-            <div
-              className={`${styles.footerTeamCard} ${animation} ${styles.Sara}`}>
-              <img
-                src={Sara} // Folosește variabila corectă pentru imagine
-                alt="Smarandoiu Sara"
-                className={styles.teamMemberImage}
-              />
-              <span className={styles.footerTeamName}>Smarandoiu Sara</span>
-              <em className={styles.footerTeamFunction}>Frontend Developer</em>
-              <div className={styles.socialLinks}>
-                <a
-                  href="https://github.com/SaraSmarandoiu"
-                  className={styles.footerGithubIcon}
-                  aria-label="GitHub profile"
-                  target="_blank"
-                  rel="noreferrer noopener">
-                  <FaGithub />
-                </a>
-                <a
-                  href="http://www.linkedin.com/in/sarasmarandoiu"
-                  className={styles.footerLinkedinIcon}
-                  aria-label="LinkedIn profile"
-                  target="_blank"
-                  rel="noreferrer noopener">
-                  <FaLinkedin />
+                  href="tel:+40771392871"
+                  className={styles.footerPhoneIcon}
+                  aria-label="Phone">
+                  <FaPhoneAlt />
                 </a>
               </div>
             </div>

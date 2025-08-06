@@ -78,11 +78,11 @@
 }
 
 .footerTeamCard.Radu {
-  animation-delay: 0.5s;
+  animation-delay: 2s;
 }
 
 .footerTeamCard.Adrian {
-  animation-delay: 2s;
+  animation-delay: 0.5s;
 }
 
 .footerTeamCard.Sara {
@@ -109,26 +109,42 @@
   align-items: center;
 }
 
+.footerTeamNameLink {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.6);
+  width: fit-content;
+}
+
 .footerTeamName {
   margin-left: 15px;
 
   text-align: center;
 }
 
+.socialLinks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
 .footerGithubIcon,
-.footerLinkedinIcon {
+.footerLinkedinIcon,
+.footerPhoneIcon {
   margin-left: 8px;
   color: white;
   transition: all 0.3s ease 0s;
 }
 
 .footerGithubIcon:hover,
-.footerLinkedinIcon:hover {
+.footerLinkedinIcon:hover,
+.footerPhoneIcon:hover {
   color: #ff868d;
 }
 
 .footerGithubIcon:active,
-.footerLinkedinIcon:active {
+.footerLinkedinIcon:active,
+.footerPhoneIcon:active {
   color: #ff868d;
 }
 
