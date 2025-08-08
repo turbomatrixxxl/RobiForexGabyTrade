@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import { useDispatch } from "react-redux";
-import { register } from "../../redux/auth/operationsAuth";
+// import { useDispatch } from "react-redux";
+// import { register } from "../../redux/auth/operationsAuth";
 
 import { Link } from "react-router-dom";
 
@@ -36,7 +36,7 @@ function RegisterForm() {
   const passwordStrength = usePasswordStrength(fields.password);
 
   const [errorMessage, setErrorMessage] = useState("");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [type, setType] = useState("password");
   const [eyeVisible, toggleEyeVisible] = useToggle(true);
@@ -52,25 +52,32 @@ function RegisterForm() {
 
     if (!validateFields()) return;
 
-    const { passwordConfirm, ...fieldsWithoutPasswordConfirm } = fields;
+    // const { passwordConfirm, ...fieldsWithoutPasswordConfirm } = fields;
 
-    dispatch(register(fieldsWithoutPasswordConfirm))
-      .unwrap()
-      .then(() => {
-        setFields({
-          username: "",
-          email: "",
-          password: "",
-          passwordConfirm: "",
-        });
-        toast.success("Registration successful!");
-      })
-      .catch((err) => {
-        console.error(err);
-        setErrorMessage("Account with this email already exists.");
-        toast.error("Account with this email already exists.");
-      });
+    // dispatch(register(fieldsWithoutPasswordConfirm))
+    //   .unwrap()
+    //   .then(() => {
+    //     setFields({
+    //       username: "",
+    //       email: "",
+    //       password: "",
+    //       passwordConfirm: "",
+    //     });
+    //     toast.success("Registration successful!");
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //     setErrorMessage("Account with this email already exists.");
+    //     toast.error("Account with this email already exists.");
+    //   });
+    toast.success("Registration successful!");
   };
+
+  const isFormValid =
+    fields.username.trim() !== "" &&
+    fields.email.trim() !== "" &&
+    fields.password.length >= 6 &&
+    fields.password === fields.passwordConfirm;
 
   return (
     <div className={styles.cont}>
@@ -232,7 +239,18 @@ function RegisterForm() {
         <div className={styles.buttonsContainer}>
           {errorMessage && <p className={styles.error}>{errorMessage}</p>}
 
-          <Button variant="auth" type="submit">
+          {/* <Button disabled={!isFormValid} variant="auth" type="submit">
+            Register Now
+          </Button> */}
+
+          <Button
+            handleClick={() => {
+              localStorage.setItem("isRegistered", "true");
+              localStorage.setItem("isLoggedin", "true");
+            }}
+            disabled={!isFormValid}
+            variant="auth"
+            type="submit">
             Register Now
           </Button>
         </div>

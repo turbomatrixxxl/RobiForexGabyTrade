@@ -6,4 +6,41 @@
   flex-direction: column;
   height: 100vh;
   justify-content: center;
+  background: var(--gradient-background);
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-direction: column;
+  position: relative;
+}
+
+.imageLeft,
+.imageRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.imageLeft {
+  left: 0;
+}
+
+.imageRight {
+  right: 0;
+}
+
+.imageLeft img,
+.imageRight img {
+  display: none;
+}
+
+@media screen and (width >= 768px) {
+  .imageLeft img,
+  .imageRight img {
+    display: inherit;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }

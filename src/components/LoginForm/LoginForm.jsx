@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { logIn } from "../../redux/auth/operationsAuth";
-import { useDispatch } from "react-redux";
+// import { logIn } from "../../redux/auth/operationsAuth";
+// import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../commonComponents/Input/Input";
 import Button from "../commonComponents/Button";
@@ -35,7 +35,7 @@ function LoginForm() {
   const { touched, handleBlur } = useFormTouched(fields);
 
   const [errorMessage, setErrorMessage] = useState("");
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [type, setType] = useState("password");
   const [eyeVisible, toggleEyeVisible] = useToggle(true);
@@ -47,7 +47,7 @@ function LoginForm() {
     if (!validateFields()) return;
 
     try {
-      await dispatch(logIn(fields)).unwrap();
+      // await dispatch(logIn(fields)).unwrap();
 
       // Show success toast message after successful login
       toast.success("Login successful!", {
@@ -154,7 +154,13 @@ function LoginForm() {
         <div className={styles.buttonsContainer}>
           {errorMessage && <p className={styles.error}>{errorMessage}</p>}
 
-          <Button disabled={!isFormValid} variant="auth" type="submit">
+          <Button
+            handleClick={() => {
+              localStorage.setItem("isLoggedin", "true");
+            }}
+            disabled={!isFormValid}
+            variant="auth"
+            type="submit">
             Login
           </Button>
         </div>

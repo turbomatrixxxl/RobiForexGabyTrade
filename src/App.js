@@ -1,8 +1,8 @@
 import React, { lazy, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { refreshUser } from "./redux/auth/operationsAuth";
-import { useAuth } from "./hooks/useAuth"; // Import custom hook
+// import { useDispatch } from "react-redux";
+// import { refreshUser } from "./redux/auth/operationsAuth";
+// import { useAuth } from "./hooks/useAuth"; // Import custom hook
 
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
@@ -32,24 +32,24 @@ const LazyHomePage = lazy(() => import("./pages/HomePage"));
 const LazyScreenPage = lazy(() => import("./pages/ScreenPage"));
 
 function App() {
-  const { isRefreshing, user } = useAuth(); // Check user verification status
-  const theme = user?.theme || "light"; // Default to "light" theme
+  // const { isRefreshing, user } = useAuth(); // Check user verification status
+  // const theme = user?.theme || "light"; // Default to "light" theme
 
-  const dispatch = useDispatch(); // To dispatch actions
+  // const dispatch = useDispatch(); // To dispatch actions
 
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      dispatch(refreshUser());
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     dispatch(refreshUser());
+  //   }
+  // }, [dispatch]);
 
-  useEffect(() => {
-    document.body.className = `theme-${theme}`;
-  }, [theme]);
+  // useEffect(() => {
+  //   document.body.className = `theme-${theme}`;
+  // }, [theme]);
 
-  if (isRefreshing) {
-    return <Loader />; // Loader while checking refresh status
-  }
+  // if (isRefreshing) {
+  //   return <Loader />; // Loader while checking refresh status
+  // }
 
   return (
     <>

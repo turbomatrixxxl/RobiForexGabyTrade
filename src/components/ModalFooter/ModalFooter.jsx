@@ -2,13 +2,13 @@ import React, { useEffect, useRef } from "react";
 import styles from "./ModalFooter.module.css";
 // import { useMediaQuery } from "react-responsive";
 import ModalLogo from "../commonComponents/FooterLogo/FooterLogo";
-import { FaGithub, FaLinkedin, FaPhoneAlt } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaPhoneAlt, FaFacebook } from "react-icons/fa";
 import FormButton from "../commonComponents/FormButton/FormButton";
 import "animate.css";
 
 // Corectarea importului imaginii
 import Radu from "../../images/teamMembersPhoto/Radu.webp";
-import Adrian from "../../images/teamMembersPhoto/Adrian.jpg";
+import Roby from "../../images/teamMembersPhoto/Roby.jpg";
 
 const ModalFooter = ({ closeModal }) => {
   const modalRef = useRef();
@@ -53,7 +53,7 @@ const ModalFooter = ({ closeModal }) => {
             <div
               className={`${styles.footerTeamCard} ${animation} ${styles.Adrian}`}>
               <img
-                src={Adrian} // Folosește variabila corectă pentru imagine
+                src={Roby} // Folosește variabila corectă pentru imagine
                 alt="Anton Robert"
                 className={styles.teamMemberImage}
               />
@@ -61,7 +61,7 @@ const ModalFooter = ({ closeModal }) => {
               <em className={styles.footerTeamFunction}>Project Manager</em>
               <div className={styles.socialLinks}>
                 <a
-                  href="https://github.com/SecaraAdrian"
+                  href="https://github.com/ovidiu12345678"
                   className={styles.footerGithubIcon}
                   aria-label="GitHub profile"
                   target="_blank"
@@ -69,12 +69,12 @@ const ModalFooter = ({ closeModal }) => {
                   <FaGithub />
                 </a>
                 <a
-                  href="http://linkedin.com/in/adrian-secara-254ba3312"
+                  href="https://www.facebook.com/anton.gabriel.7739"
                   className={styles.footerLinkedinIcon}
                   aria-label="LinkedIn profile"
                   target="_blank"
                   rel="noreferrer noopener">
-                  <FaLinkedin />
+                  <FaFacebook />
                 </a>
                 <a
                   href="tel:+40759337248"
