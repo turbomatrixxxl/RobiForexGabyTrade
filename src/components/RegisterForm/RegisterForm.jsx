@@ -35,7 +35,7 @@ function RegisterForm() {
   const { touched, handleBlur } = useFormTouched();
   const passwordStrength = usePasswordStrength(fields.password);
 
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
   // const dispatch = useDispatch();
 
   const [type, setType] = useState("password");
@@ -237,7 +237,7 @@ function RegisterForm() {
           </div>
         </div>
         <div className={styles.buttonsContainer}>
-          {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+          {/* {errorMessage && <p className={styles.error}>{errorMessage}</p>} */}
 
           {/* <Button disabled={!isFormValid} variant="auth" type="submit">
             Register Now
