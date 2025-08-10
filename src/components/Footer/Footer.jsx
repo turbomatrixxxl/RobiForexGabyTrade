@@ -33,8 +33,8 @@ const Footer = () => {
             ? styles.violetText
             : null
         )}>
-        <p>℗ & © GoIT 2024</p>
-        <p>Powered by Ultimate Team</p>
+        <p>℗ & © RobiForexGabyTrade</p>
+        <p>Powered by RobiTrader Team</p>
       </div>
       {/* Randează Modal-ul dacă este deschis */}
       {modalOpen && <Modal closeModal={() => setModalOpen(false)} />}

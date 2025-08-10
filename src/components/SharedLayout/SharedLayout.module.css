@@ -23,7 +23,7 @@
 }
 
 .mainDark {
-  background: #1f1f1f;
+  background: var(--gradient-background);
 }
 
 /* @media screen and (width >=768px) {
