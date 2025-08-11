@@ -6,6 +6,8 @@
   justify-content: flex-end;
   padding: 18px 14px 18px 20px;
   width: -webkit-fill-available;
+  border-bottom: 1px solid #282b32;
+  box-shadow: 0 4px 22px #0001;
 }
 
 .hamButton {
@@ -20,16 +22,28 @@
   width: fit-content;
 }
 
+.hamButton > svg {
+  transition: all 0.3s ease-in-out;
+}
+
+.hamButton > svg:hover {
+  fill: var(--accent);
+}
+
 .headerLight {
   background: #fcfcfc;
+
+  border-bottom: 1px solid var(--title-welcome-color);
 }
 
 .headerDark {
-  background: #161616;
+  background: var(--panou);
 }
 
 .headerViolet {
-  background: white;
+  background: linear-gradient(270deg, #2e1746 3.2%, #2e225f 99.98%);
+
+  border-bottom: 1px solid var(--white-60, #fff9);
 }
 
 .rightContainer {
@@ -57,16 +71,25 @@
 }
 
 .userName {
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.userNameLight {
+  color: rgba(22, 22, 22, 0.8);
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 
 .userName:hover {
   scale: 1.1;
+  color: var(--accent);
 }
 
-.img {
-  border: 1px solid #bedbb0;
+.userNameLight:hover {
+  scale: 1.1;
+  color: var(--accent);
 }
 
 .img {

@@ -1,9 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { HiX } from 'react-icons/hi';
+import React from "react";
+import PropTypes from "prop-types";
+import { HiX } from "react-icons/hi";
 
-import styles from './Modal.module.css';
-import clsx from 'clsx';
+import leftImage from "../../../images/login-background-left-side.png";
+import rightImage from "../../../images/login-background-right-side.png";
+
+import styles from "./Modal.module.css";
+import clsx from "clsx";
 
 function Modal({
   isModalVisible,
@@ -22,15 +25,22 @@ function Modal({
   return (
     isModalVisible && (
       <section ref={dialogRef} className={styles.modalClassName}>
+        <div className={styles.imageLeft}>
+          <img src={leftImage} alt="Left" />
+        </div>
+        <div className={styles.imageRight}>
+          <img src={rightImage} alt="Right" />
+        </div>
         <div
           ref={contRef}
-          className={clsx(styles.content, variant === "dark" ? styles.darkContent : styles.content)}
-        >
+          className={clsx(
+            styles.content,
+            variant === "dark" ? styles.darkContent : styles.content
+          )}>
           <button
             className={clsx(styles.closeModal, closeButton)}
             id="closeModal"
-            onClick={handleModalClose}
-          >
+            onClick={handleModalClose}>
             <HiX size="16px" />
           </button>
           {children}
@@ -55,7 +65,8 @@ Modal.propTypes = {
     PropTypes.string,
     PropTypes.object,
     PropTypes.array,
-  ]), modalContentClassName: PropTypes.string,
+  ]),
+  modalContentClassName: PropTypes.string,
   closeButton: PropTypes.string,
   variant: PropTypes.string,
 };

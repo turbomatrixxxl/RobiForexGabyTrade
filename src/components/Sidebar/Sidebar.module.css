@@ -39,7 +39,7 @@
 }
 
 .asideDark {
-  background: #121212;
+  background: var(--panou);
 }
 
 .logoutButton {
@@ -191,5 +191,17 @@
   .cont {
     height: 100vh;
     position: static;
+  }
+
+  .asideLight {
+    border-right: 1px solid var(--title-welcome-color);
+  }
+
+  .asideViolet {
+    border-right: 1px solid var(--white-60, #fff9);
+  }
+
+  .asideDark {
+    border-right: 1px solid var(--icon-user-plus-fill-color);
   }
 }

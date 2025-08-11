@@ -6,6 +6,7 @@
   margin-right: 14px;
   position: relative;
   width: fit-content;
+  z-index: 1;
 }
 
 .button {
@@ -21,6 +22,7 @@
   outline: none;
   outline: none;
   width: fit-content;
+  transition: all 0.3s ease-in-out;
 }
 
 .span {
@@ -41,6 +43,13 @@
   width: 16px;
   height: 16px;
   fill: rgba(22, 22, 22, 0.8);
+}
+
+.button:hover,
+.span:hover,
+.svg:hover {
+  color: var(--accent);
+  fill: var(--accent);
 }
 
 .svgDark {

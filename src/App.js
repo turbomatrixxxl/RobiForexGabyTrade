@@ -1,5 +1,5 @@
 // import React, { lazy, useEffect } from "react";
-import React, { lazy } from "react";
+import React, { lazy, useEffect } from "react";
 
 import { Route, Routes } from "react-router-dom";
 // import { useDispatch } from "react-redux";
@@ -52,6 +52,11 @@ function App() {
   // if (isRefreshing) {
   //   return <Loader />; // Loader while checking refresh status
   // }
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme") || "dark";
+    document.body.className = `theme-${theme}`;
+  }, []);
 
   return (
     <>

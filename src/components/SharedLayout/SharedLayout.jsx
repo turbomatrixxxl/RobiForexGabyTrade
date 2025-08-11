@@ -137,12 +137,15 @@ import styles from "./SharedLayout.module.css";
 //   );
 // }
 
-const theme = localStorage.getItem("theme") || "dark";
-
-function SharedLayout({ handleClick }) {
+function SharedLayout({ handleClick, handleRightClick, user, theme }) {
   return (
     <div className={styles.cont}>
-      <Header handleClick={handleClick} />
+      <Header
+        handleClick={handleClick}
+        handleRightClick={handleRightClick}
+        theme={theme}
+        user={user}
+      />
 
       <main
         className={clsx(
@@ -158,13 +161,16 @@ function SharedLayout({ handleClick }) {
         <Outlet />
       </main>
 
-      <Footer />
+      <Footer sharedFooter={true} />
     </div>
   );
 }
 
 SharedLayout.propTypes = {
   handleClick: PropTypes.func,
+  handleRightClick: PropTypes.func,
+  user: PropTypes.object,
+  theme: PropTypes.oneOf(["light", "dark", "violet"]), // Theme options
 };
 
 export default SharedLayout;

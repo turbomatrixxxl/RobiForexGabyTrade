@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 
-import { useAuth } from "../../../hooks/useAuth";
-import {
-  refreshUser,
-  updateUserInfo,
-  updateUserAvatar,
-} from "../../../redux/auth/operationsAuth";
+// import { useAuth } from "../../../hooks/useAuth";
+// import {
+//   refreshUser,
+//   updateUserInfo,
+//   updateUserAvatar,
+// } from "../../../redux/auth/operationsAuth";
 import useToggle from "../../../hooks/useToggle";
 
 import clsx from "clsx";
@@ -21,16 +21,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 import styles from "./UpdateUser.module.css";
 
-export default function UpdateUser({ onClose }) {
-  const { user } = useAuth();
-  const dispatch = useDispatch();
+export default function UpdateUser({ onClose, user, theme }) {
+  // const { user } = useAuth();
+  // const dispatch = useDispatch();
 
   const formRef = useRef();
   const modalRef = useRef();
   const fileInputRef = useRef(null); // File input reference
 
-  const [userNewName, setUserNewName] = useState(user?.username);
-  const [userNewMail, setUserNewMail] = useState(user?.email);
+  const [userNewName, setUserNewName] = useState(user?.username || "User");
+  const [userNewMail, setUserNewMail] = useState(user?.email || "asd@asd.com");
   const [userNewPassword, setUserNewPassword] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -53,40 +53,35 @@ export default function UpdateUser({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Dispatch user info update
-    dispatch(
-      updateUserInfo({
+    if (selectedFile) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64Image = reader.result; // imaginea în format Base64
+
+        const updatedUser = {
+          username: userNewName,
+          email: userNewMail,
+          password: userNewPassword,
+          avatarBase64: base64Image,
+        };
+
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+        toast.success("User info saved locally!");
+        onClose();
+      };
+      reader.readAsDataURL(selectedFile); // conversie în Base64
+    } else {
+      const updatedUser = {
         username: userNewName,
         email: userNewMail,
         password: userNewPassword,
-      })
-    );
+        avatarBase64: user?.avatarBase64 || "https://i.imgur.com/E4nHB5A.png",
+      };
 
-    // Dispatch the avatar update if a file is selected
-    if (selectedFile) {
-      const formData = new FormData();
-      formData.append("avatar", selectedFile);
-
-      dispatch(updateUserAvatar(formData))
-        .then((response) => {
-          // Handle success response
-          if (response) {
-            toast.success("Avatar updated successfully!"); // Success toast
-          } else {
-            toast.error("Failed to update avatar. Please try again."); // Error toast
-          }
-        })
-        .catch((error) => {
-          // console.error("Error during avatar upload:", error.message);
-          toast.error("An error occurred. Please try again later."); // Error toast
-        });
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+      toast.success("User info saved locally!");
+      onClose();
     }
-
-    setTimeout(() => {
-      dispatch(refreshUser());
-    }, 3500);
-
-    onClose();
   };
 
   useEffect(() => {
@@ -108,11 +103,12 @@ export default function UpdateUser({ onClose }) {
   // Set correct avatar URL
   const imageUrl = selectedFile
     ? URL.createObjectURL(selectedFile)
-    : user?.avatarURL
-    ? user?.avatarURL.startsWith("http")
-      ? user?.avatarURL
-      : `https://taskpro-nodejs.onrender.com/${user.avatarURL}`
-    : "/default-avatar.jpg"; // Default fallback image
+    : user?.avatarBase64
+    ? user.avatarBase64
+    : user?.avatarURL && user.avatarURL.startsWith("http")
+    ? user.avatarURL
+    : "https://i.imgur.com/E4nHB5A.png";
+  // Default fallback image
 
   return (
     <div
@@ -127,8 +123,8 @@ export default function UpdateUser({ onClose }) {
         onClick={handleModalClick}
         ref={formRef}
         className={clsx(
-          "modal-container-need",
-          user?.theme === "dark" ? "contDark" : "modal-container-need"
+          styles.modalContainerNeed,
+          theme === "dark" ? styles.contDark : styles.contLight
         )}>
         <button type="button" className={styles["close-btn"]} onClick={onClose}>
           <svg
@@ -138,14 +134,14 @@ export default function UpdateUser({ onClose }) {
             fill="none">
             <path
               d="M13.5 4.5L4.5 13.5"
-              stroke={user?.theme === "dark" ? "white" : "black"}
+              stroke={theme === "dark" ? "white" : "black"}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
               d="M4.5 4.5L13.5 13.5"
-              stroke={user?.theme === "dark" ? "white" : "black"}
+              stroke={theme === "dark" ? "white" : "black"}
               strokeWidth="1.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -155,7 +151,7 @@ export default function UpdateUser({ onClose }) {
 
         <h2
           className={clsx(styles.text, {
-            [styles.textDark]: user?.theme === "dark",
+            [styles.textDark]: theme === "dark",
           })}>
           Edit profile
         </h2>
@@ -164,7 +160,7 @@ export default function UpdateUser({ onClose }) {
         <div
           className={clsx(
             styles.imgCont,
-            user?.theme === "violet" ? styles.imgContViolet : null
+            theme === "violet" ? styles.imgContViolet : null
           )}>
           <img className={styles.userImg} src={imageUrl} alt="User Avatar" />
           <div className={styles.imgPlusCont}>
@@ -178,9 +174,7 @@ export default function UpdateUser({ onClose }) {
             <button
               className={clsx(
                 styles.imgPlusBtn,
-                user?.theme === "violet"
-                  ? styles.iconPlusViolet
-                  : styles.iconPlus
+                theme === "violet" ? styles.iconPlusViolet : styles.iconPlus
               )}
               onClick={() => fileInputRef.current.click()}>
               <svg
@@ -191,14 +185,14 @@ export default function UpdateUser({ onClose }) {
                 fill="none">
                 <path
                   d="M10 4.16663V15.8333"
-                  stroke={user.theme === "violet" ? "white" : "#121212"}
+                  stroke={theme === "violet" ? "white" : "#121212"}
                   strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                 />
                 <path
                   d="M4.16699 10H15.8337"
-                  stroke={user.theme === "violet" ? "white" : "#121212"}
+                  stroke={theme === "violet" ? "white" : "#121212"}
                   strokeWidth="1.8"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -211,7 +205,7 @@ export default function UpdateUser({ onClose }) {
         <form onSubmit={handleSubmit} className={styles["div-container"]}>
           <Input
             className={styles.textarea}
-            theme={user?.theme}
+            theme={theme}
             value={userNewName}
             handleChange={handleUserNameChange}
             placeholder="Name"
@@ -221,7 +215,7 @@ export default function UpdateUser({ onClose }) {
 
           <Input
             className={styles.textarea}
-            theme={user?.theme}
+            theme={theme}
             value={userNewMail}
             handleChange={handleUserMailAddressChange}
             placeholder="Email"
@@ -240,7 +234,7 @@ export default function UpdateUser({ onClose }) {
                 size="24px"
                 className={clsx(
                   styles.eyeIcon,
-                  user?.theme === "dark" ? styles.eyeIconDark : null
+                  theme === "dark" ? styles.eyeIconDark : null
                 )}
               />
             )}
@@ -254,14 +248,14 @@ export default function UpdateUser({ onClose }) {
                 size="24px"
                 className={clsx(
                   styles.eyeIcon,
-                  user?.theme === "dark" ? styles.eyeIconDark : null
+                  theme === "dark" ? styles.eyeIconDark : null
                 )}
               />
             )}
             <Input
               className={styles.textarea}
               value={userNewPassword}
-              theme={user?.theme}
+              theme={theme}
               handleChange={handleUserPasswordChange}
               placeholder="New password"
               name="Password"
@@ -270,7 +264,7 @@ export default function UpdateUser({ onClose }) {
           </div>
 
           <Button
-            theme={user?.theme}
+            theme={theme}
             className={styles.btn}
             type="submit"
             variant="send">

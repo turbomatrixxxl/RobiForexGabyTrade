@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   backdrop-filter: blur(3.5px);
-  background: linear-gradient(180deg, #ffffff 0%, #ffffff 25%, #bedbb0 92.19%);
+  background: var(--gradient-background);
   border: none;
   color: var(--transparency-60);
   height: 100vh;
@@ -16,6 +16,28 @@
   width: 100%;
   z-index: 1000;
   overflow: auto;
+}
+
+.imageLeft,
+.imageRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.imageLeft {
+  left: 0;
+}
+
+.imageRight {
+  right: 0;
+}
+
+.imageLeft img,
+.imageRight img {
+  display: none;
 }
 
 .content {
@@ -69,6 +91,14 @@
   .modalClassName {
     height: 100%;
     overflow: hidden;
+  }
+
+  .imageLeft img,
+  .imageRight img {
+    display: inherit;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .content {

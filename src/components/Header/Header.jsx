@@ -3,13 +3,16 @@ import PropTypes from "prop-types";
 
 import { useMediaQuery } from "react-responsive";
 
-import { useAuth } from "../../hooks/useAuth";
+// import { useAuth } from "../../hooks/useAuth";
 
 import clsx from "clsx";
 
-import styles from "./Header.module.css";
+import { FaCog } from "react-icons/fa";
+
 import ThemeSelector from "../ThemeSelector/ThemeSelector";
 import UpdateUser from "../modal/UpdateUser/UpdateUser";
+
+import styles from "./Header.module.css";
 
 const breakpoints = {
   mobile: "(max-width: 767px)",
@@ -17,8 +20,8 @@ const breakpoints = {
   desktop: "(min-width:1024px)",
 };
 
-function Header({ handleClick }) {
-  const { user } = useAuth();
+function Header({ handleClick, handleRightClick, theme, user }) {
+  // const { user } = useAuth();
 
   const [isUpdateUserModalVisible, setIsUpdateUserModalVisible] =
     useState(false);
@@ -31,27 +34,33 @@ function Header({ handleClick }) {
     setIsUpdateUserModalVisible(false);
   };
 
-  const imageUrl = user?.avatarURL?.startsWith("http")
-    ? user?.avatarURL
-    : `https://taskpro-nodejs.onrender.com/${user?.avatarURL}`;
+  // const imageUrl = avatarURL?.startsWith("http")
+  //   ? avatarURL
+  //   : `https://taskpro-nodejs.onrender.com/${avatarURL}`;
 
   const isMobile = useMediaQuery({ query: breakpoints.mobile });
   const isTablet = useMediaQuery({ query: breakpoints.tablet });
   const isDesktop = useMediaQuery({ query: breakpoints.desktop });
 
+  const [hover, setHover] = useState(false);
+
   return (
     <>
       {isUpdateUserModalVisible && (
-        <UpdateUser onClose={handleCloseUpdateModal} />
+        <UpdateUser
+          theme={theme}
+          user={user}
+          onClose={handleCloseUpdateModal}
+        />
       )}
       <header
         className={clsx(
           styles.header,
-          user?.theme === "dark"
+          theme === "dark"
             ? styles.headerDark
-            : user?.theme === "violet"
+            : theme === "violet"
             ? styles.headerViolet
-            : user?.theme === "light"
+            : theme === "light"
             ? styles.headerLight
             : styles.headerLight
         )}>
@@ -62,24 +71,50 @@ function Header({ handleClick }) {
               width="24"
               height="24"
               viewBox="0 0 24 24"
-              fill="none">
+              fill="none"
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}>
               <path
                 d="M3 12H21"
-                stroke={clsx(user?.theme === "dark" ? "white" : "#161616")}
+                stroke={
+                  hover
+                    ? "#37e673"
+                    : clsx(
+                        theme === "dark" || theme === "violet"
+                          ? "rgba(255, 255, 255, 0.8)"
+                          : "#161616"
+                      )
+                }
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M3 6H21"
-                stroke={clsx(user?.theme === "dark" ? "white" : "#161616")}
+                stroke={
+                  hover
+                    ? "#37e673"
+                    : clsx(
+                        theme === "dark" || theme === "violet"
+                          ? "rgba(255, 255, 255, 0.8)"
+                          : "#161616"
+                      )
+                }
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M3 18H21"
-                stroke={clsx(user?.theme === "dark" ? "white" : "#161616")}
+                stroke={
+                  hover
+                    ? "#37e673"
+                    : clsx(
+                        theme === "dark" || theme === "violet"
+                          ? "rgba(255, 255, 255, 0.8)"
+                          : "#161616"
+                      )
+                }
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -95,24 +130,50 @@ function Header({ handleClick }) {
               width="32"
               height="32"
               viewBox="0 0 32 32"
-              fill="none">
+              fill="none"
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}>
               <path
                 d="M4 16H28"
-                stroke={clsx(user?.theme === "dark" ? "white" : "#161616")}
+                stroke={
+                  hover
+                    ? "#37e673"
+                    : clsx(
+                        theme === "dark" || theme === "violet"
+                          ? "rgba(255, 255, 255, 0.8)"
+                          : "#161616"
+                      )
+                }
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M4 8H28"
-                stroke={clsx(user?.theme === "dark" ? "white" : "#161616")}
+                stroke={
+                  hover
+                    ? "#37e673"
+                    : clsx(
+                        theme === "dark" || theme === "violet"
+                          ? "rgba(255, 255, 255, 0.8)"
+                          : "#161616"
+                      )
+                }
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
                 d="M4 24H28"
-                stroke={clsx(user?.theme === "dark" ? "white" : "#161616")}
+                stroke={
+                  hover
+                    ? "#37e673"
+                    : clsx(
+                        theme === "dark" || theme === "violet"
+                          ? "rgba(255, 255, 255, 0.8)"
+                          : "#161616"
+                      )
+                }
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -120,29 +181,60 @@ function Header({ handleClick }) {
             </svg>
           </button>
         )}
+
         <div className={styles.rightContainer}>
-          <ThemeSelector />
+          <ThemeSelector theme={theme} />
           <div
             className={clsx(
               styles.userContainer,
-              user?.theme === "dark"
-                ? styles.userContainerDark
-                : styles.userContainer
+              theme === "dark" ? styles.userContainerDark : styles.userContainer
             )}>
-            <p className={styles.userName} onClick={handleOpenUpdateModal}>
-              {user ? user?.username : "User"}
+            <p
+              className={
+                theme === "dark" || theme === "violet"
+                  ? styles.userName
+                  : styles.userNameLight
+              }
+              onClick={handleOpenUpdateModal}>
+              {user?.username || "User"}
             </p>
 
             <img
-              className={
-                user?.theme === "violet" ? styles.imgViolet : styles.img
-              }
-              src={imageUrl}
+              className={theme === "violet" ? styles.imgViolet : styles.img}
+              src={user?.avatarBase64 || "https://i.imgur.com/E4nHB5A.png"}
               alt="User Avatar"
-              style={{ width: "32px", height: "32px", borderRadius: "8px" }}
+              style={{ width: "42px", height: "42px", borderRadius: "50%" }}
             />
           </div>
         </div>
+
+        {isMobile && (
+          <button onClick={handleRightClick} className={styles.hamButton}>
+            <FaCog
+              size={24}
+              color={
+                theme === "dark" || theme === "violet"
+                  ? "rgba(255, 255, 255, 0.8)"
+                  : "#161616cc"
+              }
+              className={styles.cogIcon}
+            />
+          </button>
+        )}
+
+        {isTablet && !isDesktop && (
+          <button onClick={handleRightClick} className={styles.hamButton}>
+            <FaCog
+              size={32}
+              color={
+                theme === "dark" || theme === "violet"
+                  ? "rgba(255, 255, 255, 0.8)"
+                  : "#161616cc"
+              }
+              className={styles.cogIcon}
+            />
+          </button>
+        )}
       </header>
     </>
   );
@@ -150,6 +242,12 @@ function Header({ handleClick }) {
 
 Header.propTypes = {
   handleClick: PropTypes.func,
+  handleRightClick: PropTypes.func,
+  theme: PropTypes.oneOf(["light", "dark", "violet"]), // Theme options
+  user: PropTypes.shape({
+    username: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }),
 };
 
 export default Header;

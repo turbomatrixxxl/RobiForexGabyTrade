@@ -118,10 +118,21 @@ button {
   --border-radius: 8px;
   --transparency-60: #fff9;
   --icon-violet: #734aef;
+  --fundal: #1b1e23;
+  --panou: #23252c;
+  --accent: #37e673;
+  --rosu: #ea3c53;
+  --text: #e0e6ed;
+  --gri: #3a3d46;
+  --gri-deschis: #c7cad4;
+  --tab-activ: #30313b;
+  --radius: 18px;
+  --radius-mic: 9px;
+  --avatar-bg: #22272e;
 }
 
 /* Dark Theme */
-html[data-theme="dark"] {
+/* html[data-theme="dark"] {
   --background-primary-color: #121212;
   --background-secondary-color: #1f1f1f;
   --background-header-color: #161616;
@@ -221,10 +232,10 @@ html[data-theme="dark"] {
   --modal-progress-icon-hover-stroke-color: #bedbb0;
   --modal-progress-bg-color: #1f1f1f;
   --modal-progress-shadow-color: rgba(17, 17, 17, 0.1);
-}
+} */
 
 /* Light Theme */
-html[data-theme="light"] {
+/* html[data-theme="light"] {
   --background-primary-color: #fdfdfd;
   --background-secondary-color: #f6f6f7;
   --background-header-color: #fcfcfc;
@@ -324,10 +335,10 @@ html[data-theme="light"] {
   --modal-progress-icon-hover-stroke-color: #bedbb0;
   --modal-progress-bg-color: #fff;
   --modal-progress-shadow-color: rgba(200, 200, 200, 0.1);
-}
+} */
 
 /* Violet Theme */
-html[data-theme="violet"] {
+/* html[data-theme="violet"] {
   --background-primary-color: #ecedfd;
   --background-secondary-color: #ecedfd;
   --header-background-color: #ffffff;
@@ -428,4 +439,4 @@ html[data-theme="violet"] {
   --modal-progress-icon-hover-stroke-color: rgba(82, 85, 188, 1);
   --modal-progress-bg-color: #fcfcfc;
   --modal-progress-shadow-color: rgba(17, 17, 17, 0.1);
-}
+} */

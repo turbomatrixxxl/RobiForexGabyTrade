@@ -1,5 +1,5 @@
-import React from 'react';
-import icons from '../../images/sprite.svg';
+import React from "react";
+import icons from "../../images/sprite.svg";
 import {
   Container,
   Wrapper,
@@ -12,9 +12,8 @@ import {
   AuthButton,
   AuthButtonLogin,
   WrapperBackground,
-} from './Welcome.styled';
-import Footer from '../Footer/Footer';
-// import backgroundImage from '../../images/register-background.png';
+} from "./Welcome.styled";
+import Footer from "../Footer/Footer";
 
 function Welcome() {
   return (
@@ -29,9 +28,11 @@ function Welcome() {
           <Title>GabyTrade C-Bots Platform</Title>
         </LogoWrapper>
         <Text>
-          Automate your forex strategies with powerful C-Bots powered by Gaby.<br />
+          Automate your forex strategies with powerful C-Bots powered by Gaby.
           <br />
-          Trade smarter, not harder. Automate your strategies with Gaby's trading robots.
+          <br />
+          Trade smarter, not harder. Automate your strategies with Gaby's
+          trading robots.
         </Text>
 
         <AuthWrapper>
@@ -43,7 +44,7 @@ function Welcome() {
           </AuthButtonLogin>
         </AuthWrapper>
       </Wrapper>
-      <Footer />
+      <Footer style={{ position: "relative", zIndex: 3 }} />
     </Container>
   );
 }

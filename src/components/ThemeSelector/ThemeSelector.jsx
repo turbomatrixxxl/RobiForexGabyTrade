@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { updateTheme } from "../../redux/private/operationsPrivate"; // Adjust the import path for your Redux slice
-import { useAuth } from "../../hooks/useAuth"; // Adjust the import path for your custom hook
-import { refreshUser } from "../../redux/auth/operationsAuth";
+// import { useDispatch } from "react-redux";
+// import { updateTheme } from "../../redux/private/operationsPrivate"; // Adjust the import path for your Redux slice
+// import { useAuth } from "../../hooks/useAuth"; // Adjust the import path for your custom hook
+// import { refreshUser } from "../../redux/auth/operationsAuth";
 
 import clsx from "clsx";
 
@@ -10,22 +10,23 @@ import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 
 import styles from "./ThemeSelector.module.css";
 
-export default function ThemeSelector() {
-  const dispatch = useDispatch();
-  const { user } = useAuth(); // Get user info
-  const [theme, setTheme] = useState(user?.theme || "light"); // Default to "light" if user?.theme is undefined
+export default function ThemeSelector({ theme, user }) {
+  // const dispatch = useDispatch();
+  // const { user } = useAuth(); // Get user info
+
+  const [themeA, setTheme] = useState(theme || "dark");
   const [isOpen, setIsOpen] = useState(false); // Controls dropdown open/close
 
   const dropdownRef = useRef(null); // Ref for dropdown to detect clicks outside
 
   const handleSelect = (selectedTheme) => {
     setTheme(selectedTheme);
-    dispatch(updateTheme(selectedTheme)); // Dispatch action with selected theme
-
+    // dispatch(updateTheme(selectedTheme)); // Dispatch action with selected theme
+    localStorage.setItem("theme", selectedTheme); // Save theme to localStorage
     // Timeout to delay `refreshUser` to give backend time to update
-    setTimeout(() => {
-      dispatch(refreshUser());
-    }, 500); // Adjust timeout duration as necessary
+    // setTimeout(() => {
+    //   dispatch(refreshUser());
+    // }, 500); // Adjust timeout duration as necessary
 
     setIsOpen(false); // Close the dropdown
   };
@@ -54,7 +55,9 @@ export default function ThemeSelector() {
         <span
           className={clsx(
             styles.span,
-            user?.theme === "dark" ? styles.spanDark : styles.span
+            themeA === "dark" || themeA === "violet"
+              ? styles.spanDark
+              : styles.span
           )}>
           Theme
         </span>
@@ -62,14 +65,18 @@ export default function ThemeSelector() {
           <HiChevronDown
             className={clsx(
               styles.svg,
-              user?.theme === "dark" ? styles.svgDark : styles.svg
+              themeA === "dark" || themeA === "violet"
+                ? styles.svgDark
+                : styles.svg
             )}
           />
         ) : (
           <HiChevronUp
             className={clsx(
               styles.svg,
-              user?.theme === "dark" ? styles.svgDark : styles.svg
+              themeA === "dark" || themeA === "violet"
+                ? styles.svgDark
+                : styles.svg
             )}
           />
         )}
@@ -80,17 +87,17 @@ export default function ThemeSelector() {
         <ul
           className={clsx(
             styles.options,
-            user?.theme === "dark" ? styles.optionsDark : styles.options,
-            user?.theme === "violet" ? styles.optionsViolet : styles.options
+            themeA === "dark" ? styles.optionsDark : styles.options,
+            themeA === "violet" ? styles.optionsViolet : styles.options
           )}>
           {["light", "dark", "violet"].map((option) => (
             <li
               key={option}
               className={clsx(
                 styles.option,
-                user?.theme === "dark" ? styles.optionDark : styles.option,
-                option === theme &&
-                  (user?.theme === "violet"
+                themeA === "dark" ? styles.optionDark : styles.option,
+                option === themeA &&
+                  (themeA === "violet"
                     ? styles.activeOptionViolet
                     : styles.activeOption)
               )}
