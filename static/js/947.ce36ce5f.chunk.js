@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkmy_react_app=self.webpackChunkmy_react_app||[]).push([[947],{7947:(e,t,a)=>{a.r(t),a.d(t,{default:()=>s});a(5043);var o=a(8387);const _="LogPage_cont__nUCNx",n="LogPage_lightCont__XG-AM",g="LogPage_darkCont__tK0nw",c="LogPage_violetCont__3vFPs";var r=a(579);const s=function(){const e=localStorage.getItem("theme")||"dark";return(0,r.jsx)("div",{className:(0,o.A)(_,"light"===e?n:"violet"===e?c:g),children:"LogPage"})}}}]);
-//# sourceMappingURL=947.ce36ce5f.chunk.js.map
