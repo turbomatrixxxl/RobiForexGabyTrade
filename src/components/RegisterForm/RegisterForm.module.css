@@ -61,7 +61,11 @@
   align-items: center;
   gap: 14px;
   justify-content: center;
-  /* width: 100%; */
+  width: 100%;
+}
+
+.inputContainer {
+  width: 100%;
 }
 
 .inputWrapper {
@@ -102,6 +106,7 @@
   flex-direction: column;
   gap: 20px;
   justify-content: center;
+  width: 100%;
 }
 
 .passwordStrengthBar {

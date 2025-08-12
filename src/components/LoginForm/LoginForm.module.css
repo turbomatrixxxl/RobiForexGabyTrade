@@ -61,10 +61,21 @@
   flex-direction: column;
   gap: 14px;
   justify-content: center;
+  width: 100%;
+}
+
+.inputContainer {
+  width: 100%;
 }
 
 .inputWrapper {
+  display: flex;
   position: relative;
+  width: 100%;
+}
+
+.input {
+  display: flex;
 }
 
 .inputError {
@@ -104,6 +115,7 @@
   flex-direction: column;
   gap: 20px;
   justify-content: space-between;
+  width: 100%;
 }
 
 .button:hover,

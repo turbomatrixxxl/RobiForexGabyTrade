@@ -1,16 +1,15 @@
-import { NavLink } from 'react-router-dom';
-import styled from '@emotion/styled';
-// import logoMob from '../../images/user2.png';
-// import logoDesk from '../../images/user.png';
-import robyImage from '../../images/Roby.jpg';
-import backgroundImage from '../../images/register-background.png';
+import { NavLink } from "react-router-dom";
+import styled from "@emotion/styled";
+
+import robyImage from "../../images/Roby.jpg";
+import backgroundImage from "../../images/register-background.png";
 
 export const Container = styled.div`
   display: flex;
   align-items: center;
   height: 100vh;
   width: 100%;
-  background: var(--gradient-background);;
+  background: var(--gradient-background);
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
@@ -18,18 +17,17 @@ export const Container = styled.div`
 `;
 
 export const WrapperBackground = styled.div`
-        background : transparent url(${backgroundImage}) no-repeat center center;
-        background-position: 50%;
-        background-size: cover;
-        display: inherit
-;
-        height: 100%;
-        left: 0;
-        opacity: .5;
-        position: absolute;
-        top: 0;
-        width: 100%;
-        z-index: 1;
+  background: transparent url(${backgroundImage}) no-repeat center center;
+  background-position: 50%;
+  background-size: cover;
+  display: inherit;
+  height: 100%;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
 `;
 
 export const Wrapper = styled.div`
@@ -56,7 +54,6 @@ export const Logo = styled.img`
     margin-bottom: 24px;
   }
 `;
-
 
 export const LogoWrapper = styled.div`
   display: flex;
@@ -101,7 +98,7 @@ export const Text = styled.p`
   font-weight: 600;
   line-height: 1.28;
   letter-spacing: -0.28px;
-  color: var(--white-60, #fff9);;
+  color: var(--white-60, #fff9);
   text-align: center;
   text-wrap: wrap;
   flex-shrink: 1;
@@ -170,7 +167,7 @@ export const AuthButtonLogin = styled(NavLink)`
   font-weight: 500;
   line-height: 1.5;
   letter-spacing: -0.28px;
-  color: var(--white-60, #fff9);;
+  color: var(--white-60, #fff9);
   text-align: center;
   border: none;
   border-radius: 8px;

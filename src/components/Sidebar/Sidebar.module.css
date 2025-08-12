@@ -4,6 +4,7 @@
   height: -webkit-fill-available;
   justify-content: space-between;
   overflow-y: auto;
+  padding: 14px;
   width: 225px;
 }
 
@@ -40,6 +41,54 @@
 
 .asideDark {
   background: var(--panou);
+}
+
+.sideLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 20px;
+}
+
+.menuBtn {
+  background: none;
+  border: none;
+  color: var(--text);
+  display: flex;
+  font-size: 19px;
+  padding: 13px 0 13px 17px;
+  border-radius: var(--radius-mic);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease-in-out;
+  margin-bottom: 2px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  width: -webkit-fill-available;
+}
+.menuBtn.activeBtn {
+  background: var(--tab-activ);
+  color: var(--accent);
+}
+
+.menuBtn:hover {
+  background: var(--tab-activ);
+  color: var(--accent);
+}
+
+.lightMenuBtn {
+  color: rgba(22, 22, 22, 0.8);
+  background: none;
+}
+
+.lightMenuBtn:hover {
+  background: var(--tab-activ);
+  color: var(--accent);
+}
+
+.lightActiveMenuBtn {
+  background: var(--tab-activ);
+  color: var(--accent);
 }
 
 .logoutButton {
@@ -86,7 +135,8 @@
 
 .logo {
   width: 84px;
-  height: 108px;
+  height: fit-content;
+  border-radius: 8px;
   flex-shrink: 0;
 }
 

@@ -67,7 +67,7 @@
 
 .imgCont {
   align-items: center;
-  border: 1px solid #bedbb0;
+  border: 2px solid var(--accent);
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -81,6 +81,10 @@
 
 .imgContViolet {
   border-color: #5255bc;
+}
+
+.imgContLight {
+  border: 3px solid #bedbb0;
 }
 
 .userImg {

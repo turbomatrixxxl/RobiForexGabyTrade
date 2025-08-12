@@ -1,0 +1,33 @@
+.cont {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+
+.lightCont {
+  background: var(--icon-user-plus-fill-color);
+  color: var(--welcome-bg-gradient);
+}
+
+.darkCont {
+  background: var(--fundal);
+  color: white;
+}
+
+.violetCont {
+  background: var(--secondary-color);
+  color: white;
+}
+
+@media screen and (width >=768px) {
+  .text {
+    font-size: 14px;
+    line-height: 18px; /* 128.571% */
+    width: 486px;
+  }
+}
+
+/* @media screen and (width >=1024px) {
+  
+} */

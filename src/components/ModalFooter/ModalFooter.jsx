@@ -49,15 +49,17 @@ const ModalFooter = ({ closeModal }) => {
           <h2>RobiTrader Team:</h2>
 
           <div className={styles.footerCards}>
-            {/* Card pentru Roby */}
+            {/* Card pentru Gaby */}
             <div
               className={`${styles.footerTeamCard} ${animation} ${styles.Adrian}`}>
               <img
                 src={Roby} // Folosește variabila corectă pentru imagine
-                alt="Anton Robert"
+                alt="Anton Ovidiu-Gabriel"
                 className={styles.teamMemberImage}
               />
-              <span className={styles.footerTeamName}>Anton Robert</span>
+              <span className={styles.footerTeamName}>
+                Anton Ovidiu-Gabriel
+              </span>
               <em className={styles.footerTeamFunction}>Project Manager</em>
               <div className={styles.socialLinks}>
                 <a

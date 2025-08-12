@@ -160,7 +160,11 @@ export default function UpdateUser({ onClose, user, theme }) {
         <div
           className={clsx(
             styles.imgCont,
-            theme === "violet" ? styles.imgContViolet : null
+            theme === "violet"
+              ? styles.imgContViolet
+              : theme === "light"
+              ? styles.imgContLight
+              : null
           )}>
           <img className={styles.userImg} src={imageUrl} alt="User Avatar" />
           <div className={styles.imgPlusCont}>

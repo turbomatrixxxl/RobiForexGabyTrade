@@ -10,7 +10,11 @@ import clsx from "clsx";
 import { FaCog } from "react-icons/fa";
 
 import ThemeSelector from "../ThemeSelector/ThemeSelector";
+import LanguageSelector from "../LanguageSelector/LanguageSelector";
+
 import UpdateUser from "../modal/UpdateUser/UpdateUser";
+
+import roby from "../../images/Roby.jpg";
 
 import styles from "./Header.module.css";
 
@@ -20,7 +24,7 @@ const breakpoints = {
   desktop: "(min-width:1024px)",
 };
 
-function Header({ handleClick, handleRightClick, theme, user }) {
+function Header({ handleClick, handleRightClick, theme, user, lang }) {
   // const { user } = useAuth();
 
   const [isUpdateUserModalVisible, setIsUpdateUserModalVisible] =
@@ -182,8 +186,25 @@ function Header({ handleClick, handleRightClick, theme, user }) {
           </button>
         )}
 
+        <LanguageSelector theme={theme} lang={lang} />
+        <ThemeSelector theme={theme} />
+
+        {isTablet && (
+          <div className={styles.logoSection}>
+            <img className={styles.cBotAvatar} src={roby} alt="cBot avatar" />
+            <p
+              style={{ fontSize: "16px", fontWeight: "bold" }}
+              className={
+                theme === "dark" || theme === "violet"
+                  ? styles.userName
+                  : styles.userNameLight
+              }>
+              RobiForexGabyTrade
+            </p>
+          </div>
+        )}
+
         <div className={styles.rightContainer}>
-          <ThemeSelector theme={theme} />
           <div
             className={clsx(
               styles.userContainer,

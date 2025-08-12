@@ -4,31 +4,16 @@
   height: -webkit-fill-available;
   justify-content: space-between;
   overflow-y: auto;
+  padding: 14px;
   width: 225px;
 }
 
-.projectsCont {
+.paramsCont {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  gap: 20px;
 }
-
-.projectsNav {
-  display: flex;
-  flex-direction: column;
-  height: 122px;
-  flex-grow: 1;
-  margin-bottom: 24px;
-  overflow-y: auto;
-}
-
-/* .link {
-  color: white;
-}
-
-.activeLink {
-  color: red;
-} */
 
 .asideLight {
   background: #fff;

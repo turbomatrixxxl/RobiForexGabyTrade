@@ -10,8 +10,7 @@
   gap: 8px;
   line-height: normal;
   letter-spacing: -0.64px;
-  padding-top: 14px;
-  padding-left: 14px;
+  height: 42px;
 }
 
 .lightLogo {
@@ -32,9 +31,9 @@
   color: #161616;
 }
 
-@media screen and (width >=768px) {
-  .logo {
-    padding-top: 24px;
-    padding-left: 24px;
-  }
+.cBotAvatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  /* border: 1px solid #bedbb0; */
 }

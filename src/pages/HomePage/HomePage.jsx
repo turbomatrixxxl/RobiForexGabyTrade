@@ -71,6 +71,11 @@ export default function HomePage() {
   // const { user } = useAuth();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
   const user = JSON.parse(localStorage.getItem("user")) || {};
+  const params = JSON.parse(localStorage.getItem("parameters")) || {
+    instrument: "XAUUSD",
+    volume: 0.1,
+    factor: 9,
+  };
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme") || "dark";
@@ -156,7 +161,19 @@ export default function HomePage() {
               : styles.sidebarRightClose,
             theme === "dark" && styles.bgDark
           )}>
-          <SidebarRight sideBarRightRef={sideBarRightRef} theme={theme} />
+          <SidebarRight
+            sideBarRightRef={sideBarRightRef}
+            theme={theme}
+            params={
+              params
+                ? params
+                : {
+                    instrument: "XAUUSD",
+                    volume: 0.1,
+                    factor: 9,
+                  }
+            }
+          />
         </div>
       )}
       {isDesktop && <SidebarRight theme={theme} />}

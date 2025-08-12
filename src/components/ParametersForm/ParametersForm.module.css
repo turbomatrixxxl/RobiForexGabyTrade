@@ -1,0 +1,69 @@
+.cont {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.panelParameters {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background: transparent;
+  /* margin-top: 10px; */
+  width: 100%;
+}
+.parametersTitle {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 19px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+.parametersLabel {
+  color: var(--gri-deschis);
+  font-size: 15px;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+.labelLight {
+  color: var(--title-welcome-color);
+}
+.parametersInput,
+.parametersSelect {
+  width: 100%;
+  padding: 8px 10px;
+  background: #21232a;
+  border: 1.5px solid #363842;
+  border-radius: 7px;
+  color: var(--text);
+  font-size: 16px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+.inputViolet,
+.selectViolet {
+  color: #5255bc;
+}
+
+.startBtn {
+  background: var(--accent);
+  color: #151b22;
+  border: none;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 8px 0;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 12px #37e67333;
+}
+/* .startBtns.oprit {
+      background: var(--rosu);
+      color: #fff;
+      box-shadow: 0 2px 12px #ea3c5350;
+    } */

@@ -86,6 +86,7 @@ function LoginForm() {
           <div className={styles.inputContainer}>
             <div className={styles.inputWrapper}>
               <Input
+                className={styles.input}
                 autoComplete="on"
                 paddingLeft="18px"
                 width="100%"
@@ -104,7 +105,7 @@ function LoginForm() {
             )}
           </div>
 
-          <div styles={styles.inputContainer}>
+          <div className={styles.inputContainer}>
             <div className={styles.inputWrapper}>
               {eyeVisible && (
                 <VscEye

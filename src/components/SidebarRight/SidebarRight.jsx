@@ -18,13 +18,14 @@ import clsx from "clsx";
 import LogoSection from "../LogoSection/LogoSection";
 
 import styles from "./SidebarRight.module.css";
+import ParametersForm from "../ParametersForm/ParametersForm";
 
 // const breakpoints = {
 //   mobile: "(max-width: 767px)",
 //   tablet: "(min-width:768px)",
 // };
 
-export default function SidebarRight({ sideBarRightRef, theme }) {
+export default function SidebarRight({ sideBarRightRef, theme, params }) {
   return (
     <aside
       ref={sideBarRightRef}
@@ -36,8 +37,9 @@ export default function SidebarRight({ sideBarRightRef, theme }) {
           ? styles.asideViolet
           : styles.asideLight
       )}>
-      <div className={styles.projectsCont}>
+      <div className={styles.paramsCont}>
         <LogoSection menuType={"Settings"} theme={theme} />
+        <ParametersForm params={params} theme={theme} />
       </div>
     </aside>
   );
