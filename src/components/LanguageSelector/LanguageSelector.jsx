@@ -22,7 +22,9 @@ export default function LanguageSelector({ theme, lang }) {
   const handleSelect = (selectedLang) => {
     setLang(selectedLang);
     // dispatch(updateTheme(selectedTheme)); // Dispatch action with selected theme
-    localStorage.setItem("lang", langA); // Save theme to localStorage
+    console.log();
+
+    localStorage.setItem("lang", selectedLang); // Save theme to localStorage
     // Timeout to delay `refreshUser` to give backend time to update
     // setTimeout(() => {
     //   dispatch(refreshUser());
