@@ -71,11 +71,15 @@ export default function HomePage() {
   // const { user } = useAuth();
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
   const user = JSON.parse(localStorage.getItem("user")) || {};
-  const params = JSON.parse(localStorage.getItem("parameters")) || {
-    instrument: "XAUUSD",
-    volume: 0.1,
-    factor: 9,
-  };
+  const [params, setParams] = useState(null);
+
+  useEffect(() => {
+    const savedParams = localStorage.getItem("parameters");
+    if (savedParams) {
+      setParams(JSON.parse(savedParams));
+    }
+  }, []);
+
   const language = localStorage.getItem("lang") || "english";
 
   useEffect(() => {
@@ -166,19 +170,11 @@ export default function HomePage() {
           <SidebarRight
             sideBarRightRef={sideBarRightRef}
             theme={theme}
-            params={
-              params
-                ? params
-                : {
-                    instrument: "XAUUSD",
-                    volume: 0.1,
-                    factor: 9,
-                  }
-            }
+            params={params}
           />
         </div>
       )}
-      {isDesktop && <SidebarRight theme={theme} />}
+      {isDesktop && <SidebarRight theme={theme} params={params} />}
     </section>
   );
 }

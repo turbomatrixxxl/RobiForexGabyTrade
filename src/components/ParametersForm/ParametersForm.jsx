@@ -43,7 +43,7 @@ export default function ParametersForm({ theme, params }) {
             theme === "violet" && styles.selectViolet
           )}
           id="instrument"
-          value={instrument}
+          value={params?.instrument || instrument}
           onChange={(e) => setInstrument(e.target.value)}>
           <option>XAUUSD</option>
           <option>US30</option>
@@ -66,7 +66,7 @@ export default function ParametersForm({ theme, params }) {
           )}
           type="number"
           id="volume"
-          value={volume}
+          value={params?.volume || volume}
           step="0.01"
           min="0.01"
           onChange={(e) => setVolume(parseFloat(e.target.value))}
@@ -87,7 +87,7 @@ export default function ParametersForm({ theme, params }) {
           )}
           type="number"
           id="factor"
-          value={factor}
+          value={params?.factor || factor}
           min="1"
           max="50"
           onChange={(e) => setFactor(parseInt(e.target.value))}

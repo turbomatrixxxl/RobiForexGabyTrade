@@ -2,6 +2,8 @@ import React from "react";
 
 import clsx from "clsx";
 
+import Grafic from "../../components/commonComponents/Grafic";
+
 import styles from "./LogPage.module.css";
 
 export default function LogPage() {
@@ -17,7 +19,7 @@ export default function LogPage() {
           ? styles.violetCont
           : styles.darkCont
       )}>
-      LogPage
+      <Grafic />
     </div>
   );
 }

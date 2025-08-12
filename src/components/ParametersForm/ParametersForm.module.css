@@ -47,6 +47,7 @@
 .inputViolet,
 .selectViolet {
   color: #5255bc;
+  /* filter: brightness(1.5); */
 }
 
 .startBtn {

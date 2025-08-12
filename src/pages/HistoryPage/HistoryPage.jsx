@@ -2,6 +2,8 @@ import React from "react";
 
 import clsx from "clsx";
 
+import Grafic from "../../components/commonComponents/Grafic";
+
 import styles from "./HistoryPage.module.css";
 
 export default function HistoryPage() {
@@ -17,7 +19,7 @@ export default function HistoryPage() {
           ? styles.violetCont
           : styles.darkCont
       )}>
-      HistoryPage
+      <Grafic />
     </div>
   );
 }

@@ -1,17 +1,5 @@
-// import React, { useEffect, useRef } from "react";
 import React from "react";
-
-// import { useMediaQuery } from "react-responsive";
-
-// import { useNavigate } from "react-router-dom";
-
-// import { useDispatch } from "react-redux";
-// import { useMediaQuery } from "react-responsive";
-
-// import { useAuth } from "../../hooks/useAuth";
-// import useToggle from "../../hooks/useToggle";
-// import { logOut } from "../../redux/auth/operationsAuth";
-// import { reset } from "../../redux/auth/authSlice";
+import PropTypes from "prop-types";
 
 import clsx from "clsx";
 
@@ -44,3 +32,9 @@ export default function SidebarRight({ sideBarRightRef, theme, params }) {
     </aside>
   );
 }
+
+SidebarRight.propTypes = {
+  sideBarRightRef: PropTypes.object,
+  theme: PropTypes.string,
+  params: PropTypes.object,
+};

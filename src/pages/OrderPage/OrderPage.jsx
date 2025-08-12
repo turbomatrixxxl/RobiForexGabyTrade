@@ -2,13 +2,15 @@ import React from "react";
 
 import clsx from "clsx";
 
+import Grafic from "../../components/commonComponents/Grafic";
+
 import styles from "./OrderPage.module.css";
 
 export default function OrderPage() {
   const theme = localStorage.getItem("theme") || "dark";
 
   return (
-    <div
+    <section
       className={clsx(
         styles.cont,
         theme === "light"
@@ -17,7 +19,7 @@ export default function OrderPage() {
           ? styles.violetCont
           : styles.darkCont
       )}>
-      OrderPage
-    </div>
+      <Grafic />
+    </section>
   );
 }
