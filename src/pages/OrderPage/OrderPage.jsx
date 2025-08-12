@@ -20,6 +20,93 @@ export default function OrderPage() {
           : styles.darkCont
       )}>
       <Grafic />
+      <div
+        className={styles.tableZone}
+        id="ordersSection"
+        style={{ display: "block" }}>
+        <table className={styles.ordersTable}>
+          <thead className={styles.ordersTableHeadCell}>
+            <tr className={styles.ordersTableHeadRow}>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                Direction
+              </th>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                Type
+              </th>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                Time
+              </th>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                Symbol
+              </th>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                Quantity
+              </th>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                Price
+              </th>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                Distance
+              </th>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                TP
+              </th>
+              <th
+                className={clsx(
+                  styles.ordersTableHeadCell,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                SL
+              </th>
+            </tr>
+          </thead>
+          <tbody className={styles.ordersTableBodyCell}>
+            <tr className={styles.ordersTableBodyRow}>
+              <td
+                colSpan="9"
+                className={clsx(
+                  styles.ordersTableBodyCell,
+                  styles.emptyMessage,
+                  theme === "violet" && styles.emptyMessageViolet
+                )}>
+                No pending orders
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

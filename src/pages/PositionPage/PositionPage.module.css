@@ -65,15 +65,3 @@
   color: #5255bc;
   filter: brightness(1.5);
 }
-
-@media screen and (width >=768px) {
-  .text {
-    font-size: 14px;
-    line-height: 18px; /* 128.571% */
-    width: 486px;
-  }
-}
-
-/* @media screen and (width >=1024px) {
-  
-} */
