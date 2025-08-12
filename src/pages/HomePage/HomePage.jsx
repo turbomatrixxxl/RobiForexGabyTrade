@@ -76,6 +76,7 @@ export default function HomePage() {
     volume: 0.1,
     factor: 9,
   };
+  const language = localStorage.getItem("lang") || "english";
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme") || "dark";
@@ -150,6 +151,7 @@ export default function HomePage() {
         handleRightClick={toggleIsSidebarRightVisible}
         user={user}
         theme={theme}
+        lang={language}
       />
 
       {!isDesktop && (

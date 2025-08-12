@@ -137,7 +137,7 @@ import styles from "./SharedLayout.module.css";
 //   );
 // }
 
-function SharedLayout({ handleClick, handleRightClick, user, theme }) {
+function SharedLayout({ handleClick, handleRightClick, user, theme, lang }) {
   return (
     <div className={styles.cont}>
       <Header
@@ -145,6 +145,7 @@ function SharedLayout({ handleClick, handleRightClick, user, theme }) {
         handleRightClick={handleRightClick}
         theme={theme}
         user={user}
+        lang={lang}
       />
 
       <main
@@ -171,6 +172,7 @@ SharedLayout.propTypes = {
   handleRightClick: PropTypes.func,
   user: PropTypes.object,
   theme: PropTypes.oneOf(["light", "dark", "violet"]), // Theme options
+  lang: PropTypes.string, // Language option
 };
 
 export default SharedLayout;
