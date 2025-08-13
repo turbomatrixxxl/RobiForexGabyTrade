@@ -50,31 +50,31 @@ export default function LogPage() {
               </th>
             </tr>
           </thead>
-          {cBots.lenght > 0 && (
+          {cBots.length > 0 && (
             <tbody className={styles.tableBody}>
               {cBots.map((x, i) => (
                 <tr key={`cBot${i}`} className={styles.tableRow}>
                   <td
                     className={clsx(
-                      styles.tableCell,
-                      theme === "violet" && styles.thViolet
+                      theme === "violet" && styles.thViolet,
+                      styles.emptyMsg
                     )}>
-                    {x.time}
+                    {x?.time}
                   </td>
                   <td
                     className={clsx(
-                      styles.tableCell,
                       theme === "violet" && styles.thViolet,
+                      styles.emptyMsg,
                       styles.cBotName
                     )}>
-                    {x.cBotName}
+                    {x?.cBotName}
                   </td>
                   <td
                     className={clsx(
-                      styles.tableCell,
-                      theme === "violet" && styles.thViolet
+                      theme === "violet" && styles.thViolet,
+                      styles.emptyMsg
                     )}>
-                    {x.message}
+                    {x.message === true ? "Trader started" : "Trader stopped"}
                   </td>
                 </tr>
               ))}

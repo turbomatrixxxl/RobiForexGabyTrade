@@ -55,6 +55,7 @@
 .emptyMessage {
   text-align: center;
   color: #555;
+  filter: brightness(1.5);
   font-size: 16px;
   padding: 18px 0;
 }

@@ -25,9 +25,7 @@
 
 .chartArea img {
   border-radius: 8px;
-  height: auto;
-  max-height: 220px;
-  max-width: 340px;
+  height: 80px;
   position: relative;
   top: -80px;
   user-select: none;

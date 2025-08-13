@@ -38,6 +38,58 @@ function App() {
     import("./pages/LogPage");
   }, []);
 
+  const robots = [
+    {
+      cBotName: "Alfa",
+      user: "tradegaby19",
+      users: 1,
+      message: false,
+      time: getCurrentDateTime(),
+    },
+    {
+      cBotName: "Beta",
+      user: "tradegaby20",
+      users: 2,
+      message: false,
+      time: getCurrentDateTime(),
+    },
+    {
+      cBotName: "Gamma",
+      user: "tradegaby21",
+      users: 3,
+      message: false,
+      time: getCurrentDateTime(),
+    },
+    {
+      cBotName: "Tetha",
+      user: "tradegaby22",
+      users: 4,
+      message: false,
+      time: getCurrentDateTime(),
+    },
+    {
+      cBotName: "Epsilon",
+      user: "tradegaby23",
+      users: 5,
+      message: false,
+      time: getCurrentDateTime(),
+    },
+  ];
+
+  function getCurrentDateTime() {
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, "0");
+    const day = String(now.getDate()).padStart(2, "0");
+    const hours = String(now.getHours()).padStart(2, "0");
+    const minutes = String(now.getMinutes()).padStart(2, "0");
+
+    return `${year}-${month}-${day} ${hours}-${minutes}`;
+  }
+
+  localStorage.setItem("cBots", JSON.stringify(robots));
+
   return (
     <>
       <ToastContainer position="top-center" autoClose={3000} />
