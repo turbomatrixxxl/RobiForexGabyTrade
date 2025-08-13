@@ -21,7 +21,7 @@ const RestrictedRoute = ({ component, redirectTo = "/" }) => {
       const isRegistered = localStorage.getItem("isRegistered") === "true";
       const isLoggedIn = localStorage.getItem("isLoggedin") === "true";
 
-      console.log("După 30s:", isRegistered, isLoggedIn);
+      // console.log("După 30s:", isRegistered, isLoggedIn);
 
       if (isRegistered && isLoggedIn) {
         setShouldRedirect(true);

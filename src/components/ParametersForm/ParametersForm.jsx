@@ -7,9 +7,15 @@ import styles from "./ParametersForm.module.css";
 import clsx from "clsx";
 
 export default function ParametersForm({ theme, params }) {
-  const [instrument, setInstrument] = useState(params?.instrument || "XAUUSD");
-  const [volume, setVolume] = useState(params?.volume || 0.01);
-  const [factor, setFactor] = useState(params?.factor || 9);
+  const [instrument, setInstrument] = useState(
+    JSON.parse(localStorage.getItem("parameters"))?.instrument || "XAUUSD"
+  );
+  const [volume, setVolume] = useState(
+    JSON.parse(localStorage.getItem("parameters"))?.volume || 0.01
+  );
+  const [factor, setFactor] = useState(
+    JSON.parse(localStorage.getItem("parameters"))?.factor || 9
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,7 +49,7 @@ export default function ParametersForm({ theme, params }) {
             theme === "violet" && styles.selectViolet
           )}
           id="instrument"
-          value={params?.instrument || instrument}
+          value={instrument}
           onChange={(e) => setInstrument(e.target.value)}>
           <option>XAUUSD</option>
           <option>US30</option>
@@ -66,7 +72,7 @@ export default function ParametersForm({ theme, params }) {
           )}
           type="number"
           id="volume"
-          value={params?.volume || volume}
+          value={volume}
           step="0.01"
           min="0.01"
           onChange={(e) => setVolume(parseFloat(e.target.value))}
@@ -87,7 +93,7 @@ export default function ParametersForm({ theme, params }) {
           )}
           type="number"
           id="factor"
-          value={params?.factor || factor}
+          value={factor}
           min="1"
           max="50"
           onChange={(e) => setFactor(parseInt(e.target.value))}

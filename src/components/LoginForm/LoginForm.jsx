@@ -113,7 +113,7 @@ function LoginForm() {
                     toggleEyeVisible();
                     toggleClosedEyeVisible();
                     setType("text");
-                    console.log("click");
+                    // console.log("click");
                   }}
                   size="24px"
                   className={styles.eyeIcon}

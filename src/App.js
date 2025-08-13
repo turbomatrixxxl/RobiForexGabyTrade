@@ -43,7 +43,7 @@ function App() {
       cBotName: "Alfa",
       user: "tradegaby19",
       users: 1,
-      message: false,
+      message: true,
       time: getCurrentDateTime(),
     },
     {

@@ -18,12 +18,12 @@ const RestrictedLoginRoute = ({ component, redirectTo = "/" }) => {
     const timeout = setTimeout(() => {
       const isLoggedIn = localStorage.getItem("isLoggedin") === "true";
 
-      console.log("După 30s:", isLoggedIn);
+      // console.log("După 30s:", isLoggedIn);
 
       if (isLoggedIn) {
         setShouldRedirect(true);
       }
-    }, 30000); // 1/2 minut delay
+    }, 10000); // 1/2 minut delay
 
     return () => clearTimeout(timeout);
   }, []);
