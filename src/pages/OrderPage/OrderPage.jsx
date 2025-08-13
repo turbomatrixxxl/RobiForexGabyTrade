@@ -20,10 +20,7 @@ export default function OrderPage() {
           : styles.darkCont
       )}>
       <Grafic />
-      <div
-        className={styles.tableZone}
-        id="ordersSection"
-        style={{ display: "block" }}>
+      <div className={styles.tableZone} id="ordersSection">
         <table className={styles.ordersTable}>
           <thead className={styles.ordersTableHeadCell}>
             <tr className={styles.ordersTableHeadRow}>

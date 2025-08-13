@@ -3,15 +3,16 @@
   flex-direction: column;
   flex-grow: 1;
   height: 100vh;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   width: -webkit-fill-available;
 }
 
 .main {
+  background: transparent;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  background: transparent;
+  overflow-y: auto;
 }
 
 .mainLight {
