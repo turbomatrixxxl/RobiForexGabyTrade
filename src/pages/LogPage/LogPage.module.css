@@ -21,3 +21,54 @@
   background: var(--secondary-color);
   color: white;
 }
+
+.tableArea {
+  background: var(--panou);
+  border-radius: var(--radius-mic);
+  box-shadow: 0 3px 18px #0001;
+  padding: 14px 9px 8px 9px;
+  width: 100%;
+  position: relative;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHeaderCell {
+  padding: 10px 9px;
+  text-align: left;
+  border-bottom: 1px solid #353945;
+  font-size: clamp(12px, 4vw, 16px); /* min, preferat, max */
+}
+
+.tableHeaderCell {
+  color: var(--accent);
+  text-wrap: auto;
+}
+
+.emptyMsg {
+  text-align: left;
+  color: #555;
+  font-size: clamp(12px, 4vw, 16px);
+  padding: 18px 9px;
+}
+
+.emptyMsgNoLogs {
+  text-align: center;
+  color: #555;
+  font-size: clamp(12px, 4vw, 16px);
+  padding: 18px 0;
+}
+
+.thViolet {
+  color: #5255bc;
+  filter: brightness(1.5);
+}
+
+.cBotName {
+  text-align: center;
+  font-weight: bold;
+  padding: 18px 0;
+}
