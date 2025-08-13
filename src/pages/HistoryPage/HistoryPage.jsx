@@ -161,15 +161,24 @@ export default function HistoryPage() {
             ))}
           </select>
 
-          <input
-            type="date"
-            value={filterDate}
-            onChange={(e) => setFilterDate(e.target.value)}
-            className={clsx(
-              styles.paramInput,
-              theme === "violet" && styles.thViolet
-            )}
-          />
+          <div className={styles.dateWrapper}>
+            <input
+              type="date"
+              value={filterDate}
+              onChange={(e) => setFilterDate(e.target.value)}
+              className={clsx(
+                styles.paramInput,
+                theme === "violet" && styles.thViolet
+              )}
+            />
+            <span
+              className={clsx(
+                styles.dateFormat,
+                theme === "violet" && styles.thViolet
+              )}>
+              dd--mm--yyyy
+            </span>
+          </div>
 
           <button
             onClick={resetFilters}
