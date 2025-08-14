@@ -71,3 +71,11 @@
 .cBotName {
   font-weight: bold;
 }
+
+.true {
+  color: var(--accent);
+}
+
+.false {
+  color: var(--rosu);
+}

@@ -26,7 +26,7 @@ const RestrictedRoute = ({ component, redirectTo = "/" }) => {
       if (isRegistered && isLoggedIn) {
         setShouldRedirect(true);
       }
-    }, 60000); // 1/2 minut
+    }, 10000); // 10 sec
 
     return () => clearTimeout(timeout); // Curățăm dacă componenta se demontează
   }, []);

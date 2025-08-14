@@ -1,86 +1,73 @@
-// import React, { useState } from "react";
-
-// import clsx from "clsx";
-
-// import RobotCard from "../../components/commonComponents/RobotCard";
-
-// import styles from "./RobotsPage.module.css";
-
-// export default function RobotsPage() {
-//   const [isSelectedIndex, setIsSelectedIndex] = useState(null);
-
-//   const theme = localStorage.getItem("theme") || "dark";
-
-//   const robots = localStorage.getItem("cBots")
-//     ? JSON.parse(localStorage.getItem("cBots"))
-//     : [];
-//   // console.log("robots", robots);
-
-//   function handleSelectRobot(index) {
-//     setIsSelectedIndex(index);
-//     console.log(`Robot ${robots[index].cBotName} selected !`);
-//   }
-
-//   return (
-//     <div
-//       className={clsx(
-//         styles.cont,
-//         theme === "light"
-//           ? styles.lightCont
-//           : theme === "violet"
-//           ? styles.violetCont
-//           : styles.darkCont
-//       )}>
-//       {robots.map((robot, i) => (
-//         <div key={`robot${i}`}>
-//           <RobotCard
-//             position={i + 1}
-//             name={robot.cBotName}
-//             handleClick={() => handleSelectRobot(i)}
-//             isSelected={isSelectedIndex === i}
-//           />
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
-
 import RobotCard from "../../components/commonComponents/RobotCard";
 import styles from "./RobotsPage.module.css";
 
-function ensureIds(list) {
-  const makeId =
-    crypto && crypto.randomUUID
-      ? () => crypto.randomUUID()
-      : () => `rid_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-
-  return list.map((r) => ({
-    ...r,
-    id: r.id ?? makeId(),
-  }));
-}
-
 export default function RobotsPage() {
-  const [isSelectedIndex, setIsSelectedIndex] = useState(null);
+  const [isSelectedId, setIsSelectedId] = useState(null);
   const theme = localStorage.getItem("theme") || "dark";
 
   const [robots, setRobots] = useState(() => {
     const raw = localStorage.getItem("cBots");
     const parsed = raw ? JSON.parse(raw) : [];
-    return ensureIds(parsed);
+
+    const makeId = () => {
+      if (crypto && crypto.randomUUID) return crypto.randomUUID();
+      return `rid_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+    };
+
+    const withIds = parsed.map((r) => ({
+      ...r,
+      id: r.id ?? makeId(),
+    }));
+
+    // salvăm ID-urile generate în localStorage
+    localStorage.setItem("cBots", JSON.stringify(withIds));
+    return withIds;
   });
+
+  // Funcție comună pentru recitire date
+  const syncFromLocalStorage = () => {
+    const rawBots = localStorage.getItem("cBots");
+    const parsedBots = rawBots ? JSON.parse(rawBots) : [];
+    setRobots(parsedBots);
+
+    const rawSelected = localStorage.getItem("cBotSelected");
+    if (rawSelected) {
+      try {
+        const parsedSelected = JSON.parse(rawSelected);
+        setIsSelectedId(parsedSelected.id || null);
+      } catch (e) {
+        console.error("Eroare parsare cBotSelected:", e);
+      }
+    }
+  };
+
+  useEffect(() => {
+    syncFromLocalStorage();
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = (e) => {
+      if (e.key === "cBots" || e.key === "cBotSelected") {
+        syncFromLocalStorage();
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("cBots", JSON.stringify(robots));
   }, [robots]);
 
-  function handleSelectRobot(index) {
-    setIsSelectedIndex(index);
-    console.log(`Robot ${robots[index].cBotName} selected !`);
+  function handleSelectRobot(id) {
+    setIsSelectedId(id);
+    const selectedRobot = robots.find((r) => r.id === id);
+    if (selectedRobot) {
+      localStorage.setItem("cBotSelected", JSON.stringify(selectedRobot));
+    }
   }
 
   function handleDragEnd(result) {
@@ -91,6 +78,7 @@ export default function RobotsPage() {
     reordered.splice(result.destination.index, 0, moved);
 
     setRobots(reordered);
+    localStorage.setItem("cBots", JSON.stringify(reordered));
   }
 
   return (
@@ -118,8 +106,9 @@ export default function RobotsPage() {
                     <RobotCard
                       position={i + 1}
                       name={robot.cBotName}
-                      handleClick={() => handleSelectRobot(i)}
-                      isSelected={isSelectedIndex === i}
+                      handleClick={() => handleSelectRobot(robot.id)}
+                      isSelected={isSelectedId === robot.id}
+                      theme={theme}
                     />
                   </div>
                 )}

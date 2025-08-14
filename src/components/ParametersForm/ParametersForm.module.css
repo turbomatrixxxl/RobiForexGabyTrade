@@ -44,6 +44,11 @@
   outline: none;
 }
 
+.cBotSelect {
+  /* max-height: 50px; */
+  overflow-y: auto;
+}
+
 .inputViolet,
 .selectViolet {
   color: #5255bc;

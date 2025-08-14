@@ -45,6 +45,9 @@ function App() {
       users: 1,
       message: true,
       time: getCurrentDateTime(),
+      instrument: "XAUUSD",
+      volume: 0.01,
+      factor: 10,
     },
     {
       cBotName: "Beta",
@@ -52,6 +55,9 @@ function App() {
       users: 2,
       message: false,
       time: getCurrentDateTime(),
+      instrument: "XAUUSD",
+      volume: 0.01,
+      factor: 9,
     },
     {
       cBotName: "Gamma",
@@ -59,6 +65,9 @@ function App() {
       users: 3,
       message: false,
       time: getCurrentDateTime(),
+      instrument: "XAUUSD",
+      volume: 0.01,
+      factor: 9,
     },
     {
       cBotName: "Tetha",
@@ -66,6 +75,9 @@ function App() {
       users: 4,
       message: false,
       time: getCurrentDateTime(),
+      instrument: "XAUUSD",
+      volume: 0.01,
+      factor: 9,
     },
     {
       cBotName: "Epsilon",
@@ -73,8 +85,25 @@ function App() {
       users: 5,
       message: false,
       time: getCurrentDateTime(),
+      instrument: "XAUUSD",
+      volume: 0.01,
+      factor: 9,
     },
   ];
+
+  function ensureIds(list) {
+    const makeId =
+      crypto && crypto.randomUUID
+        ? () => crypto.randomUUID()
+        : () => `rid_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+
+    return list.map((r) => ({
+      ...r,
+      id: r.id ?? makeId(),
+    }));
+  }
+
+  const robotsWithId = ensureIds(robots);
 
   function getCurrentDateTime() {
     const now = new Date();
@@ -88,7 +117,10 @@ function App() {
     return `${year}-${month}-${day} ${hours}-${minutes}`;
   }
 
-  localStorage.setItem("cBots", JSON.stringify(robots));
+  const storedBots = localStorage.getItem("cBots");
+  if (!storedBots) {
+    localStorage.setItem("cBots", JSON.stringify(robotsWithId));
+  }
 
   return (
     <>

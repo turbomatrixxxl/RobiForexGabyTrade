@@ -23,7 +23,7 @@ const RestrictedLoginRoute = ({ component, redirectTo = "/" }) => {
       if (isLoggedIn) {
         setShouldRedirect(true);
       }
-    }, 10000); // 1/2 minut delay
+    }, 10000); // 10 seconds delay
 
     return () => clearTimeout(timeout);
   }, []);

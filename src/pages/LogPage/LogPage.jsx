@@ -71,37 +71,13 @@ export default function LogPage() {
                   </td>
                   <td
                     className={clsx(
-                      theme === "violet" && styles.thViolet,
+                      x?.message === true ? styles.true : styles.false,
                       styles.emptyMsg
                     )}>
-                    {x.message === true ? "Trader started" : "Trader stopped"}
+                    {x?.message === true ? "Trader started" : "Trader stopped"}
                   </td>
                 </tr>
               ))}
-              {/* <tr className={styles.tableRow}>
-                <td
-                  className={clsx(
-                    theme === "violet" && styles.thViolet,
-                    styles.emptyMsg
-                  )}>
-                  27/07/2025 19:30
-                </td>
-                <td
-                  className={clsx(
-                    theme === "violet" && styles.thViolet,
-                    styles.emptyMsg,
-                    styles.cBotName
-                  )}>
-                  1
-                </td>
-                <td
-                  className={clsx(
-                    theme === "violet" && styles.thViolet,
-                    styles.emptyMsg
-                  )}>
-                  Trader started
-                </td>
-              </tr> */}
             </tbody>
           )}
           {cBots.length === 0 && (
