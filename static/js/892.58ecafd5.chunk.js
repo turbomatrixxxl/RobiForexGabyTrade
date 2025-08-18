@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkmy_react_app=self.webpackChunkmy_react_app||[]).push([[892],{2892:(e,t,a)=>{a.r(t),a.d(t,{default:()=>d});a(5043);const n="AdminPage_cont__Ha6DT",_="AdminPage_lightCont__EC++R",c="AdminPage_darkCont__Pc2TX",i="AdminPage_violetCont__ByY1l";var l=a(8387),o=a(579);const d=function(){const e=localStorage.getItem("theme")||"dark";return(0,o.jsx)("div",{className:(0,l.A)(n,"light"===e?_:"violet"===e?i:c),children:"AdminPage"})}}}]);
+//# sourceMappingURL=892.58ecafd5.chunk.js.map
