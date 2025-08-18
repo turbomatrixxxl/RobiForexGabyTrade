@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+
 // import { useDispatch } from "react-redux";
 
 // import { useAuth } from "../../../hooks/useAuth";
@@ -18,6 +20,8 @@ import { VscEye, VscEyeClosed } from "react-icons/vsc";
 
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import roby from "../../../images/Roby.jpg";
 
 import styles from "./UpdateUser.module.css";
 
@@ -107,7 +111,7 @@ export default function UpdateUser({ onClose, user, theme }) {
     ? user.avatarBase64
     : user?.avatarURL && user.avatarURL.startsWith("http")
     ? user.avatarURL
-    : "https://i.imgur.com/E4nHB5A.png";
+    : roby;
   // Default fallback image
 
   return (
@@ -279,3 +283,9 @@ export default function UpdateUser({ onClose, user, theme }) {
     </div>
   );
 }
+
+UpdateUser.propTypes = {
+  onClose: PropTypes.func,
+  user: PropTypes.object,
+  theme: PropTypes.string,
+};

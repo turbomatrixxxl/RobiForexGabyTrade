@@ -84,14 +84,20 @@
 }
 
 .userName {
+  align-items: center;
   color: rgba(255, 255, 255, 0.8);
   cursor: pointer;
+  display: flex;
+  gap: 4px;
   transition: all 0.3s ease-in-out;
 }
 
 .userNameLight {
+  align-items: center;
   color: rgba(22, 22, 22, 0.8);
   cursor: pointer;
+  display: flex;
+  gap: 4px;
   transition: all 0.3s ease-in-out;
 }
 
@@ -100,9 +106,17 @@
   color: var(--accent);
 }
 
+.userName:hover > .cogIcon {
+  fill: var(--accent);
+}
+
 .userNameLight:hover {
   scale: 1.1;
   color: var(--accent);
+}
+
+.userNameLight:hover > .cogIcon {
+  fill: var(--accent);
 }
 
 .img {

@@ -1,21 +1,33 @@
 import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 
+// import { useDispatch } from "react-redux";
+// import { updateTheme } from "../../redux/private/operationsPrivate"; // Adjust the import path for your Redux slice
+// import { useAuth } from "../../hooks/useAuth"; // Adjust the import path for your custom hook
+// import { refreshUser } from "../../redux/auth/operationsAuth";
+
 import clsx from "clsx";
 
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 
-import styles from "./ThemeSelector.module.css";
+import styles from "./LiveSelector.module.css";
 
-export default function ThemeSelector({ theme }) {
-  const [themeA, setTheme] = useState(theme || "dark");
+export default function LiveSelector({ theme, live }) {
+  // const dispatch = useDispatch();
+  // const { user } = useAuth(); // Get user info
+  const cBotSelected = JSON.parse(localStorage.getItem("cBotSelected"));
+
+  const [liveA, setLive] = useState(live || "live");
   const [isOpen, setIsOpen] = useState(false); // Controls dropdown open/close
 
   const dropdownRef = useRef(null); // Ref for dropdown to detect clicks outside
 
-  const handleSelect = (selectedTheme) => {
-    setTheme(selectedTheme);
-    localStorage.setItem("theme", selectedTheme); // Save theme to localStorage
+  const handleSelect = (selectedlive) => {
+    setLive(selectedlive);
+    // dispatch(updateTheme(selectedTheme)); // Dispatch action with selected theme
+
+    const modifiedCBotSelected = { ...cBotSelected, live: selectedlive };
+    localStorage.setItem("cBotSelected", JSON.stringify(modifiedCBotSelected));
 
     setIsOpen(false); // Close the dropdown
   };
@@ -39,31 +51,27 @@ export default function ThemeSelector({ theme }) {
     <div className={styles.selector} ref={dropdownRef}>
       {/* Display "Theme" when dropdown is closed */}
       <button
-        className={styles.button}
+        className={clsx(styles.button, theme === "violet" && styles.btnViolet)}
         onClick={() => setIsOpen((prev) => !prev)}>
         <span
           className={clsx(
             styles.span,
-            themeA === "dark" || themeA === "violet"
-              ? styles.spanDark
-              : styles.span
+            theme === "violet" ? styles.spanDark : styles.span
           )}>
-          Theme
+          {liveA}
         </span>
         {!isOpen ? (
           <HiChevronDown
             className={clsx(
               styles.svg,
-              themeA === "dark" || themeA === "violet"
-                ? styles.svgDark
-                : styles.svg
+              theme === "violet" ? styles.svgDark : styles.svg
             )}
           />
         ) : (
           <HiChevronUp
             className={clsx(
               styles.svg,
-              themeA === "dark" || themeA === "violet"
+              theme === "dark" || theme === "violet"
                 ? styles.svgDark
                 : styles.svg
             )}
@@ -76,17 +84,17 @@ export default function ThemeSelector({ theme }) {
         <ul
           className={clsx(
             styles.options,
-            themeA === "dark" ? styles.optionsDark : styles.options,
-            themeA === "violet" ? styles.optionsViolet : styles.options
+            theme === "dark" ? styles.optionsDark : styles.options,
+            theme === "violet" ? styles.optionsViolet : styles.options
           )}>
-          {["light", "dark", "violet"].map((option) => (
+          {["live", "demo"].map((option) => (
             <li
               key={option}
               className={clsx(
                 styles.option,
-                themeA === "dark" ? styles.optionDark : styles.option,
-                option === themeA &&
-                  (themeA === "violet"
+                theme === "dark" ? styles.optionDark : styles.option,
+                option === liveA &&
+                  (theme === "violet"
                     ? styles.activeOptionViolet
                     : styles.activeOption)
               )}
@@ -100,6 +108,7 @@ export default function ThemeSelector({ theme }) {
   );
 }
 
-ThemeSelector.propTypes = {
+LiveSelector.propTypes = {
+  live: PropTypes.string,
   theme: PropTypes.string,
 };

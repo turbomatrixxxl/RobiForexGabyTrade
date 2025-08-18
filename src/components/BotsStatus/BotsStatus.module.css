@@ -1,0 +1,34 @@
+.cont {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.noSelected {
+  background: var(--tab-activ);
+  border: none;
+  color: var(--text);
+  display: flex;
+  /* font-size: 19px;
+  padding: 13px 0 13px 17px; */
+  font-size: 12px;
+  padding: 7px;
+  border-radius: var(--radius-mic);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease-in-out;
+  margin-bottom: 2px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  width: -webkit-fill-available;
+}
+
+.lightNoSelected {
+  color: rgba(22, 22, 22, 0.8);
+  background: none;
+}
+
+.violetNoSelected {
+  color: #5255bc;
+  /* filter: brightness(1.5); */
+}

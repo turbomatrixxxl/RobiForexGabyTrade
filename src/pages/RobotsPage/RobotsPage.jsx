@@ -7,6 +7,7 @@ import styles from "./RobotsPage.module.css";
 export default function RobotsPage() {
   const [isSelectedId, setIsSelectedId] = useState(null);
   const theme = localStorage.getItem("theme") || "dark";
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const [robots, setRobots] = useState(() => {
     const raw = localStorage.getItem("cBots");
@@ -104,6 +105,7 @@ export default function RobotsPage() {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}>
                     <RobotCard
+                      user={user || null}
                       position={i + 1}
                       name={robot.cBotName}
                       handleClick={() => handleSelectRobot(robot.id)}

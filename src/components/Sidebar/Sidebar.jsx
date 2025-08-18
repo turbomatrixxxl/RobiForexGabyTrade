@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 // import { useDispatch } from "react-redux";
@@ -21,6 +21,10 @@ import roby from "../../images/Roby.jpg";
 
 import LogoSection from "../LogoSection/LogoSection";
 
+import BotsStatus from "../BotsStatus/BotsStatus";
+
+import getCurrentDateTime from "../../utils/getCurrentDateTime";
+
 import styles from "./Sidebar.module.css";
 
 // const breakpoints = {
@@ -35,11 +39,12 @@ export default function Sidebar({ sideBarRef, theme }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // const isMobile = useMediaQuery({ query: breakpoints.mobile });
+  const botSelected = JSON.parse(localStorage.getItem("cBotSelected")) || null;
+  const [botStarted, setBotStarted] = useState(
+    botSelected ? botSelected.message : false
+  );
 
-  // const imageUrl = user?.avatarURL?.startsWith("http")
-  //   ? user?.avatarURL
-  //   : `https://taskpro-nodejs.onrender.com/${user?.avatarURL}`;
+  const robots = JSON.parse(localStorage.getItem("cBots")) || [];
 
   const handleLogout = () => {
     localStorage.removeItem("isRegistered");
@@ -72,6 +77,28 @@ export default function Sidebar({ sideBarRef, theme }) {
       toggleIsLogoutModalVisible();
     }
   };
+
+  function handleStartBot() {
+    // Toggle local state
+    const newBotStarted = {
+      ...botSelected,
+      message: !botStarted,
+      time: getCurrentDateTime(),
+    };
+    setBotStarted(!botStarted);
+
+    // Oprim orice alt bot pornit
+    const updatedRobots = robots.map((bot) => {
+      if (bot.id === newBotStarted.id) {
+        return newBotStarted; // actualizăm botul selectat
+      }
+      return { ...bot, message: false }; // oprim restul
+    });
+
+    // Salvăm în localStorage
+    localStorage.setItem("cBotSelected", JSON.stringify(newBotStarted));
+    localStorage.setItem("cBots", JSON.stringify(updatedRobots));
+  }
 
   return (
     <aside
@@ -212,8 +239,32 @@ export default function Sidebar({ sideBarRef, theme }) {
                 Log
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/home/admin"
+                className={({ isActive }) =>
+                  clsx(
+                    styles.menuBtn,
+                    theme === "light" && styles.lightMenuBtn,
+                    isActive &&
+                      (theme === "light"
+                        ? styles.lightActiveMenuBtn
+                        : styles.activeBtn)
+                  )
+                }>
+                Admin
+              </NavLink>
+            </li>
           </ul>
         </nav>
+        <BotsStatus
+          theme={theme}
+          symbol={botSelected?.instrument}
+          live={botSelected?.live}
+          name={botSelected?.cBotName}
+          started={botSelected?.message}
+          handleClick={handleStartBot}
+        />
       </div>
       <button
         onClick={toggleIsLogoutModalVisible}

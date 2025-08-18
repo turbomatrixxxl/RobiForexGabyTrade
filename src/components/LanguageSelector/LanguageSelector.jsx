@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+
 // import { useDispatch } from "react-redux";
 // import { updateTheme } from "../../redux/private/operationsPrivate"; // Adjust the import path for your Redux slice
 // import { useAuth } from "../../hooks/useAuth"; // Adjust the import path for your custom hook
@@ -111,3 +113,8 @@ export default function LanguageSelector({ theme, lang }) {
     </div>
   );
 }
+
+LanguageSelector.propTypes = {
+  lang: PropTypes.string,
+  theme: PropTypes.string,
+};

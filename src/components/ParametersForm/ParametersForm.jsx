@@ -104,7 +104,7 @@ export default function ParametersForm({ theme }) {
   return (
     <div className={styles.cont}>
       <form className={styles.panelParameters} onSubmit={handleSubmit}>
-        <div className={styles.parametersTitle}>Parameters</div>
+        <h2 className={styles.parametersTitle}>Parameters</h2>
 
         <label
           className={clsx(

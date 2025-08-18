@@ -13,6 +13,7 @@ export default function RobotCard({
   name,
   position,
   isSelected,
+  user,
 }) {
   return (
     <div className={styles.cont}>
@@ -24,10 +25,14 @@ export default function RobotCard({
           styles.usersCardRobot,
           theme === "violet" && styles.violetTh
         )}>
-        tradegaby19
+        {user ? user.username : "tradegaby19"}
       </div>
       <div className={styles.robotAvatar}>
-        <img className={styles.img} src={roby} alt="cBot Avatar" />
+        <img
+          className={styles.img}
+          src={user ? user.avatarBase64 : roby}
+          alt="cBot Avatar"
+        />
       </div>
       <div
         className={clsx(

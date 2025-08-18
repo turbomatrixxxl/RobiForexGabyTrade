@@ -217,12 +217,21 @@ function Header({ handleClick, handleRightClick, theme, user, lang }) {
                   : styles.userNameLight
               }
               onClick={handleOpenUpdateModal}>
+              <FaCog
+                size={14}
+                color={
+                  theme === "dark" || theme === "violet"
+                    ? "rgba(255, 255, 255, 0.8)"
+                    : "#161616cc"
+                }
+                className={styles.cogIcon}
+              />
               {user?.username || "User"}
             </p>
 
             <img
               className={theme === "violet" ? styles.imgViolet : styles.img}
-              src={user?.avatarBase64 || "https://i.imgur.com/E4nHB5A.png"}
+              src={user?.avatarBase64 || roby}
               alt="User Avatar"
               style={{ width: "42px", height: "42px", borderRadius: "50%" }}
             />

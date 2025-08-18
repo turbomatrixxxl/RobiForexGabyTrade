@@ -27,6 +27,45 @@
   background: var(--panou);
 }
 
+.chatCont {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.parametersTitle {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 19px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  letter-spacing: 1px;
+}
+
+.chatFab {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  width: 54px;
+  height: 54px;
+  background: #37e673;
+  color: #151b22;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 6px 22px #222a;
+  z-index: 99;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27px;
+  transition: all 0.35s ease-in-out;
+}
+.chatFab:hover {
+  background: #2fcf61;
+  scale: 1.1;
+}
+
 @media screen and (width >=768px) {
   .cont {
     width: 260px;

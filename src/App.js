@@ -10,6 +10,9 @@ import Loader from "./components/commonComponents/Loader";
 
 import { ToastContainer } from "react-toastify";
 
+import getCurrentDateTime from "./utils/getCurrentDateTime";
+import ensureIds from "./utils/ensureIds";
+
 import "./styles/theme.css";
 import "./App.css";
 
@@ -27,6 +30,8 @@ const LazyRobotsPage = lazy(() => import("./pages/RobotsPage"));
 const LazyOrderPage = lazy(() => import("./pages/OrderPage"));
 const LazyHistoryPage = lazy(() => import("./pages/HistoryPage"));
 const LazyLogPage = lazy(() => import("./pages/LogPage"));
+const LazyAdminPage = lazy(() => import("./pages/AdminPage"));
+const LazyChatPage = lazy(() => import("./pages/ChatPage"));
 
 function App() {
   // 👉 Preload paginile după ce aplicația se montează
@@ -41,81 +46,57 @@ function App() {
   const robots = [
     {
       cBotName: "Alfa",
-      user: "tradegaby19",
       users: 1,
-      message: true,
+      message: false,
       time: getCurrentDateTime(),
       instrument: "XAUUSD",
       volume: 0.01,
       factor: 10,
+      live: "live",
     },
     {
       cBotName: "Beta",
-      user: "tradegaby20",
       users: 2,
       message: false,
       time: getCurrentDateTime(),
       instrument: "XAUUSD",
       volume: 0.01,
       factor: 9,
+      live: "live",
     },
     {
       cBotName: "Gamma",
-      user: "tradegaby21",
       users: 3,
       message: false,
       time: getCurrentDateTime(),
       instrument: "XAUUSD",
       volume: 0.01,
       factor: 9,
+      live: "live",
     },
     {
       cBotName: "Tetha",
-      user: "tradegaby22",
       users: 4,
       message: false,
       time: getCurrentDateTime(),
       instrument: "XAUUSD",
       volume: 0.01,
       factor: 9,
+      live: "live",
     },
     {
       cBotName: "Epsilon",
-      user: "tradegaby23",
       users: 5,
       message: false,
       time: getCurrentDateTime(),
       instrument: "XAUUSD",
       volume: 0.01,
       factor: 9,
+      live: "live",
     },
   ];
 
-  function ensureIds(list) {
-    const makeId =
-      crypto && crypto.randomUUID
-        ? () => crypto.randomUUID()
-        : () => `rid_${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
-
-    return list.map((r) => ({
-      ...r,
-      id: r.id ?? makeId(),
-    }));
-  }
-
   const robotsWithId = ensureIds(robots);
-
-  function getCurrentDateTime() {
-    const now = new Date();
-
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0");
-    const day = String(now.getDate()).padStart(2, "0");
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-
-    return `${year}-${month}-${day} ${hours}-${minutes}`;
-  }
 
   const storedBots = localStorage.getItem("cBots");
   if (!storedBots) {
@@ -200,6 +181,24 @@ function App() {
               element={
                 <PrivateRoute
                   component={<LazyLogPage />}
+                  redirectTo="/auth/login"
+                />
+              }
+            />
+            <Route
+              path="/home/admin"
+              element={
+                <PrivateRoute
+                  component={<LazyAdminPage />}
+                  redirectTo="/auth/login"
+                />
+              }
+            />
+            <Route
+              path="/home/chat"
+              element={
+                <PrivateRoute
+                  component={<LazyChatPage />}
                   redirectTo="/auth/login"
                 />
               }

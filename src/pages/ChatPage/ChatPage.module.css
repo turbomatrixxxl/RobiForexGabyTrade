@@ -1,0 +1,23 @@
+.cont {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  padding: 10px 10px;
+}
+
+.lightCont {
+  background: var(--icon-user-plus-fill-color);
+  color: var(--welcome-bg-gradient);
+}
+
+.darkCont {
+  background: var(--fundal);
+  color: white;
+}
+
+.violetCont {
+  background: var(--secondary-color);
+  color: white;
+}
