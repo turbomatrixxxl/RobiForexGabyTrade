@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/RobiForexGabyTrade/static/css/main.b745d1c1.css",
-    "main.js": "/RobiForexGabyTrade/static/js/main.14a2b648.js",
+    "main.js": "/RobiForexGabyTrade/static/js/main.db820dae.js",
     "static/css/252.996ffb5d.chunk.css": "/RobiForexGabyTrade/static/css/252.996ffb5d.chunk.css",
     "static/js/252.850235ba.chunk.js": "/RobiForexGabyTrade/static/js/252.850235ba.chunk.js",
     "static/css/548.6074dcf8.chunk.css": "/RobiForexGabyTrade/static/css/548.6074dcf8.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/973.6b6eb4cf.chunk.js": "/RobiForexGabyTrade/static/js/973.6b6eb4cf.chunk.js",
     "static/css/867.895f2866.chunk.css": "/RobiForexGabyTrade/static/css/867.895f2866.chunk.css",
     "static/js/867.e68e4b60.chunk.js": "/RobiForexGabyTrade/static/js/867.e68e4b60.chunk.js",
-    "static/css/878.c07e256c.chunk.css": "/RobiForexGabyTrade/static/css/878.c07e256c.chunk.css",
+    "static/css/878.6dbe0439.chunk.css": "/RobiForexGabyTrade/static/css/878.6dbe0439.chunk.css",
     "static/js/878.9212ff0a.chunk.js": "/RobiForexGabyTrade/static/js/878.9212ff0a.chunk.js",
     "static/css/220.c1bef2e2.chunk.css": "/RobiForexGabyTrade/static/css/220.c1bef2e2.chunk.css",
     "static/js/220.224c8e77.chunk.js": "/RobiForexGabyTrade/static/js/220.224c8e77.chunk.js",
@@ -28,7 +28,7 @@
     "static/js/892.58ecafd5.chunk.js": "/RobiForexGabyTrade/static/js/892.58ecafd5.chunk.js",
     "static/css/211.1d050ddd.chunk.css": "/RobiForexGabyTrade/static/css/211.1d050ddd.chunk.css",
     "static/js/211.881ab542.chunk.js": "/RobiForexGabyTrade/static/js/211.881ab542.chunk.js",
-    "static/css/157.47bea043.chunk.css": "/RobiForexGabyTrade/static/css/157.47bea043.chunk.css",
+    "static/css/157.93db9c61.chunk.css": "/RobiForexGabyTrade/static/css/157.93db9c61.chunk.css",
     "static/js/157.aa0313f5.chunk.js": "/RobiForexGabyTrade/static/js/157.aa0313f5.chunk.js",
     "static/js/453.d8e2a990.chunk.js": "/RobiForexGabyTrade/static/js/453.d8e2a990.chunk.js",
     "static/js/712.e9a5eb35.chunk.js": "/RobiForexGabyTrade/static/js/712.e9a5eb35.chunk.js",
@@ -47,7 +47,7 @@
     "static/media/sprite.svg": "/RobiForexGabyTrade/static/media/sprite.99e4a6b89642c0776a788b82a8ec8546.svg",
     "index.html": "/RobiForexGabyTrade/index.html",
     "main.b745d1c1.css.map": "/RobiForexGabyTrade/static/css/main.b745d1c1.css.map",
-    "main.14a2b648.js.map": "/RobiForexGabyTrade/static/js/main.14a2b648.js.map",
+    "main.db820dae.js.map": "/RobiForexGabyTrade/static/js/main.db820dae.js.map",
     "252.996ffb5d.chunk.css.map": "/RobiForexGabyTrade/static/css/252.996ffb5d.chunk.css.map",
     "252.850235ba.chunk.js.map": "/RobiForexGabyTrade/static/js/252.850235ba.chunk.js.map",
     "548.6074dcf8.chunk.css.map": "/RobiForexGabyTrade/static/css/548.6074dcf8.chunk.css.map",
@@ -58,7 +58,7 @@
     "973.6b6eb4cf.chunk.js.map": "/RobiForexGabyTrade/static/js/973.6b6eb4cf.chunk.js.map",
     "867.895f2866.chunk.css.map": "/RobiForexGabyTrade/static/css/867.895f2866.chunk.css.map",
     "867.e68e4b60.chunk.js.map": "/RobiForexGabyTrade/static/js/867.e68e4b60.chunk.js.map",
-    "878.c07e256c.chunk.css.map": "/RobiForexGabyTrade/static/css/878.c07e256c.chunk.css.map",
+    "878.6dbe0439.chunk.css.map": "/RobiForexGabyTrade/static/css/878.6dbe0439.chunk.css.map",
     "878.9212ff0a.chunk.js.map": "/RobiForexGabyTrade/static/js/878.9212ff0a.chunk.js.map",
     "220.c1bef2e2.chunk.css.map": "/RobiForexGabyTrade/static/css/220.c1bef2e2.chunk.css.map",
     "220.224c8e77.chunk.js.map": "/RobiForexGabyTrade/static/js/220.224c8e77.chunk.js.map",
@@ -74,7 +74,7 @@
     "892.58ecafd5.chunk.js.map": "/RobiForexGabyTrade/static/js/892.58ecafd5.chunk.js.map",
     "211.1d050ddd.chunk.css.map": "/RobiForexGabyTrade/static/css/211.1d050ddd.chunk.css.map",
     "211.881ab542.chunk.js.map": "/RobiForexGabyTrade/static/js/211.881ab542.chunk.js.map",
-    "157.47bea043.chunk.css.map": "/RobiForexGabyTrade/static/css/157.47bea043.chunk.css.map",
+    "157.93db9c61.chunk.css.map": "/RobiForexGabyTrade/static/css/157.93db9c61.chunk.css.map",
     "157.aa0313f5.chunk.js.map": "/RobiForexGabyTrade/static/js/157.aa0313f5.chunk.js.map",
     "453.d8e2a990.chunk.js.map": "/RobiForexGabyTrade/static/js/453.d8e2a990.chunk.js.map",
     "712.e9a5eb35.chunk.js.map": "/RobiForexGabyTrade/static/js/712.e9a5eb35.chunk.js.map",
@@ -88,6 +88,6 @@
   },
   "entrypoints": [
     "static/css/main.b745d1c1.css",
-    "static/js/main.14a2b648.js"
+    "static/js/main.db820dae.js"
   ]
 }
