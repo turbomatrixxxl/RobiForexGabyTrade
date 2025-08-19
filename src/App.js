@@ -32,6 +32,7 @@ const LazyHistoryPage = lazy(() => import("./pages/HistoryPage"));
 const LazyLogPage = lazy(() => import("./pages/LogPage"));
 const LazyAdminPage = lazy(() => import("./pages/AdminPage"));
 const LazyChatPage = lazy(() => import("./pages/ChatPage"));
+const LazyBalancePage = lazy(() => import("./pages/BalancePage"));
 
 function App() {
   // 👉 Preload paginile după ce aplicația se montează
@@ -199,6 +200,15 @@ function App() {
               element={
                 <PrivateRoute
                   component={<LazyChatPage />}
+                  redirectTo="/auth/login"
+                />
+              }
+            />
+            <Route
+              path="/home/balance"
+              element={
+                <PrivateRoute
+                  component={<LazyBalancePage />}
                   redirectTo="/auth/login"
                 />
               }

@@ -1,0 +1,45 @@
+<!-- <div class="balanta-card" id="balantaCard">
+            <div class="balanta-titlu">Balanta cont</div>
+            <div class="balanta-sold">
+              <span class="usd-amount" id="balantaUsd">1.000,12</span>
+              <span class="usd-label">USD</span>
+            </div>
+            <div class="balanta-detalii">
+              <div class="profit-zi">
+                <span class="lbl">Profit zi:</span>
+                <span class="val plus" id="profitZiVal">+54,00 USD</span>
+                <span class="proc plus" id="profitZiProc">(+5,42%)</span>
+              </div>
+              <div class="lbl">
+                Equity: <span class="val" id="balantaEquity">1.030,18 USD</span>
+              </div>
+              <div class="lbl">
+                Fonduri libere:
+                <span class="val" id="balantaLibera">900,50 USD</span>
+              </div>
+            </div>
+          </div>
+
+             function updateBalanta(balanta) {
+        document.getElementById("balantaUsd").innerText = balanta.usd;
+        document.getElementById("profitZiVal").innerText =
+          (balanta.profit >= 0 ? "+" : "") + balanta.profit + " USD";
+        document.getElementById("profitZiVal").className =
+          "val " + (balanta.profit >= 0 ? "plus" : "minus");
+        document.getElementById("profitZiProc").innerText = `(${
+          balanta.proc >= 0 ? "+" : ""
+        }${balanta.proc}%)`;
+        document.getElementById("profitZiProc").className =
+          "proc " + (balanta.profit >= 0 ? "plus" : "minus");
+        document.getElementById("balantaEquity").innerText =
+          balanta.equity + " USD";
+        document.getElementById("balantaLibera").innerText =
+          balanta.libera + " USD";
+      }
+      updateBalanta({
+        usd: "1.000,12",
+        profit: 54.0,
+        proc: 5.42,
+        equity: "1.030,18",
+        libera: "900,50",
+      }); -->

@@ -25,12 +25,9 @@ import BotsStatus from "../BotsStatus/BotsStatus";
 
 import getCurrentDateTime from "../../utils/getCurrentDateTime";
 
-import styles from "./Sidebar.module.css";
+import { balance } from "../Chart/Chart";
 
-// const breakpoints = {
-//   mobile: "(max-width: 767px)",
-//   tablet: "(min-width:768px)",
-// };
+import styles from "./Sidebar.module.css";
 
 export default function Sidebar({ sideBarRef, theme }) {
   const [isLogoutModalVisible, toggleIsLogoutModalVisible] = useToggle(false);
@@ -241,7 +238,7 @@ export default function Sidebar({ sideBarRef, theme }) {
             </li>
             <li>
               <NavLink
-                to="/home/admin"
+                to="/home/balance"
                 className={({ isActive }) =>
                   clsx(
                     styles.menuBtn,
@@ -252,19 +249,43 @@ export default function Sidebar({ sideBarRef, theme }) {
                         : styles.activeBtn)
                   )
                 }>
-                Admin
+                Balance
               </NavLink>
             </li>
           </ul>
         </nav>
-        <BotsStatus
-          theme={theme}
-          symbol={botSelected?.instrument}
-          live={botSelected?.live}
-          name={botSelected?.cBotName}
-          started={botSelected?.message}
-          handleClick={handleStartBot}
-        />
+        <div className={styles.info}>
+          <BotsStatus
+            theme={theme}
+            symbol={botSelected?.instrument}
+            live={botSelected?.live}
+            name={botSelected?.cBotName}
+            started={botSelected?.message}
+            handleClick={handleStartBot}
+          />
+          <p
+            className={clsx(
+              styles.balance,
+              theme === "violet" && styles.violetNoSelected
+            )}>
+            Balance {balance} $
+          </p>
+        </div>
+        <NavLink
+          style={{ marginTop: "auto", fontSize: "12px" }}
+          to="/home/admin"
+          className={({ isActive }) =>
+            clsx(
+              styles.menuBtn,
+              theme === "light" && styles.lightMenuBtn,
+              isActive &&
+                (theme === "light"
+                  ? styles.lightActiveMenuBtn
+                  : styles.activeBtn)
+            )
+          }>
+          Admin
+        </NavLink>
       </div>
       <button
         onClick={toggleIsLogoutModalVisible}

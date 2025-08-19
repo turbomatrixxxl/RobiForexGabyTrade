@@ -6,7 +6,7 @@
   margin-right: 14px;
   position: relative;
   width: fit-content;
-  z-index: 1;
+  z-index: 4;
 }
 
 .button {
@@ -45,9 +45,8 @@
   fill: rgba(22, 22, 22, 0.8);
 }
 
-.button:hover,
-.span:hover,
-.svg:hover {
+.button:hover .span,
+.button:hover .svg {
   color: var(--accent);
   fill: var(--accent);
 }

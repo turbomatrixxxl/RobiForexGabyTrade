@@ -30,6 +30,10 @@
   outline: solid 1px #5255bc;
 }
 
+.button:hover {
+  outline: solid 1px var(--accent);
+}
+
 .span {
   color: rgba(255, 255, 255, 0.8);
   font-family: Poppins;

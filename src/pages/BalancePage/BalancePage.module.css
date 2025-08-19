@@ -1,0 +1,57 @@
+.cont {
+  align-items: center;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  overflow-y: auto;
+  padding: 15px 0;
+  position: relative;
+  z-index: 2;
+}
+
+.lightCont {
+  background: var(--icon-user-plus-fill-color);
+  color: var(--welcome-bg-gradient);
+}
+
+.darkCont {
+  background: var(--fundal);
+  color: white;
+}
+
+.violetCont {
+  background: var(--secondary-color);
+  color: white;
+}
+
+.imageLeft,
+.imageRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.imageLeft {
+  left: 0;
+}
+
+.imageRight {
+  right: 0;
+}
+
+.p {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.violetP {
+  color: #5255bc;
+  filter: brightness(1.5);
+}

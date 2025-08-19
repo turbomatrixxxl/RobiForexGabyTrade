@@ -1,10 +1,11 @@
 .cont {
   align-items: center;
+  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
-  padding: 10px;
+  padding: 15px 0;
 }
 
 .lightCont {
