@@ -21,11 +21,11 @@
 }
 
 .mainViolet {
-  background: #ecedfd;
+  background: #5255bc;
 }
 
 .mainDark {
-  background: var(--gradient-background);
+  background: var(--panou);
 }
 
 @media screen and (width >=360px) {

@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   height: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
   padding: 15px;
   position: relative;
   z-index: 2;
