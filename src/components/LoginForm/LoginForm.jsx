@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { logIn } from "../../redux/auth/operationsAuth";
 // import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Input from "../commonComponents/Input/Input";
 import Button from "../commonComponents/Button";
 
@@ -11,7 +11,7 @@ import useFormValidation from "../../hooks/useFormValidation";
 import validateLogin from "../../hooks/validateLogin";
 import useFormTouched from "../../hooks/useFormTouched";
 
-import { useAuth } from "../../hooks/useAuth";
+// import { useAuth } from "../../hooks/useAuth";
 // import clsx from "clsx";
 
 import { toast } from "react-toastify"; // Import toast and ToastContainer
@@ -28,9 +28,9 @@ function LoginForm() {
     validateLogin
   );
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const { user, isLoggedIn } = useAuth();
+  // const { user, isLoggedIn } = useAuth();
 
   const { touched, handleBlur } = useFormTouched(fields);
 
@@ -166,7 +166,7 @@ function LoginForm() {
           </Button>
         </div>
 
-        {user !== null && !isLoggedIn && (
+        {/* {user !== null && !isLoggedIn && (
           <div className={styles.errorCont}>
             <p className={styles.error}>
               It seems that your authorisation token expired for security resons
@@ -181,7 +181,7 @@ function LoginForm() {
               Verify
             </Button>
           </div>
-        )}
+        )} */}
       </form>
     </div>
   );
