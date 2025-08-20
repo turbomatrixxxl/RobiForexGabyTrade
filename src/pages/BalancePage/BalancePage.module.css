@@ -1,6 +1,5 @@
 .cont {
   align-items: center;
-  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,12 +1,11 @@
 .cont {
   align-items: center;
-  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: flex-start;
   overflow-y: auto;
-  padding: 15px 0;
+  padding: 10px 5px;
 }
 
 .lightCont {
@@ -67,4 +66,10 @@
 .thViolet {
   color: #5255bc;
   filter: brightness(1.5);
+}
+
+@media screen and (width >=360px) {
+  .cont {
+    padding: 20px 10px;
+  }
 }

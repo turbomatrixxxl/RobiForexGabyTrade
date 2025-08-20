@@ -1,11 +1,10 @@
 .cont {
   align-items: center;
-  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
-  padding: 15px 0;
+  padding: 10px 5px;
 }
 
 .lightCont {
@@ -64,4 +63,10 @@
 .emptyMessageViolet {
   color: #5255bc;
   filter: brightness(1.5);
+}
+
+@media screen and (width >=360px) {
+  .cont {
+    padding: 20px 10px;
+  }
 }
