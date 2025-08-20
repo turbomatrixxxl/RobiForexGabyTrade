@@ -7,28 +7,26 @@
 .noSelected {
   background: var(--tab-activ);
   border: none;
-  color: var(--text);
-  display: flex;
-  /* font-size: 19px;
-  padding: 13px 0 13px 17px; */
-  font-size: 12px;
-  padding: 7px;
   border-radius: var(--radius-mic);
-  text-align: left;
+  color: var(--text);
   cursor: pointer;
-  transition: all 0.18s ease-in-out;
-  margin-bottom: 2px;
+  display: flex;
+  font-size: 12px;
   font-weight: 500;
   letter-spacing: 1px;
+  margin-bottom: 2px;
+  padding: 7px;
+  text-align: left;
+  transition: all 0.18s ease-in-out;
   width: -webkit-fill-available;
 }
 
 .lightNoSelected {
-  color: rgba(22, 22, 22, 0.8);
-  background: none;
+  color: var(--text);
+  background: var(--tab-activ);
 }
 
 .violetNoSelected {
   color: #5255bc;
-  /* filter: brightness(1.5); */
+  filter: brightness(1.5);
 }

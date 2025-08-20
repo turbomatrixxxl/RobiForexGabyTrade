@@ -39,7 +39,7 @@ function Header({ handleClick, handleRightClick, theme, user, lang }) {
   };
 
   // const imageUrl = avatarURL?.startsWith("http")
-  //   ? avatarURL
+  // ? avatarURL
   //   : `https://taskpro-nodejs.onrender.com/${avatarURL}`;
 
   const isMobile = useMediaQuery({ query: breakpoints.mobile });

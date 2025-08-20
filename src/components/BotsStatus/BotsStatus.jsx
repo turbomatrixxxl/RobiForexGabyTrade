@@ -43,7 +43,7 @@ export default function BotsStatus({
 BotsStatus.propTypes = {
   theme: PropTypes.string,
   symbol: PropTypes.string,
-  live: PropTypes.bool,
+  live: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   started: PropTypes.bool,
   handleClick: PropTypes.func,
 };

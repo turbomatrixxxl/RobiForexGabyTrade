@@ -1,0 +1,44 @@
+@import "../../../styles/variables.css";
+
+.inputContainer {
+  position: relative;
+  align-items: center;
+  border-radius: 6px;
+  border: 1px solid var(--Stroke, #e2e8f0);
+  background: var(--Gray, #eff4fb);
+  display: flex;
+  height: fit-content;
+}
+
+.input {
+  background: transparent;
+  border: none;
+  height: fit-content;
+  outline: none;
+  width: 100%;
+}
+
+.inputCenter {
+  font-weight: 600;
+  text-align: center;
+}
+
+.inputInfo {
+  color: rgb(255, 134, 141);
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 20px;
+}
+
+.autoResizeTextarea {
+  resize: none;
+  overflow: hidden;
+  /* min-height: 40px;  */
+  /* height: auto; */
+}
+
+@media screen and (width >=768px) {
+  .inputInfo {
+    padding-left: 12px;
+  }
+}

@@ -1,0 +1,55 @@
+@import "../../styles/variables.css";
+
+.section {
+  align-items: center;
+  /* background: var(--Gray, #eff4fb); */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 30px;
+  padding-top: 20px;
+  width: -webkit-fill-available;
+}
+
+.welcome {
+  color: var(--Primary, #64748b);
+
+  /* 14 Medium */
+  font-family: Satoshi;
+  font-size: clamp(14px, 3vw, 22px);
+  font-style: normal;
+  font-weight: 900;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.indications {
+  color: var(--Red);
+  display: flex;
+  justify-content: center;
+  /* 14 Medium */
+  font-family: Satoshi;
+  font-size: clamp(14px, 3vw, 18px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2; /* 157.143% */
+  text-align: center;
+  width: 80%;
+}
+
+.encourage {
+  color: var(--Green);
+  display: flex;
+  justify-content: center;
+  /* 14 Medium */
+  font-family: Satoshi;
+  font-size: clamp(12px, 3vw, 60px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.2; /* 157.143% */
+  text-align: center;
+  width: 80%;
+}

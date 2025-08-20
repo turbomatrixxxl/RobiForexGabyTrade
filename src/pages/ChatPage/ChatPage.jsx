@@ -1,6 +1,10 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 import clsx from "clsx";
+
+import ChatsAside from "../../components/ChatsAside/ChatsAside";
+import ChatHeader from "../../components/ChatHeader";
 
 import styles from "./ChatPage.module.css";
 
@@ -17,7 +21,13 @@ export default function ChatPage() {
           ? styles.violetCont
           : styles.darkCont
       )}>
-      ChatPage
+      <ChatsAside />
+      <div className={clsx(styles.content)}>
+        <ChatHeader />
+        <section className={styles.main}>
+          <Outlet />
+        </section>
+      </div>
     </div>
   );
 }

@@ -131,7 +131,7 @@
   font-size: 14px;
   justify-content: center;
   padding: 7px;
-  text-align: left;
+  text-align: center;
   transition: all 0.18s ease-in-out;
   margin-bottom: 2px;
   font-weight: 500;
@@ -184,11 +184,11 @@
 
 .modalLogoutActionCenter {
   align-items: center;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
   margin-top: 50px;
-  padding: 0 20px;
-  /* width: 100%; */
+  padding: 20px;
 }
 
 .logo {
@@ -198,45 +198,8 @@
   flex-shrink: 0;
 }
 
-.closeButton {
-  display: none;
-}
-
-.modalHeader {
-  z-index: 10000;
-  height: 60px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 auto;
-  padding: 12px 20px 11.51px 20px;
-  width: -webkit-fill-available;
-}
-
-.modalHeaderLight {
-  background: #fcfcfc;
-}
-
-.modalHeaderDark {
-  background: #161616;
-}
-
-.modalHeaderViolet {
-  background: white;
-}
-
-.userContainer {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #161616;
-  font-family: Poppins;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  letter-spacing: -0.28px;
-  margin-left: auto;
+.closeButtonDark svg {
+  fill: var(--white);
 }
 
 .userContainerDark {
@@ -244,7 +207,7 @@
 }
 
 .question {
-  color: #161616;
+  color: red;
   text-align: center;
   font-family: Poppins;
   font-size: 18px;
@@ -276,6 +239,10 @@
   /* Prevent scrolling */
 }
 
+.violet {
+  background: #5255bc;
+}
+
 @media screen and (width >=768px) {
   .cont {
     width: 260px;
@@ -288,6 +255,10 @@
 
   .question {
     margin-top: 50px;
+  }
+
+  .balance {
+    font-size: 14px;
   }
 
   .logoutButton {

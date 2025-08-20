@@ -112,14 +112,26 @@ export default function Sidebar({ sideBarRef, theme }) {
         <div className={styles.modalOverlay}>
           <div
             ref={modalRef}
-            className={styles.modalContent}
+            className={clsx(
+              styles.modalContent,
+              theme === "violet" && styles.violet,
+              theme === "dark" && styles.dark
+            )}
             onClick={closeOnClickOutside}>
             <Modal
               variant={theme}
-              closeButton={styles.closeButton}
+              closeButton={clsx(
+                styles.closeButton,
+                theme !== "light" && styles.closeButtonDark
+              )}
               handleModalClose={toggleIsLogoutModalVisible}
               isModalVisible={isLogoutModalVisible}>
-              <div className={styles.modalLogoutActionCenter}>
+              <div
+                className={clsx(
+                  styles.modalLogoutActionCenter,
+                  theme === "violet" && styles.violet,
+                  theme === "dark" && styles.dark
+                )}>
                 <img className={styles.logo} src={roby} alt="roby logo" />
                 <p
                   className={clsx(
@@ -268,7 +280,7 @@ export default function Sidebar({ sideBarRef, theme }) {
               styles.balance,
               theme === "violet" && styles.violetNoSelected
             )}>
-            Balance {balance} $
+            Account balance {balance} $
           </p>
         </div>
         <NavLink

@@ -1,0 +1,82 @@
+@import "../../styles/variables.css";
+
+.chatList {
+  background: var(--Gray);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+  max-height: 200px;
+  left: -15px;
+  list-style: none;
+  margin-left: 20px;
+  overflow-y: scroll;
+  padding: 5px;
+  position: absolute;
+  top: 110%;
+  width: fit-content;
+  z-index: 1000;
+}
+
+.noActive {
+  align-items: center;
+  background: var(--Gray);
+  border-radius: 8px;
+  color: var(--Red);
+  display: flex;
+  font-weight: 700;
+  height: 50px;
+  justify-content: center;
+  padding: 10px;
+  position: absolute;
+  top: 110%;
+  width: fit-content;
+  z-index: 1000;
+}
+
+.chatListItem > a {
+  align-items: center;
+  /* background: var(--Gray);
+  border-radius: 8px; */
+  display: flex;
+  gap: 8px;
+  /* justify-content: space-between; */
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.avatar {
+  border-radius: 52px;
+  flex-shrink: 0;
+  height: 40px;
+  width: 40px;
+}
+
+.usersInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.userName {
+  color: var(--Dark, #1c2434);
+
+  /* 16 Medium */
+  font-family: Satoshi;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+}
+
+.reply {
+  color: var(--Text-color, #64748b);
+
+  /* 14 Medium */
+  font-family: Satoshi;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 22px; /* 157.143% */
+}

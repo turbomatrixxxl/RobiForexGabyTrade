@@ -50,7 +50,7 @@ export default function BotStatusCard({
 BotStatusCard.propTypes = {
   theme: PropTypes.string,
   symbol: PropTypes.string,
-  live: PropTypes.bool,
+  live: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   started: PropTypes.bool,
   name: PropTypes.string,
   handleClick: PropTypes.func,

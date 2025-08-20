@@ -2,6 +2,9 @@ import React, { lazy, useEffect } from "react";
 
 import { Route, Routes } from "react-router-dom";
 
+import { useDispatch } from "react-redux";
+import { fetchData } from "./redux/public/operationsChats";
+
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
 import RestrictedLoginRoute from "./components/RestrictedLoginRoute/RestrictedLoginRoute";
@@ -33,8 +36,12 @@ const LazyLogPage = lazy(() => import("./pages/LogPage"));
 const LazyAdminPage = lazy(() => import("./pages/AdminPage"));
 const LazyChatPage = lazy(() => import("./pages/ChatPage"));
 const LazyBalancePage = lazy(() => import("./pages/BalancePage"));
+const LazyChatHomePage = lazy(() => import("./pages/ChatHomePage"));
+const LazyConverstionsPage = lazy(() => import("./pages/ConversationsPage"));
 
 function App() {
+  const dispatch = useDispatch();
+
   // 👉 Preload paginile după ce aplicația se montează
   useEffect(() => {
     import("./pages/PositionPage");
@@ -43,6 +50,10 @@ function App() {
     import("./pages/HistoryPage");
     import("./pages/LogPage");
   }, []);
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
 
   const robots = [
     {
@@ -202,8 +213,11 @@ function App() {
                   component={<LazyChatPage />}
                   redirectTo="/auth/login"
                 />
-              }
-            />
+              }>
+              <Route path=":chatId" element={<LazyConverstionsPage />} />
+              <Route index element={<LazyChatHomePage />} />
+            </Route>
+
             <Route
               path="/home/balance"
               element={

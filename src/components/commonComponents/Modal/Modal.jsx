@@ -35,7 +35,9 @@ function Modal({
           ref={contRef}
           className={clsx(
             styles.content,
-            variant === "dark" ? styles.darkContent : styles.content
+            variant === "dark" && styles.darkContent,
+            variant === "violet" && styles.violetContent,
+            variant === "light" && styles.content
           )}>
           <button
             className={clsx(styles.closeModal, closeButton)}

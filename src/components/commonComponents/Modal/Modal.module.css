@@ -69,6 +69,10 @@
   background: #151515;
 }
 
+.violetContent {
+  background: #5255bc;
+}
+
 .closeModal {
   background: transparent;
   border: none;

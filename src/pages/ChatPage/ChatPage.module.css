@@ -1,7 +1,6 @@
 .cont {
   align-items: center;
   display: flex;
-  flex-direction: column;
   height: 100%;
   overflow-y: auto;
   padding: 10px 10px;
@@ -20,4 +19,16 @@
 .violetCont {
   background: var(--secondary-color);
   color: white;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: -webkit-fill-available;
+}
+
+.main {
+  flex-grow: 1;
+  background: transparent;
 }
