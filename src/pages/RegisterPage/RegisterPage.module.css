@@ -10,7 +10,9 @@
   background-repeat: no-repeat;
   background-size: cover;
   flex-direction: column;
+  overflow-y: auto;
   position: relative;
+  padding: 30px 0;
 }
 
 .imageLeft,

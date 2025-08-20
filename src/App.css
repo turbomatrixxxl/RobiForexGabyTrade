@@ -1,3 +1,6 @@
+@import "./styles/theme.css";
+@import "./styles/variables.css";
+
 .App {
   align-items: center;
   display: flex;
@@ -13,15 +16,17 @@
   border-radius: 8px;
 
   margin-top: 16px; /* Adds space above the scrollbar */
-  background-color: var(--scrollbar-bg);
+  background-color: var(--gri-deschis);
+  display: none;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--scrollbar-thumb);
+  background-color: var(--rosu);
   border-radius: 12px;
+  display: none;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   cursor: pointer;
-  background-color: var(--scrollbar-thumb-hover);
+  background-color: var(--accent);
 }
