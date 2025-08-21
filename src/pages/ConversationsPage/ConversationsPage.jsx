@@ -1,26 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { updateChat } from "../../redux/public/chatsSlice";
+import React, { useRef, useEffect } from "react";
+
+import { useOutletContext } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useChats } from "../../hooks/useChats";
-import ChatInput from "../../components/commonComponents/ChatInput";
 
-import { FaPaperclip, FaRegSmile, FaPaperPlane } from "react-icons/fa";
-import EmojiPicker from "emoji-picker-react";
+import clsx from "clsx";
 
 import styles from "./ConversationsPage.module.css";
-import clsx from "clsx";
 
 export default function ConversationsPage() {
   const { chatId } = useParams();
   const { chats } = useChats();
-  const dispatch = useDispatch();
-  const fileInputRef = useRef();
-  const messagesEndRef = useRef(null);
+  const { file } = useOutletContext();
 
-  const [message, setMessage] = useState("");
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [file, setFile] = useState(null);
+  const messagesEndRef = useRef(null);
 
   const selectedChat = chats.find((chat) => chat.id === chatId);
 
@@ -64,46 +57,6 @@ export default function ConversationsPage() {
   if (!selectedChat) {
     return <div className={styles.notFound}>Chat not found</div>;
   }
-
-  const handleSendMsg = () => {
-    if (!message.trim()) return;
-
-    dispatch(
-      updateChat({
-        chatId,
-        newMessages: [
-          {
-            id: crypto.randomUUID(),
-            content: message,
-            isInbox: false,
-            sentAt: new Date().toISOString(),
-          },
-        ],
-      })
-    );
-    setMessage("");
-    setShowEmojiPicker(false);
-    setFile(null);
-  };
-
-  const handleAttachClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleFileChange = (e) => {
-    const selectedFile = e.target.files[0];
-    if (selectedFile) {
-      setFile(selectedFile);
-    }
-  };
-
-  const toggleEmojiPicker = () => {
-    setShowEmojiPicker((prev) => !prev);
-  };
-
-  const handleEmojiClick = (emojiData) => {
-    setMessage((prev) => prev + emojiData.emoji);
-  };
 
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -155,55 +108,6 @@ export default function ConversationsPage() {
         {/* Referință pentru scroll */}
         <div ref={messagesEndRef} />
       </ul>
-
-      <div className={styles.sendMsgCont}>
-        <ChatInput
-          type="textarea"
-          textarea
-          width="100%"
-          className={styles.sendMsgInput}
-          paddingLeft="5px"
-          placeholder="Type here..."
-          value={message}
-          handleChange={(e) => setMessage(e.target.value)}>
-          <button
-            type="button"
-            className={styles.writeMsgButton}
-            onClick={handleAttachClick}>
-            <FaPaperclip className={styles.paperClipIcon} size={16} />
-          </button>
-          <input
-            type="file"
-            ref={fileInputRef}
-            onChange={handleFileChange}
-            style={{ display: "none" }}
-          />
-
-          <div className={styles.emojiWrapper}>
-            <button
-              type="button"
-              className={styles.writeMsgButton}
-              onClick={toggleEmojiPicker}>
-              <FaRegSmile className={styles.smileIcon} size={16} />
-            </button>
-            {showEmojiPicker && (
-              <div className={styles.emojiPicker}>
-                <EmojiPicker
-                  onEmojiClick={handleEmojiClick}
-                  width={250}
-                  height={300}
-                  previewConfig={{ showPreview: false }}
-                  searchPlaceHolder="Search emoji..."
-                />
-              </div>
-            )}
-          </div>
-        </ChatInput>
-
-        <button className={styles.sendMsgButton} onClick={handleSendMsg}>
-          <FaPaperPlane className={styles.sendIcon} size={18} />
-        </button>
-      </div>
     </div>
   );
 }

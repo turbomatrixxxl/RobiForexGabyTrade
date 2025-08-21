@@ -30,15 +30,15 @@ export default function ChatsList({ search }) {
   };
 
   const getLastInboxMessage = (chat) => {
-    const inboxMessages = chat.messages.filter((msg) => msg.isInbox);
-    if (!inboxMessages.length) return null;
-    return inboxMessages.reduce((latest, msg) =>
+    const inboxMessages = chat?.messages?.filter((msg) => msg?.isInbox);
+    if (!inboxMessages?.length) return null;
+    return inboxMessages?.reduce((latest, msg) =>
       new Date(msg.sentAt) > new Date(latest.sentAt) ? msg : latest
     );
   };
 
-  const filteredChats = chats.filter((chat) =>
-    chat.user.name.toLowerCase().includes(search.toLowerCase())
+  const filteredChats = chats?.filter((chat) =>
+    chat?.user?.name?.toLowerCase().includes(search.toLowerCase())
   );
 
   return (

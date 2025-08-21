@@ -14,9 +14,6 @@ import clsx from "clsx";
 import Button from "../commonComponents/Button";
 import Modal from "../commonComponents/Modal/Modal";
 
-// import logoSmall from "../../images/cactus.png";
-// import logoBig from "../../images/cactus@2x.png";
-
 import roby from "../../images/Roby.jpg";
 
 import LogoSection from "../LogoSection/LogoSection";

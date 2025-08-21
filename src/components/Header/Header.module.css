@@ -126,6 +126,12 @@
   fill: var(--accent);
 }
 
+.image {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+}
+
 .img {
   border: 2px solid var(--accent);
 }
@@ -138,6 +144,11 @@
   .header {
     padding: 18px 10px;
   }
+
+  .image {
+    height: 42px;
+    width: 42px;
+  }
 }
 
 @media screen and (width >=768px) {
@@ -148,7 +159,7 @@
   }
 }
 
-/* @media screen and (width >=1024px) {
+/* @media screen and (width >=1115px) {
   .header {
     height: fit-content; 
      padding: 18px 15px;

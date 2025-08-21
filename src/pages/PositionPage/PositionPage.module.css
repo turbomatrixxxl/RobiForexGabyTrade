@@ -43,7 +43,7 @@
   text-align: left;
   border-bottom: 1px solid #353945;
   filter: brightness(1.5);
-  font-size: clamp(6px, 2vw, 16px); /* min, preferat, max */
+  font-size: clamp(6px, 2vw, 14px); /* min, preferat, max */
 }
 
 .tableHeaderCell {

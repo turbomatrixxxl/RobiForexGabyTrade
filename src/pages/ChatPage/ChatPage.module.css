@@ -1,6 +1,7 @@
 .cont {
   align-items: center;
   display: flex;
+  flex-direction: column;
   height: 100%;
   overflow-y: auto;
   padding: 10px 10px;
@@ -23,12 +24,110 @@
 
 .content {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   flex-grow: 1;
   height: -webkit-fill-available;
+  width: 100%;
 }
 
 .main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   flex-grow: 1;
   background: transparent;
+}
+
+.sendMsgCont {
+  align-items: center;
+  border-top: solid 1px var(--Stroke);
+  display: flex;
+  gap: 5px;
+  height: fit-content;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-left: 5px;
+  width: 100%;
+}
+
+.sendMsgInput {
+  color: var(--Text-color, #64748b);
+  flex-grow: 1;
+
+  /* 16 Medium */
+  font-family: Satoshi;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  height: fit-content;
+  line-height: 24px; /* 150% */
+  overflow-y: auto;
+  padding: 5px 0;
+  resize: none;
+}
+
+.writeMsgButton {
+  border: none;
+  cursor: pointer;
+  height: fit-content;
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+}
+
+.paperClipIcon {
+  color: var(--Text-color);
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.emojiWrapper {
+  position: relative;
+}
+
+.smileIcon {
+  color: var(--Text-color);
+  margin-right: 5px;
+}
+
+.emojiPicker {
+  position: absolute;
+  bottom: 40px; /* or how far above the icon you want */
+  right: 0;
+  z-index: 10;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  height: fit-content;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+}
+
+.sendMsgButton {
+  align-items: center;
+  border: none;
+  border-radius: 6px;
+  background: var(--Primary, #3c50e0);
+  cursor: pointer;
+  display: flex;
+  flex-shrink: 1;
+  height: 34px;
+  justify-content: center;
+  outline: none;
+  width: 34px;
+}
+
+.sendIcon {
+  color: white;
+}
+
+.emojiPickerWrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.emojiPickerWrapper::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
 }

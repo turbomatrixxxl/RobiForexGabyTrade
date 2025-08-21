@@ -38,7 +38,7 @@
 
 .ordersTableHeadCell,
 .ordersTableBodyCell {
-  padding: 10px 9px;
+  padding: 10px 5px;
   text-align: left;
   border-bottom: 1px solid #353945;
   font-size: clamp(5px, 1.6vw, 16px); /* min, preferat, max */

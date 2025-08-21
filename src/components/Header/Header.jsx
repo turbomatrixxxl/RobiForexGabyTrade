@@ -21,7 +21,7 @@ import styles from "./Header.module.css";
 const breakpoints = {
   mobile: "(max-width: 767px)",
   tablet: "(min-width:768px)",
-  desktop: "(min-width:1024px)",
+  desktop: "(min-width:1115px)",
 };
 
 function Header({ handleClick, handleRightClick, theme, user, lang }) {
@@ -230,10 +230,13 @@ function Header({ handleClick, handleRightClick, theme, user, lang }) {
             </p>
 
             <img
-              className={theme === "violet" ? styles.imgViolet : styles.img}
+              className={clsx(
+                styles.image,
+                theme === "violet" ? styles.imgViolet : styles.img
+              )}
               src={user?.avatarBase64 || roby}
               alt="User Avatar"
-              style={{ width: "42px", height: "42px", borderRadius: "50%" }}
+              // style={{ width: "42px", height: "42px", borderRadius: "50%" }}
             />
           </div>
         </div>

@@ -11,7 +11,7 @@ import clsx from "clsx";
 const breakpoints = {
   mobile: "(max-width: 767px)",
   tablet: "(min-width:768px)",
-  desktop: "(min-width:1024px)",
+  desktop: "(min-width:1115px)",
 };
 
 // export default function HomePage() {

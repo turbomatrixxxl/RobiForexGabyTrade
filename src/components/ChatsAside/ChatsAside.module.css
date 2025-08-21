@@ -101,7 +101,7 @@
 .asideChatListCont {
   display: flex;
   flex-direction: column;
-  height: 430px;
+  height: 320px;
   overflow-y: auto;
 }
 
