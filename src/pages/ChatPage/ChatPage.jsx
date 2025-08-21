@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import clsx from "clsx";
@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { useDispatch } from "react-redux";
 import { updateChat } from "../../redux/public/chatsSlice";
 import { useParams } from "react-router-dom";
+import { useChats } from "../../hooks/useChats";
 
 import ChatsAside from "../../components/ChatsAside/ChatsAside";
 import ChatHeader from "../../components/ChatHeader";
@@ -20,10 +21,22 @@ export default function ChatPage() {
   const { chatId } = useParams();
   const dispatch = useDispatch();
   const fileInputRef = useRef();
+  const { chats } = useChats();
 
   const [message, setMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [file, setFile] = useState(null);
+  const [isBlocked, setIsBlocked] = useState(false);
+
+  const user = chats.find((u) => u.id === chatId);
+
+  useEffect(() => {
+    if (user) {
+      setIsBlocked(user?.user?.isBlocked || false);
+    }
+  }, [user]);
+
+  // console.log(isBlocked);
 
   const handleSendMsg = () => {
     if (!message.trim()) return;
@@ -79,7 +92,7 @@ export default function ChatPage() {
       )}>
       <ChatHeader theme={theme} />
       <div className={clsx(styles.content)}>
-        <ChatsAside />
+        <ChatsAside isBlocked={isBlocked} theme={theme} />
         <section className={styles.main}>
           <Outlet context={{ file }} />
         </section>
@@ -128,7 +141,14 @@ export default function ChatPage() {
           </div>
         </ChatInput>
 
-        <button className={styles.sendMsgButton} onClick={handleSendMsg}>
+        <button
+          disabled={isBlocked}
+          type="button"
+          className={clsx(
+            styles.sendMsgButton,
+            isBlocked && styles.sendBlocked
+          )}
+          onClick={handleSendMsg}>
           <FaPaperPlane className={styles.sendIcon} size={18} />
         </button>
       </div>

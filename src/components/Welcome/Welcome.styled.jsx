@@ -7,6 +7,7 @@ import backgroundImage from "../../images/register-background.png";
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  height: 100%;
   width: 100%;
   background: var(--gradient-background);
   background-repeat: no-repeat;
@@ -19,7 +20,7 @@ export const WrapperBackground = styled.div`
   background: transparent url(${backgroundImage}) no-repeat center center;
   background-position: 50%;
   background-size: cover;
-  display: inherit;
+  display: flex;
   height: 100%;
   left: 0;
   opacity: 0.5;

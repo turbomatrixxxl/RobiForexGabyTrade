@@ -66,6 +66,12 @@
   padding: 6px 10px;
 }
 
+.timestampOutboxCont {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .timestampOutbox {
   color: var(--Text-color, #64748b);
 
@@ -76,7 +82,10 @@
   font-weight: 500;
   line-height: 22px; /* 157.143% */
   margin-top: 5px;
-  margin-left: auto;
+}
+
+.read {
+  color: var(--accent);
 }
 
 .msgInboxContent {

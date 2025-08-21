@@ -79,14 +79,23 @@ export default function ConversationsPage() {
           ) : (
             <li key={msg.id} className={styles.outbox}>
               <span className={clsx(styles.ownerName, styles.right)}>
-                {user ? user.username : "User"}
+                {user ? user?.username : "User"}
               </span>
-              <span className={styles.msgOutboxContent}>{msg.content}</span>
-              <span className={styles.timestampOutbox}>
-                {msg.sentAt
-                  ? formatTimestamp(msg.sentAt)
-                  : "Time not available"}
-              </span>
+              <span className={styles.msgOutboxContent}>{msg?.content}</span>
+              <div className={styles.timestampOutboxCont}>
+                {msg?.isRead ? (
+                  <span className={clsx(styles.timestampOutbox, styles.read)}>
+                    ✔✔
+                  </span>
+                ) : (
+                  <span className={styles.timestampOutbox}>✔</span>
+                )}
+                <span className={styles.timestampOutbox}>
+                  {msg?.sentAt
+                    ? formatTimestamp(msg?.sentAt)
+                    : "Time not available"}
+                </span>
+              </div>
             </li>
           )
         )}

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 // import { useChats } from "../../hooks/useChats";
 
@@ -10,7 +11,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "./ChatsAside.module.css";
 
-export default function ChatsAside() {
+export default function ChatsAside({ isBlocked, theme }) {
   // const { activeChats } = useChats();
 
   const [search, setSearch] = useState("");
@@ -36,9 +37,14 @@ export default function ChatsAside() {
           </button>
         </ChatInput>
         <div className={styles.asideChatListCont}>
-          <ChatsList search={search} />
+          <ChatsList theme={theme} search={search} isBlocked={isBlocked} />
         </div>
       </div>
     </aside>
   );
 }
+
+ChatsAside.propTypes = {
+  isBlocked: PropTypes.bool,
+  theme: PropTypes.string,
+};

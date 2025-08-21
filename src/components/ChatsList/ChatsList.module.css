@@ -27,6 +27,10 @@
   background: var(--Gray);
 }
 
+.isBlocked {
+  background: var(--label-radio-pink-color);
+}
+
 .imgCont {
   align-items: center;
   background: transparent;
@@ -93,4 +97,110 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.notRead {
+  color: var(--rosu);
+}
+
+.settingsCont {
+  align-items: center;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
+  position: relative;
+  width: fit-content;
+}
+
+.btnCont {
+  align-items: center;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  justify-content: center;
+  outline: none;
+  width: fit-content;
+}
+
+.btnCont > svg {
+  transition: all 0.3s ease-in-out;
+}
+
+.btnCont > svg:hover {
+  fill: var(--Primary);
+}
+
+.modalCont {
+  align-items: center;
+  background: var(--White);
+  bottom: 17px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: fit-content;
+  justify-content: center;
+  padding: 5px;
+  position: absolute;
+  right: 5px;
+  width: fit-content;
+  z-index: 6;
+}
+
+.modalContDark {
+  background: var(--panou);
+}
+
+.modalContViolet {
+  background: var(--Primary);
+}
+
+.modalBtn {
+  align-items: center;
+  background: var(--transparency-60);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  font-family: Satoshi;
+  font-size: clamp(12px, 2vw, 14px);
+  font-style: normal;
+  font-weight: 900;
+  line-height: 15px;
+  white-space: nowrap;
+  height: fit-content;
+  justify-content: center;
+  outline: none;
+  padding: 2px 2px;
+  width: 100%;
+  transition: all 0.35s ease-in-out;
+}
+
+.modalBtn:hover {
+  scale: 1.05;
+}
+
+.modalBtnB {
+  color: var(--Primary);
+}
+
+.modalBtnNb {
+  color: var(--rosu);
+}
+
+.modalBtnNotLight {
+  color: var(--rosu);
+}
+
+@media screen and (width >=768px) {
+  .modalCont {
+    right: 6px;
+    top: 22px;
+  }
 }

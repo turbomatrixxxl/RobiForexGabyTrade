@@ -118,6 +118,10 @@
   width: 34px;
 }
 
+.sendBlocked {
+  background: var(--rosu);
+}
+
 .sendIcon {
   color: white;
 }
