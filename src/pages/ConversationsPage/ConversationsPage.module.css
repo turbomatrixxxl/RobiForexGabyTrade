@@ -5,14 +5,17 @@
   flex-direction: column;
   justify-content: flex-end;
   height: 100%;
+  padding-bottom: 5px;
   width: 100%;
 }
 
 .messageList {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 1;
   gap: 10px;
-  height: 355px;
+  height: 100px;
   list-style: none;
   overflow-y: auto;
   padding: 23px 0px 10px 10px;

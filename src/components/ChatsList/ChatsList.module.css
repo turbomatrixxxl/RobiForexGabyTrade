@@ -3,8 +3,9 @@
 .list {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   gap: 10px;
-  height: 395px;
+  height: 35px;
   list-style: none;
   padding-left: 0;
   overflow-y: auto;

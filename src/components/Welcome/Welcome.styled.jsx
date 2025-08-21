@@ -7,7 +7,6 @@ import backgroundImage from "../../images/register-background.png";
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  height: 100vh;
   width: 100%;
   background: var(--gradient-background);
   background-repeat: no-repeat;
