@@ -12,6 +12,7 @@ import ActiveChatModal from "../ActiveChatModal/ActiveChatModal";
 import { FaEllipsisH } from "react-icons/fa";
 
 import gaby from "../../images/teamMembersPhoto/Roby.jpg";
+import glob from "../../images/global.png";
 
 import styles from "./ChatHeader.module.css";
 
@@ -40,11 +41,15 @@ function ChatHeader({ theme }) {
         {showModal && (
           <ActiveChatModal chats={chats} closeModal={toggleModal} />
         )}
-        {selectedChat && (
+        {selectedChat ? (
           <div className={styles.chatInfo}>
             <img
               src={
-                selectedChat.id === "admin" ? gaby : selectedChat.user.avatar
+                selectedChat.id === "admin"
+                  ? gaby
+                  : selectedChat.id === "global"
+                  ? glob
+                  : selectedChat.user.avatar
               }
               alt="Avatar"
               className={styles.avatar}
@@ -56,6 +61,20 @@ function ChatHeader({ theme }) {
                   theme !== "light" && styles.noLight
                 )}>
                 {selectedChat?.user?.name}
+              </span>
+              <span className={styles.reply}>Reply</span>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.chatInfo}>
+            <img src={glob} alt="Avatar" className={styles.avatar} />
+            <div className={styles.usersInfo}>
+              <span
+                className={clsx(
+                  styles.userName,
+                  theme !== "light" && styles.noLight
+                )}>
+                Global
               </span>
               <span className={styles.reply}>Reply</span>
             </div>

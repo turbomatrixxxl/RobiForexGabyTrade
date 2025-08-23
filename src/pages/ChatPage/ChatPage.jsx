@@ -1,10 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import clsx from "clsx";
 
 import { useDispatch } from "react-redux";
-import { updateChat } from "../../redux/public/chatsSlice";
+import {
+  accessChat,
+  markGlobalChatAsRead,
+  updateChat,
+} from "../../redux/public/chatsSlice";
 import { useParams } from "react-router-dom";
 import { useChats } from "../../hooks/useChats";
 
@@ -18,25 +22,24 @@ import EmojiPicker from "emoji-picker-react";
 import styles from "./ChatPage.module.css";
 
 export default function ChatPage() {
-  const { chatId } = useParams();
-  const dispatch = useDispatch();
-  const fileInputRef = useRef();
   const { chats } = useChats();
+
+  const { chatId } = useParams();
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+
+  const fileInputRef = useRef();
+  const blockRef = useRef(null);
 
   const [message, setMessage] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [file, setFile] = useState(null);
-  const [isBlocked, setIsBlocked] = useState(false);
+  const [showBlockMsg, setShowBlockMsg] = useState(false);
+  const [showYouAreBlockMsg, setShowYouAreBlockMsg] = useState(false);
 
   const user = chats.find((u) => u.id === chatId);
-
-  useEffect(() => {
-    if (user) {
-      setIsBlocked(user?.user?.isBlocked || false);
-    }
-  }, [user]);
-
-  // console.log(isBlocked);
 
   const handleSendMsg = () => {
     if (!message.trim()) return;
@@ -62,6 +65,37 @@ export default function ChatPage() {
   const handleAttachClick = () => {
     fileInputRef.current.click();
   };
+
+  useEffect(() => {
+    if (chatId) {
+      dispatch(accessChat({ chatId }));
+    }
+  }, [chatId, dispatch]);
+
+  useEffect(() => {
+    if (chatId === "global") {
+      dispatch(markGlobalChatAsRead({ chatId }));
+    }
+  }, [chatId, dispatch]);
+
+  useEffect(() => {
+    if (!chatId) {
+      navigate("/home/chat/global");
+    }
+  }, [navigate, chatId, dispatch]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (blockRef.current && !blockRef.current.contains(event.target)) {
+        setShowBlockMsg(false);
+        setShowYouAreBlockMsg(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [blockRef]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -92,7 +126,10 @@ export default function ChatPage() {
       )}>
       <ChatHeader theme={theme} />
       <div className={clsx(styles.content)}>
-        <ChatsAside isBlocked={isBlocked} theme={theme} />
+        <ChatsAside
+          isBlocked={user?.user?.isBlocked || user?.user?.youAreBlocked}
+          theme={theme}
+        />
         <section className={styles.main}>
           <Outlet context={{ file }} />
         </section>
@@ -141,16 +178,53 @@ export default function ChatPage() {
           </div>
         </ChatInput>
 
-        <button
-          disabled={isBlocked}
-          type="button"
-          className={clsx(
-            styles.sendMsgButton,
-            isBlocked && styles.sendBlocked
+        <div ref={blockRef} className={styles.sendButtonCont}>
+          {user?.user?.isBlocked &&
+            !user?.user?.youAreBlocked &&
+            showBlockMsg && (
+              <p className={styles.blockSpan}>
+                🚫 You have blocked <b>{user?.user?.name} !</b> Find them in{" "}
+                <b>Chats List → Settings</b> and unblock to send messages.
+              </p>
+            )}
+          {chatId !== "global" &&
+            user?.user?.youAreBlocked &&
+            showYouAreBlockMsg && (
+              <p className={styles.blockSpan}>
+                🚫 You are blocked by <b>{user?.user?.name} !</b>
+                You cannot send messages to them.
+              </p>
+            )}
+          {chatId === "global" && showYouAreBlockMsg && (
+            <p className={styles.blockSpan}>
+              🚫 You are blocked by <b>Admin !</b>
+              You cannot send messages to <b>Global !</b> Please, contact{" "}
+              <b>Admin</b> for more info...!
+            </p>
           )}
-          onClick={handleSendMsg}>
-          <FaPaperPlane className={styles.sendIcon} size={18} />
-        </button>
+          <button
+            type="button"
+            className={clsx(
+              styles.sendMsgButton,
+              (user?.user?.isBlocked || user?.user?.youAreBlocked) &&
+                styles.sendBlocked
+            )}
+            onClick={() => {
+              !user?.user?.isBlocked &&
+                !user?.user?.youAreBlocked &&
+                handleSendMsg();
+              if (user?.user?.isBlocked && !user?.user?.youAreBlocked) {
+                setShowBlockMsg(!showBlockMsg);
+                setShowYouAreBlockMsg(false);
+              }
+              if (user?.user?.youAreBlocked) {
+                setShowYouAreBlockMsg(!showYouAreBlockMsg);
+                setShowBlockMsg(false);
+              }
+            }}>
+            <FaPaperPlane className={styles.sendIcon} size={18} />
+          </button>
+        </div>
       </div>
     </div>
   );

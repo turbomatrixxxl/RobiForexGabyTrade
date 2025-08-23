@@ -35,6 +35,18 @@
   flex-direction: column;
 }
 
+.inboxUserCont {
+  border: none;
+  display: flex;
+  gap: 4px;
+  outline: none;
+}
+
+.inboxUserImg {
+  height: 20px;
+  width: 20px;
+}
+
 .ownerName {
   color: var(--Text-color, #64748b);
 
@@ -84,8 +96,13 @@
   margin-top: 5px;
 }
 
+.sent,
 .read {
   color: var(--accent);
+}
+
+.timestampOutboxLight {
+  color: green;
 }
 
 .msgInboxContent {

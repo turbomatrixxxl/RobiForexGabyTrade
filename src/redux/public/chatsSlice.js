@@ -1,5 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { fetchData } from "./operationsChats";
+
+const user = localStorage.getItem("user");
 
 const initialState = {
   activeChats: 0,
@@ -42,24 +44,103 @@ const chatsSlice = createSlice({
 
     markChatAsRead: (state, action) => {
       const { chatId } = action.payload;
+      const filteredChats = state.chats.filter((ch) => ch.id !== "global");
+      const globalChats = state.chats.filter((ch) => ch.id === "global");
+
+      state.chats = [
+        ...globalChats,
+        ...filteredChats.map((chat) => {
+          if (chat.id !== chatId) return chat;
+          return {
+            ...chat,
+            messages: chat.messages.map((msg) =>
+              msg.isInbox && !msg.isRead ? { ...msg, isRead: true } : msg
+            ),
+          };
+        }),
+      ];
+    },
+
+    markGlobalChatAsRead: (state, action) => {
+      const { chatId } = action.payload;
+
+      // dacă nu e global, nu facem nimic
+      if (chatId !== "global") return;
+
       state.chats = state.chats.map((chat) => {
-        if (chat.id !== chatId) return chat;
-        return {
-          ...chat,
-          messages: chat.messages.map((msg) =>
-            msg.isInbox && !msg.isRead ? { ...msg, isRead: true } : msg
-          ),
-        };
+        if (chat.id === "global") {
+          return {
+            ...chat,
+            users: chat.users.map((user) => ({
+              ...user,
+              messages: user.messages.map((msg) =>
+                msg.isInbox && !msg.isRead ? { ...msg, isRead: true } : msg
+              ),
+            })),
+          };
+        }
+        return chat;
       });
     },
 
     toggleBlockUser: (state, action) => {
       const { chatId } = action.payload;
-      const user = state.chats.find((u) => u.id === chatId);
+      const chat = state.chats.find((u) => u.id === chatId);
 
-      if (user) {
-        user.user.isBlocked = !user.user.isBlocked;
+      if (chat?.user) {
+        chat.user.isBlocked = !chat.user.isBlocked;
       }
+    },
+
+    addUser: (state, action) => {
+      const { chatId } = action.payload;
+      const isUser = state.chats.filter((chat) => chat.id === chatId);
+
+      if (isUser.length > 0) {
+        return;
+      }
+
+      const globalChats = state.chats.find((chat) => chat.id === "global");
+
+      if (!globalChats) return; // safety
+
+      const newUser = globalChats.users.find((user) => user.id === chatId);
+
+      if (!newUser) {
+        console.warn("User not found in globalChats.users:", chatId);
+        return;
+      }
+
+      console.log("newUser:", current(newUser));
+
+      const nume = user.username;
+      console.log("nume", nume);
+
+      // ia doar mesajele trimise către mine (dacă există)
+      const sentToMeMsgs =
+        newUser.messages?.filter((msg) => msg?.sentTo === "Radu&Lavi") || [];
+
+      // dacă nu are niciun mesaj, creează unul default
+      const newUserMessagesInbox =
+        sentToMeMsgs.length > 0
+          ? sentToMeMsgs
+          : [
+              {
+                content: "Hy there ! Let's chat !",
+                id: `message-${Date.now()}`,
+                isInbox: true,
+                isRead: true,
+                sentAt: new Date().toISOString(),
+              },
+            ];
+
+      // creează un nou obiect user cu messages inițializate
+      const updatedNewUser = {
+        ...newUser,
+        messages: [...newUserMessagesInbox],
+      };
+
+      state.chats.push(updatedNewUser);
     },
 
     deleteUser: (state, action) => {
@@ -92,6 +173,8 @@ export const {
   accessChat,
   toggleBlockUser,
   markChatAsRead,
+  markGlobalChatAsRead,
+  addUser,
   deleteUser,
 } = chatsSlice.actions;
 

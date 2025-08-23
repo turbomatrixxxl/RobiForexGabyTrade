@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useChats } from "../../hooks/useChats";
 
 import gaby from "../../images/teamMembersPhoto/Roby.jpg";
+import glob from "../../images/global.png";
 
 import styles from "./ActiveChatModal.module.css";
 
@@ -29,11 +30,29 @@ export default function ActiveChatModal({ chats, closeModal }) {
 
   return (
     <div ref={modalRef}>
-      {activeChats.length === 0 ? (
-        <p className={styles.noActive}>There are no active chats !</p>
-      ) : (
-        <ul className={styles.chatList}>
-          {activeChats.map((chat) => (
+      <ul className={styles.chatList}>
+        <button
+          className={styles.closeButton}
+          onClick={closeModal}
+          type="button">
+          X
+        </button>
+        <li key={"globalH"} className={styles.chatListItem}>
+          <Link to={`/home/chat/global`} onClick={closeModal}>
+            <img
+              src={glob}
+              alt="Avatar"
+              className={styles.avatar}
+              loading="lazy"
+            />
+            <div className={styles.usersInfo}>
+              <span className={styles.userName}>Global</span>
+              <span className={styles.reply}>Reply...</span>
+            </div>
+          </Link>
+        </li>
+        {activeChats.map((chat) =>
+          chat?.id !== "global" ? (
             <li key={chat.id} className={styles.chatListItem}>
               <Link to={`/home/chat/${chat.id}`} onClick={closeModal}>
                 <img
@@ -48,9 +67,9 @@ export default function ActiveChatModal({ chats, closeModal }) {
                 </div>
               </Link>
             </li>
-          ))}
-        </ul>
-      )}
+          ) : null
+        )}
+      </ul>
     </div>
   );
 }

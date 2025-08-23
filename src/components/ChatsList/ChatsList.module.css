@@ -15,20 +15,46 @@
 .listItem {
   align-items: center;
   border-radius: 5px;
-  background: var(--White, #fff);
+  background: var(--Gray);
   display: flex;
   gap: 5px;
   height: 56px;
   padding: 5px;
   text-decoration: none;
+  position: relative;
+}
+
+.globalLink {
+  background: #909ae7;
 }
 
 .active {
-  background: var(--Gray);
+  background: yellowgreen;
+  box-shadow: 0 0 12px 3px rgba(0, 153, 255, 0.7);
 }
 
 .isBlocked {
-  background: var(--label-radio-pink-color);
+  background: orange;
+}
+
+.youAreBlocked {
+  background: #e96d6d;
+}
+
+.youAreBlockedSpan {
+  font-size: 12px;
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  /* z-index: 10; */
+}
+
+.isBlockedSpan {
+  font-size: 12px;
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  /* z-index: 10; */
 }
 
 .imgCont {
@@ -47,6 +73,10 @@
   flex-shrink: 0;
   height: 30px;
   width: 30px;
+}
+
+.global {
+  background: blue;
 }
 
 .isOnline {
@@ -79,7 +109,7 @@
 
   /* 14 Medium */
   font-family: Satoshi;
-  font-size: clamp(12px, 3vw, 14px);
+  font-size: clamp(9px, 3vw, 14px);
   font-style: normal;
   font-weight: 500;
   line-height: 16px; /* 157.143% */
@@ -90,7 +120,7 @@
 
   /* 14 Medium */
   font-family: Satoshi;
-  font-size: clamp(12px, 3vw, 14px);
+  font-size: clamp(10px, 3vw, 14px);
   font-style: normal;
   font-weight: 500;
   line-height: 22px; /* 157.143% */
@@ -100,7 +130,7 @@
 }
 
 .notRead {
-  color: var(--rosu);
+  color: red;
 }
 
 .settingsCont {
